@@ -14,7 +14,7 @@ class CreateMarksTable extends Migration
     public function up()
     {
         Schema::create('marks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id');
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
             $table->float('mark');
