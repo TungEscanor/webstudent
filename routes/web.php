@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
+
+Route::get('/student', 'StudentController@index')->name('student.index');
+Route::get('/student/create', 'StudentController@create')->name('student.index');
