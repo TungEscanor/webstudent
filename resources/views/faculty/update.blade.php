@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="">Home</a></li>
             <li class="breadcrumb-item"><a href="">Faculty</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Faculty</li>
+            <li class="breadcrumb-item active" aria-current="page">Update Faculty</li>
         </ol>
     </nav>
     @include('faculty.form')

@@ -127,7 +127,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     <ul class="sidebar-menu">
                         <li class="header">THANH ĐIỀU HƯỚNG CHÍNH</li>
                         <li class="treeview">
-                            <a href="">
+                            <a href="{{route('home')}}">
                                 <i class="fa fa-dashboard"></i> <span>Trang tổng quan</span>
                             </a>
                         </li>

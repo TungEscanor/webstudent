@@ -24,10 +24,11 @@
             @if (isset($faculties))
                 @foreach($faculties as $faculty)
                     <tr>
+                        <td>{{$faculty->id}}</td>
                         <td>{{$faculty->name}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('faculty.edit')}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('faculty.delete')}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('faculty.edit', $faculty->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('faculty.delete',$faculty->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach

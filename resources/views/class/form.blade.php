@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="name">Class name:</label>
-                <input type="text" class="form-control" name="name" value="{{old('name',isset($student -> name) ? $student -> name : '')}}" placeholder="Student name">
+                <input type="text" class="form-control" name="name" value="{{old('name',isset($class -> name) ? $class -> name : '')}}" placeholder="Class name">
                 @if($errors->has('name'))
                     <div class="error-text text-danger">
                         {{$errors->first('name')}}
@@ -12,10 +12,10 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="name">Class:</label>
+                <label for="name">Faculty:</label>
                 <select name="class_id" class="form-control" style="width: auto">
                     <option selected value="">Please chose faculty</option>
-                    @if(isset($faculties) && isset($class))
+                    @if(isset($faculties) && isset($classes))
                         @foreach($faculties as $faculty)
                             <option value="{{$faculty -> id}}" {{$faculty -> id == $class -> faculty_id ? "selected = 'selected'" : ""}} >{{$faculty -> name}}</option>
                         @endforeach

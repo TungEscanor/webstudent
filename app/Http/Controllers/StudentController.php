@@ -14,7 +14,7 @@ class StudentController extends Controller
     //show students list
     public function index()
     {
-        $students = DB::table('students')->paginate();
+        $students = DB::table('students')->paginate(8);
         $data = array();
         $data['students'] = $students;
         return view('student.index',$data);
@@ -39,7 +39,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('student.edit');
+        return view('student.update',$student);
     }
 
     public function update(StudentRequest $request,$id)
@@ -77,7 +77,7 @@ class StudentController extends Controller
     public function delete($id)
     {
         $student = Student::find($id);
-        return view('student.delete',$student);
+        return view('student.delete',compact('student'));
     }
 
     public function destroy($id)

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('layouts.master');
-});
+})->name('home');
 Route::prefix('student')->group(function () {
     Route::get('/', 'StudentController@index')->name('student.index');
     Route::get('/create', 'StudentController@create')->name('student.create');
@@ -21,7 +21,7 @@ Route::prefix('student')->group(function () {
     Route::get('/edit/{id}', 'StudentController@edit')->name('student.edit');
     Route::post('/edit/{id}', 'StudentController@update');
     Route::get('/delete/{id}', 'StudentController@delete')->name('student.delete');
-    Route::post('/destroy/{id}', 'StudentController@destroy');
+    Route::post('/delete/{id}', 'StudentController@destroy');
 });
 
 Route::prefix('class')->group(function () {
@@ -31,7 +31,7 @@ Route::prefix('class')->group(function () {
     Route::get('/edit/{id}', 'ClassController@edit')->name('class.edit');
     Route::post('/edit/{id}', 'ClassController@update');
     Route::get('/delete/{id}', 'ClassController@delete')->name('class.delete');
-    Route::post('/destroy/{id}', 'ClassController@destroy');
+    Route::post('/delete/{id}', 'ClassController@destroy');
 });
 
 Route::prefix('faculty')->group(function () {
@@ -41,7 +41,7 @@ Route::prefix('faculty')->group(function () {
     Route::get('/edit/{id}', 'FacultyController@edit')->name('faculty.edit');
     Route::post('/edit/{id}', 'FacultyController@update');
     Route::get('/delete/{id}', 'FacultyController@delete')->name('faculty.delete');
-    Route::post('/destroy/{id}', 'FacultyController@destroy');
+    Route::post('/delete/{id}', 'FacultyController@destroy');
 });
 
 Route::prefix('subject')->group(function () {
@@ -51,7 +51,7 @@ Route::prefix('subject')->group(function () {
     Route::get('/edit/{id}', 'SubjectController@edit')->name('subject.edit');
     Route::post('/edit/{id}', 'SubjectController@update');
     Route::get('/delete/{id}', 'SubjectController@delete')->name('subject.delete');
-    Route::post('/destroy/{id}', 'SubjectController@destroy');
+    Route::post('/delete/{id}', 'SubjectController@destroy');
 });
 
 Route::prefix('mark')->group(function () {
@@ -61,6 +61,6 @@ Route::prefix('mark')->group(function () {
     Route::get('/edit/{id}', 'MarkController@edit')->name('mark.edit');
     Route::post('/edit/{id}', 'MarkController@update');
     Route::get('/delete/{id}', 'MarkController@delete')->name('mark.delete');
-    Route::post('/destroy/{id}', 'MarkController@destroy');
+    Route::post('/delete/{id}', 'MarkController@destroy');
 });
 
