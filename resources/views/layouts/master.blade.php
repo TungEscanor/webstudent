@@ -133,19 +133,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li class="treeview">
-                            <a href="">
+                            <a href="{{route('faculty.index')}}">
                                 <i class="fa fa-list"></i> <span>Faculties</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="">
+                            <a href="{{route('class.index')}}">
                                 <i class="fa fa-product-hunt"></i> <span>Classes</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="">
+                            <a href="{{route('subject.index')}}">
                                 <i class="fa fa-calendar"></i> <span>Subjects</span>
                             </a>
                         </li>

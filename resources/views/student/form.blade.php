@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Birthday :</label>
-                <input type="date" name="birthday" id="" cols="" rows="7"  class="form-control">{{old('birthday',isset($student -> birthday) ? $student -> birthday : '')}} />
+                <input type="date" name="birthday" id="" cols="" rows="7"  class="form-control" value="{{old('birthday',isset($student -> birthday) ? $student -> birthday : '')}}" >
                 @if($errors->has('birthday'))
                     <div class="error-text text-danger">
                         {{$errors->first('birthday')}}
@@ -28,8 +28,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="email">Hình ảnh :</label>
-                <input type="file" class="form-control-file border" name="ar_avatar">
+                <label for="email">Avatar :</label>
+                <input type="file" class="form-control-file border" name="avatar">
                 @if($errors->has('avatar'))
                     <div class="error-text text-danger">
                         {{$errors->first('avatar')}}
@@ -42,12 +42,14 @@
                     <option selected value="">Please chose class</option>
                     @if(isset($classes) && isset($students))
                         @foreach($classes as $class)
-                            <option value="{{$class -> id}}" {{$class -> id == $student -> class_id ? "selected = 'selected'" : ""}} >{{$clas -> name}}</option>
+                            <option value="{{$class -> id}}" {{$class -> id == $student -> class_id ? "selected = 'selected'" : ""}} >{{$class -> name}}</option>
                         @endforeach
-                    @else
+                    @elseif (isset($classes))
                         @foreach($classes as $class)
                             <option value="{{$class -> id}}">{{$class -> name}}</option>
                         @endforeach
+                    @else
+                        <option value=""></option>
                     @endif
                 </select>
                 @if($errors->has('class_id'))
@@ -58,6 +60,6 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <button type="submit" class="btn btn-success">Lưu thông tin</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>

@@ -34,8 +34,8 @@
                         <td></td>
                         <td>{{date_format( 'd/m/Y',$student->birthday)}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href=""><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('student.edit')}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('student.delete')}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach
