@@ -60,15 +60,31 @@ class MarkController extends Controller
 
     public function insertOrUpdate($request, $id='')
     {
-        $mark = new Mark();
+
         if($id)
         {
-            $class = Mark::find($id);
+            $mark = Mark::find($id);
+
+            if($mark->student_id == $request->student_id && $mark->subject_id == $request->subject_id)
+            {
+                $mark->mark = $request->mark;
+            }
+            else
+            {
+                $mark ->student_id = $request->student_id;
+                $mark-> subject_id = $request->subject_id;
+                $mark-> mark = $request->mark;
+            }
         }
 
-        $mark ->student_id = $request->student_id;
-        $mark-> subject_id = $request->subject_id;
-        $mark-> mark = $request->mark;
+        if(!$id)
+        {
+            $mark = new Mark();
+            $mark ->student_id = $request->student_id;
+            $mark-> subject_id = $request->subject_id;
+            $mark-> mark = $request->mark;
+        }
+
 
 
         $mark ->save();

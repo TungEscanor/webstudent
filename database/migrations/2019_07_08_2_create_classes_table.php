@@ -17,7 +17,7 @@ class CreateClassesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->bigInteger('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('id')->on('faculties');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
             $table->timestamps();
         });
     }

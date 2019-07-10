@@ -18,8 +18,8 @@ class CreateMarksTable extends Migration
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
             $table->float('mark');
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->timestamps();
         });
     }

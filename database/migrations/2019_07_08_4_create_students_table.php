@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->dateTime('birthday');
             $table->tinyInteger('gender');
             $table->string('avatar');
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->timestamps();
         });
     }
