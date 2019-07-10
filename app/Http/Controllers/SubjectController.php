@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubjectRequest;
+use App\Models\Mark;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,6 +57,15 @@ class SubjectController extends Controller
         $subject ->name = $request->name;
 
         $subject ->save();
+    }
+
+    public function mark($id)
+    {
+        $marks = Mark::where('subject_id',$id)->paginate(8);
+
+        $data = array();
+        $data['marks'] = $marks;
+        return view('subject.mark',$data);
     }
 
     public function delete($id)

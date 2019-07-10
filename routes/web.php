@@ -49,6 +49,7 @@ Route::prefix('subject')->group(function () {
     Route::get('/', 'SubjectController@index')->name('subject.index');
     Route::get('/create', 'SubjectController@create')->name('subject.create');
     Route::post('/create', 'SubjectController@store');
+    Route::get('/mark/{id}', 'SubjectController@mark')->name('subject.mark');
     Route::get('/edit/{id}', 'SubjectController@edit')->name('subject.edit');
     Route::post('/edit/{id}', 'SubjectController@update');
     Route::get('/delete/{id}', 'SubjectController@delete')->name('subject.delete');

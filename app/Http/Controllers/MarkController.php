@@ -8,13 +8,14 @@ use App\Models\Mark;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MarkController extends Controller
 {
     //show mark list
     public function index()
     {
-        $marks = Mark::paginate(8);
+        $marks = Mark::orderBy('student_id')->paginate(8);
         $data = array();
         $data['marks'] = $marks;
         return view('mark.index',$data);
@@ -35,8 +36,28 @@ class MarkController extends Controller
     //save new mark
     public function store(MarkRequest $request)
     {
-        $this-> insertOrUpdate($request);
-        return redirect('/mark');
+        $result = DB::table('marks')->where('student_id',$request->student_id)
+            ->where('subject_id',$request->subject_id)->first();
+        if(!empty($result))
+        {
+            $error = "Cant create mark because student and subject already exist";
+            $students = Student::all();
+            $subjects = Subject::all();
+            $data = array();
+            $data['students'] = $students;
+            $data['subjects'] = $subjects;
+            return view('/mark/create',compact('error'),$data);
+        }
+        else {
+            $mark = new Mark;
+            $mark->student_id = $request->student_id;
+            $mark->subject_id = $request->subject_id;
+            $mark->mark = $request->mark;
+
+            $mark->save();
+            return redirect('/mark');
+        }
+
     }
 
     public function edit($id)
@@ -54,41 +75,15 @@ class MarkController extends Controller
 
     public function update(MarkRequest $request,$id)
     {
-        $this->insertOrUpdate($request,$id);
+        $mark = Mark::find($id);
+        $mark->student_id = $request->student_id;
+        $mark->subject_id = $request->subject_id;
+        $mark->mark = $request->mark;
+
+        $mark->save();
         return redirect('/mark');
     }
 
-    public function insertOrUpdate($request, $id='')
-    {
-
-        if($id)
-        {
-            $mark = Mark::find($id);
-
-            if($mark->student_id == $request->student_id && $mark->subject_id == $request->subject_id)
-            {
-                $mark->mark = $request->mark;
-            }
-            else
-            {
-                $mark ->student_id = $request->student_id;
-                $mark-> subject_id = $request->subject_id;
-                $mark-> mark = $request->mark;
-            }
-        }
-
-        if(!$id)
-        {
-            $mark = new Mark();
-            $mark ->student_id = $request->student_id;
-            $mark-> subject_id = $request->subject_id;
-            $mark-> mark = $request->mark;
-        }
-
-
-
-        $mark ->save();
-    }
 
     public function delete($id)
     {

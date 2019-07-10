@@ -10,5 +10,11 @@
             <li class="breadcrumb-item active" aria-current="page">Create Mark</li>
         </ol>
     </nav>
+    @if(isset($error))
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{$error}}
+    </div>
+    @endif
     @include('mark.form')
 @endsection

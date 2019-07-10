@@ -17,6 +17,7 @@
             <tr>
                 <th>#</th>
                 <th>Subject name</th>
+                <th>Show Mark</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <tr>
                         <td>{{$key +1}}</td>
                         <td>{{$subject->name}}</td>
+                        <td><a class="btn btn-success" href="{{route('subject.mark',$subject->id)}}">Show mark</a></td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{route('subject.edit', $subject->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
                             <a class="btn btn-danger btn-sm" href="{{route('subject.delete',$subject->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>

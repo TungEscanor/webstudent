@@ -82,7 +82,7 @@ class StudentController extends Controller
     //show mark
     public function mark($id)
     {
-        $marks = Mark::paginate(8)->where('student_id',$id);
+        $marks = Mark::where('student_id',$id)->paginate(8);
 
         $data = array();
         $data['marks'] = $marks;
