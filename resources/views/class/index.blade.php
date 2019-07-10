@@ -24,9 +24,9 @@
             </thead>
             <tbody>
             @if (isset($classes))
-                @foreach($classes as $class)
+                @foreach($classes as $key => $class)
                     <tr>
-                        <td>{{$class->id}}</td>
+                        <td>{{$key +1}}</td>
                         <td>{{$class->name}}</td>
                         <td>{{isset($class->faculty->id) ? $class->faculty->name : '[N\A]'}}</td>
                         <td>

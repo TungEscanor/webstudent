@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/MarkRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/MarkRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_08_2_create_classes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_08_2_create_classes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_08_4_create_students_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_08_4_create_students_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_08_6_create_marks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_08_6_create_marks_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/class/delete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/class/delete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mark/delete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mark/delete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/student/delete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/delete.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +19,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MarkController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="-32">
               <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
               <folding>
                 <element signature="e#40#75#0#PHP" expanded="true" />
@@ -353,18 +343,18 @@
       <workItem from="1562684323062" duration="4005000" />
       <workItem from="1562688357272" duration="3089000" />
       <workItem from="1562691476136" duration="1207000" />
-      <workItem from="1562712741515" duration="7432000" />
+      <workItem from="1562712741515" duration="7602000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54261000" />
+    <option name="totallyTimeSpent" value="54431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19213313" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19213313" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -767,7 +757,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MarkController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="-32">
           <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
           <folding>
             <element signature="e#40#75#0#PHP" expanded="true" />

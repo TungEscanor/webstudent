@@ -27,9 +27,9 @@
             </thead>
             <tbody>
             @if (isset($students))
-                @foreach($students as $student)
+                @foreach($students as $key => $student)
                     <tr>
-                        <td>{{$student->id}}</td>
+                        <td>{{$key +1}}</td>
                         <td>{{$student->name}}</td>
                         <td>{{$student->class->name}}</td>
                         <td>{{$student->gender == 1 ? 'Male' : 'Female'}}</td>

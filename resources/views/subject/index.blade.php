@@ -22,9 +22,9 @@
             </thead>
             <tbody>
             @if (isset($subjects))
-                @foreach($subjects as $subject)
+                @foreach($subjects as $key => $subject)
                     <tr>
-                        <td>{{$subject->id}}</td>
+                        <td>{{$key +1}}</td>
                         <td>{{$subject->name}}</td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{route('subject.edit', $subject->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>

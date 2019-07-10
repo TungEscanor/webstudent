@@ -22,9 +22,9 @@
             </thead>
             <tbody>
             @if (isset($faculties))
-                @foreach($faculties as $faculty)
+                @foreach($faculties as $key => $faculty)
                     <tr>
-                        <td>{{$faculty->id}}</td>
+                        <td>{{$key +1}}</td>
                         <td>{{$faculty->name}}</td>
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{route('faculty.edit', $faculty->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
