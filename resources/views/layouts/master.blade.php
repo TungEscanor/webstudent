@@ -157,7 +157,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li class="treeview">
-                            <a href="index.html">
+                            <a href="{{route('mark.index')}}">
                                 <i class="fa fa-contao"></i> <span>Marks</span>
                             </a>
                         </li>

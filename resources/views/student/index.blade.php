@@ -21,6 +21,7 @@
                 <th>Gender</th>
                 <th>Avatar</th>
                 <th>Birthday</th>
+                <th>Mark</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -28,19 +29,22 @@
             @if (isset($students))
                 @foreach($students as $student)
                     <tr>
+                        <td>{{$student->id}}</td>
                         <td>{{$student->name}}</td>
                         <td>{{$student->class->name}}</td>
-                        <td>{{$student->gender == 1 ? 'Male' : 'Femaile'}}</td>
-                        <td></td>
-                        <td>{{date_format( 'd/m/Y',$student->birthday)}}</td>
+                        <td>{{$student->gender == 1 ? 'Male' : 'Female'}}</td>
+                        <td><img src="{{url($student->avatar)}}" alt="" width="50px" height="50px"></td>
+                        <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
+                        <td><a class="btn btn-success" href="{{route('student.mark',$student->id)}}">Show mark</a></td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('student.edit')}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('student.delete')}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('student.edit',$student->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('student.delete',$student->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
+        {{$students ->links()}}
     </div>
 @endsection

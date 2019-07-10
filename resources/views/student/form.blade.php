@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Birthday :</label>
-                <input type="date" name="birthday" id="" cols="" rows="7"  class="form-control" value="{{old('birthday',isset($student -> birthday) ? $student -> birthday : '')}}" >
+                <input type="date" name="birthday" class="form-control" value="{{old('birthday',isset($student -> birthday) ? date('Y-m-d',strtotime($student->birthday)): '')}}" >
                 @if($errors->has('birthday'))
                     <div class="error-text text-danger">
                         {{$errors->first('birthday')}}
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Avatar :</label>
-                <input type="file" class="form-control-file border" name="avatar">
+                <input type="file" class="form-control-file border" name="avatar" value="{{old('avatar',isset($student -> avatar) ? $student -> avatar : '')}}">
                 @if($errors->has('avatar'))
                     <div class="error-text text-danger">
                         {{$errors->first('avatar')}}
@@ -37,27 +37,28 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="name">Class:</label>
-                <select name="class_id" class="form-control" style="width: auto">
-                    <option selected value="">Please chose class</option>
-                    @if(isset($classes) && isset($students))
-                        @foreach($classes as $class)
-                            <option value="{{$class -> id}}" {{$class -> id == $student -> class_id ? "selected = 'selected'" : ""}} >{{$class -> name}}</option>
-                        @endforeach
-                    @elseif (isset($classes))
-                        @foreach($classes as $class)
-                            <option value="{{$class -> id}}">{{$class -> name}}</option>
-                        @endforeach
-                    @else
-                        <option value=""></option>
+                <div class="form-group">
+                    <label for="name">Class:</label>
+                    <select name="class_id" class="form-control" style="width: auto">
+                        <option selected value="">Please chose faculty</option>
+                        @if(isset($classes) && isset($student))
+                            @foreach($classes as $class)
+                                <option value="{{$class -> id}}" {{$class -> id == $student -> class_id ? "selected = 'selected'" : ""}}>{{$class -> name}}</option>
+                            @endforeach
+                        @elseif (isset($classes))
+                            @foreach($classes as $class)
+                                <option value="{{$class -> id}}">{{$class -> name}}</option>
+                            @endforeach
+                        @else
+                            <option value=""></option>
+                        @endif
+                    </select>
+                    @if($errors->has('class_id'))
+                        <div class="error-text text-danger">
+                            {{$errors->first('class_id')}}
+                        </div>
                     @endif
-                </select>
-                @if($errors->has('class_id'))
-                    <div class="error-text text-danger">
-                        {{$errors->first('class_id')}}
-                    </div>
-                @endif
-            </div>
+                </div>
         </div>
         <div class="clearfix"></div>
         <button type="submit" class="btn btn-success">Save</button>

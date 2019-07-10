@@ -14,7 +14,7 @@ class ClassController extends Controller
     //show classes list
     public function index()
     {
-        $classes = DB::table('classes')->paginate(8);
+        $classes = Classes::paginate(8);
         $data = array();
         $data['classes'] = $classes;
         return view('class.index',$data);
@@ -22,11 +22,11 @@ class ClassController extends Controller
     //show form create class
     public function create()
     {
-        $faculties = new Classes();
-        $classes = Faculty::all();
+        $class = new Classes();
+        $faculties = Faculty::all();
         $data = array();
         $data['faculties'] = $faculties;
-        $data['classes'] = $classes;
+        $data['classes'] = $class;
         return view('class.create', $data);
     }
 
@@ -34,17 +34,25 @@ class ClassController extends Controller
     public function store(ClassRequest $request)
     {
         $this-> insertOrUpdate($request);
+        return redirect('/class');
     }
 
     public function edit($id)
     {
+        $faculties = Faculty::all();
         $class = Classes::find($id);
-        return view('class.update',$class);
+
+        $data = array();
+        $data['class'] = $class;
+        $data['faculties'] = $faculties;
+
+        return view('class.update',$data);
     }
 
     public function update(ClassRequest $request,$id)
     {
         $this->insertOrUpdate($request,$id);
+        return redirect('/class');
     }
 
     public function insertOrUpdate($request, $id='')
@@ -56,10 +64,7 @@ class ClassController extends Controller
         }
 
         $class ->name = $request->name;
-        $class-> class_id = $request->class_id;
-        $class->birthday = $request->birthday;
-        $class->gender = $request -> gender;
-
+        $class-> faculty_id = $request->faculty_id;
 
         $class ->save();
     }
@@ -73,5 +78,6 @@ class ClassController extends Controller
     public function destroy($id)
     {
         $class = Classes::find($id)->delete();
+        return redirect('/class');
     }
 }

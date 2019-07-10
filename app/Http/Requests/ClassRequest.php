@@ -25,6 +25,7 @@ class ClassRequest extends FormRequest
     {
         return [
             'name'=> 'required|unique:classes,name,'.$this->id,
+            'faculty_id' => 'required'
         ];
     }
 

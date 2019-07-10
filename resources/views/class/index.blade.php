@@ -9,6 +9,7 @@
             <li class="breadcrumb-item"><a href="">Classes</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
+
     </nav>
     <div class="panel-body widget-shadow">
         <table class="table table-hover table-bordered">
@@ -25,16 +26,18 @@
             @if (isset($classes))
                 @foreach($classes as $class)
                     <tr>
+                        <td>{{$class->id}}</td>
                         <td>{{$class->name}}</td>
-                        <td>{{$class->faculty->name}}</td>
+                        <td>{{isset($class->faculty->id) ? $class->faculty->name : '[N\A]'}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('class.edit')}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('class.delete')}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('class.edit',$class->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('class.delete',$class->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
+        {{$classes ->links()}}
     </div>
 @endsection

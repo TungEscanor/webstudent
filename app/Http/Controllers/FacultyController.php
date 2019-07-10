@@ -38,7 +38,7 @@ class FacultyController extends Controller
     public function edit($id)
     {
         $faculty = Faculty::find($id);
-        return view('faculty.update',$faculty);
+        return view('faculty.update',compact('faculty'));
     }
 
     public function update(FacultyRequest $request,$id)

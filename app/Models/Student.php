@@ -9,6 +9,6 @@ class Student extends Model
     protected $table = 'students';
 
     public function class() {
-        return $this->hasOne('Models\Classes', 'id','name');
+        return $this->belongsTo('App\Models\Classes', 'class_id');
     }
 }

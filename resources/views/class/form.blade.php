@@ -13,11 +13,11 @@
             </div>
             <div class="form-group">
                 <label for="name">Faculty:</label>
-                <select name="class_id" class="form-control" style="width: auto">
+                <select name="faculty_id" class="form-control" style="width: auto">
                     <option selected value="">Please chose faculty</option>
-                    @if(isset($faculties) && isset($classes))
+                    @if(isset($faculties) && isset($class))
                         @foreach($faculties as $faculty)
-                            <option value="{{$faculty -> id}}" {{$faculty -> id == $class -> faculty_id ? "selected = 'selected'" : ""}} >{{$faculty -> name}}</option>
+                            <option value="{{$faculty -> id}}" {{$faculty -> id == $class -> faculty_id ? "selected = 'selected'" : ""}}>{{$faculty -> name}}</option>
                         @endforeach
                     @elseif (isset($faculties))
                         @foreach($faculties as $faculty)
