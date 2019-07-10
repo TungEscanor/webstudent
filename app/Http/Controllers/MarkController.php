@@ -36,25 +36,18 @@ class MarkController extends Controller
     //save new mark
     public function store(MarkRequest $request)
     {
-        $result = DB::table('marks')->where('student_id',$request->student_id)
+        $result = Mark::where('student_id',$request->student_id)
             ->where('subject_id',$request->subject_id)->first();
-        if(!empty($result))
-        {
+        if (!empty($result)) {
             $error = "Cant create mark because student and subject already exist";
             $students = Student::all();
             $subjects = Subject::all();
             $data = array();
             $data['students'] = $students;
             $data['subjects'] = $subjects;
-            return view('/mark/create',compact('error'),$data);
-        }
-        else {
-            $mark = new Mark;
-            $mark->student_id = $request->student_id;
-            $mark->subject_id = $request->subject_id;
-            $mark->mark = $request->mark;
-
-            $mark->save();
+            return view('mark.create',compact('error'),$data);
+        } else {
+            Mark::create($request->all());
             return redirect('/mark');
         }
 

@@ -8,6 +8,8 @@ class Mark extends Model
 {
     protected $table = 'marks';
 
+    protected $fillable=['student_id','subject_id','mark'];
+
     public function student()
     {
         return $this->belongsTo('App\Models\Student','student_id');

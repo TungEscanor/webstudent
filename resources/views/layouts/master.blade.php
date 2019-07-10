@@ -125,10 +125,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="sidebar-menu">
-                        <li class="header">Dashboard</li>
+                        <li class="header">Navigation Bar</li>
                         <li class="treeview">
                             <a href="{{route('student.index')}}">
-                                <i class="fa fa-dashboard"></i> <span>Trang tổng quan</span>
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
 

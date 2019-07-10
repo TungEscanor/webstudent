@@ -8,7 +8,9 @@ class Student extends Model
 {
     protected $table = 'students';
 
+    protected $fillable = ['name','class_id','birthday','gender',];
+
     public function class() {
-        return $this->belongsTo('App\Models\Classes', 'class_id');
+        return $this->belongsTo(Classes::class);
     }
 }
