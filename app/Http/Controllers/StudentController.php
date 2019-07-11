@@ -33,7 +33,7 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $this-> insertOrUpdate($request);
-        return redirect('/student');
+        return redirect('/student')->with('success','Create student successfully');
     }
 
     public function edit($id)
@@ -49,7 +49,7 @@ class StudentController extends Controller
     public function update(StudentRequest $request,$id)
     {
         $this->insertOrUpdate($request,$id);
-        return redirect('/student');
+        return redirect('/student')->with('success','Update student successfully');
     }
 
     public function insertOrUpdate($request, $id='')
@@ -98,6 +98,6 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id)->delete();
-        return redirect('/student');
+        return redirect('/student')->with('success','Delete student successfully');
     }
 }

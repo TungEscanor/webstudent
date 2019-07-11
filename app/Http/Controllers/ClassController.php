@@ -34,7 +34,7 @@ class ClassController extends Controller
     public function store(ClassRequest $request)
     {
         $this-> insertOrUpdate($request);
-        return redirect('/class');
+        return redirect('/class')->with('success','Create class successfully');
     }
 
     public function edit($id)
@@ -52,7 +52,7 @@ class ClassController extends Controller
     public function update(ClassRequest $request,$id)
     {
         $this->insertOrUpdate($request,$id);
-        return redirect('/class');
+        return redirect('/class')->with('success','Update class successfully');
     }
 
     public function insertOrUpdate($request, $id='')
@@ -78,6 +78,6 @@ class ClassController extends Controller
     public function destroy($id)
     {
         $class = Classes::find($id)->delete();
-        return redirect('/class');
+        return redirect('/class')->with('success','Delete class successfully');
     }
 }

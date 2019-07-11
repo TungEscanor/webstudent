@@ -9,6 +9,7 @@
             <li class="breadcrumb-item"><a href="">Mark</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
+    @include('flash-message')
     </nav>
     <div class="panel-body widget-shadow">
         <table class="table table-hover table-bordered">

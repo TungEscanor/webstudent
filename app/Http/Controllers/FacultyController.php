@@ -32,7 +32,7 @@ class FacultyController extends Controller
     public function store(FacultyRequest $request)
     {
         $this-> insertOrUpdate($request);
-        return redirect('/faculty');
+        return redirect('faculty')->with('success','Create faculty successfully');
     }
 
     public function edit($id)
@@ -44,7 +44,7 @@ class FacultyController extends Controller
     public function update(FacultyRequest $request,$id)
     {
         $this->insertOrUpdate($request,$id);
-        return redirect('/faculty');
+        return redirect('faculty')->with('success','Update faculty successfully');
     }
 
     public function insertOrUpdate($request, $id='')
@@ -69,6 +69,6 @@ class FacultyController extends Controller
     public function destroy($id)
     {
         $faculty = Faculty::find($id)->delete();
-        return redirect('/faculty');
+        return redirect('faculty')->with('warning','Delete faculty successfully');
     }
 }

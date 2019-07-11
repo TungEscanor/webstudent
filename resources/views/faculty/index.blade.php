@@ -10,6 +10,7 @@
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
     </nav>
+    @include('flash-message')
     <div class="panel-body widget-shadow">
         <table class="table table-hover table-bordered">
             <h3 class="page-header">Faculty Manage<a class="btn btn-sm btn-success pull-right" href="{{route('faculty.create')}}" title=""><i class="fa fa-plus"></i></a></h3>

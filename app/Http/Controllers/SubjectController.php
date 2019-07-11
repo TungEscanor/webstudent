@@ -31,7 +31,7 @@ class SubjectController extends Controller
     public function store(SubjectRequest $request)
     {
         $this-> insertOrUpdate($request);
-        return redirect('/subject');
+        return redirect('/subject')->with('success','Create subject successfully');
     }
 
     public function edit($id)
@@ -43,7 +43,7 @@ class SubjectController extends Controller
     public function update(SubjectRequest $request,$id)
     {
         $this->insertOrUpdate($request,$id);
-        return redirect('/subject');
+        return redirect('/subject')->with('success','Update subject successfully');
     }
 
     public function insertOrUpdate($request, $id='')
@@ -77,6 +77,6 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         $subject = Subject::find($id)->delete();
-        return redirect('/subject');
+        return redirect('/subject')->with('success','Delete subject successfully');
     }
 }

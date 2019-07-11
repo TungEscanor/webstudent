@@ -48,7 +48,7 @@ class MarkController extends Controller
             return view('mark.create',compact('error'),$data);
         } else {
             Mark::create($request->all());
-            return redirect('/mark');
+            return redirect('/mark')->with('success','Create mark successfully');
         }
 
     }
@@ -74,7 +74,7 @@ class MarkController extends Controller
         $mark->mark = $request->mark;
 
         $mark->save();
-        return redirect('/mark');
+        return redirect('/mark')->with('success','Update mark successfully');
     }
 
 
@@ -87,6 +87,6 @@ class MarkController extends Controller
     public function destroy($id)
     {
         $mark = Mark::find($id)->delete();
-        return redirect('/mark');
+        return redirect('/mark')->with('success','Delete mark successfully');
     }
 }
