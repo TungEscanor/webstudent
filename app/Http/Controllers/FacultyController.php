@@ -14,7 +14,7 @@ class FacultyController extends Controller
     //show faculties list
     public function index()
     {
-        $faculties = DB::table('faculties')->paginate(8);
+        $faculties = Faculty::paginate(8);
         $data = array();
         $data['faculties'] = $faculties;
         return view('faculty.index',$data);
