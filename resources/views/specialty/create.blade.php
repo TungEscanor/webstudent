@@ -6,9 +6,9 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Class</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Class</li>
+            <li class="breadcrumb-item"><a href="">Specialty</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create specialty</li>
         </ol>
     </nav>
-    @include('class.form')
+    @include('specialty.form')
 @endsection

@@ -23,16 +23,16 @@
             </tr>
             </thead>
             <tbody>
-            @if (isset($marks))
-                @foreach($marks as $key => $mark)
+            @if (isset($mark))
+                @foreach($mark as $key => $value)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{$mark->student->name}}</td>
-                        <td>{{$mark->subject->name}}</td>
-                        <td>{{number_format($mark->mark,2)}}</td>
+                        <td>{{$value->student->name}}</td>
+                        <td>{{$value->subject->name}}</td>
+                        <td>{{number_format($value->mark,2)}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('mark.edit',$mark->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('mark.delete',$mark->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('mark.edit',$value->id)}}"><b><i class="fa fa-edit" title="Edit"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('mark.delete',$value->id)}}" title="Delete"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach

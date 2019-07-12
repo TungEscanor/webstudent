@@ -3,80 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubjectRequest;
-use App\Models\Mark;
-use App\Models\Subject;
+use App\Repositories\Subject\SubjectRepositoryInterface;
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SubjectController extends Controller
 {
-    //show subjects list
+    protected $subjectRepository;
+
+    public function __construct(SubjectRepositoryInterface $subjectRepository)
+    {
+        $this->subjectRepository = $subjectRepository;
+    }
+
     public function index()
     {
-        $subjects = DB::table('subjects')->paginate(8);
-        $data = array();
-        $data['subjects'] = $subjects;
-        return view('subject.index',$data);
+       $subject = $this->subjectRepository->getAllList();
+        return view('subject.index',compact('subject'));
     }
-    //show form create Subject
+
     public function create()
     {
-        $subjects = new Subject();
-        $data = array();
-        $data['subjects'] = $subjects;
         return view('subject.create');
     }
 
-    //save new Subject
     public function store(SubjectRequest $request)
     {
-        $this-> insertOrUpdate($request);
-        return redirect('/subject')->with('success','Create subject successfully');
+        $this->subjectRepository->store($request->all());
+        return redirect('subject')->with('success','Create subject successfully');
     }
+
 
     public function edit($id)
     {
-        $subject = Subject::find($id);
+       $subject =  $this->subjectRepository->getListById($id);
         return view('subject.update',compact('subject'));
     }
 
-    public function update(SubjectRequest $request,$id)
+
+    public function update($id,SubjectRequest $request )
     {
-        $this->insertOrUpdate($request,$id);
-        return redirect('/subject')->with('success','Update subject successfully');
+        $this->subjectRepository->update($id,$request->all());
+        return redirect('subject')->with('success','Update subject successfully');
     }
 
-    public function insertOrUpdate($request, $id='')
-    {
-        $subject = new Subject();
-        if($id)
-        {
-            $subject = Subject::find($id);
-        }
-
-        $subject ->name = $request->name;
-
-        $subject ->save();
-    }
-
-    public function mark($id)
-    {
-        $marks = Mark::where('subject_id',$id)->paginate(8);
-
-        $data = array();
-        $data['marks'] = $marks;
-        return view('subject.mark',$data);
-    }
-
-    public function delete($id)
-    {
-        $subject = Subject::find($id);
+    public function delete($id) {
+       $subject = $this->subjectRepository->getListById($id);
         return view('subject.delete',compact('subject'));
     }
 
     public function destroy($id)
     {
-        $subject = Subject::find($id)->delete();
-        return redirect('/subject')->with('success','Delete subject successfully');
+        $this->subjectRepository->destroy($id);
+        return redirect('subject')->with('warning','Delete subject successfully');
+    }
+
+    public function showMark($id){
+        $mark = $this->subjectRepository->showMark($id);
+        return view('subject.mark',compact('mark'));
     }
 }

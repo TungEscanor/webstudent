@@ -27,25 +27,25 @@
             </tr>
             </thead>
             <tbody>
-            @if (isset($students))
-                @foreach($students as $key => $student)
+            @if (isset($student))
+                @foreach($student as $key => $value)
                     <tr>
                         <td>{{$key +1}}</td>
-                        <td>{{$student->name}}</td>
-                        <td>{{$student->class->name}}</td>
-                        <td>{{$student->gender == 1 ? 'Male' : 'Female'}}</td>
-                        <td><img src="{{url($student->avatar)}}" alt="" width="50px" height="50px"></td>
-                        <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
-                        <td><a class="btn btn-success" href="{{route('student.mark',$student->id)}}">Show mark</a></td>
+                        <td>{{$value->name}}</td>
+                        <td>{{$value->specialty->name}}</td>
+                        <td>{{$value->gender == 1 ? 'Male' : 'Female'}}</td>
+                        <td><img src="{{url($value->avatar)}}" alt="" width="50px" height="50px"></td>
+                        <td>{{date( 'd/m/Y',strtotime($value->birthday))}}</td>
+                        <td><a class="btn btn-success" href="{{route('student.mark',$value->id)}}">Show mark</a></td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('student.edit',$student->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('student.delete',$student->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                            <a class="btn btn-primary btn-sm" href="{{route('student.edit',$value->id)}}"><b><i class="fa fa-edit" title="Edit"></i></b></a>
+                            <a class="btn btn-danger btn-sm" href="{{route('student.delete',$value->id)}}" title="Delete"><b><i class="fa fa-remove"></i></b></a>
                         </td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
-        {{$students ->links()}}
+        {{$student ->links()}}
     </div>
 @endsection

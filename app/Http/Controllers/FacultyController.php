@@ -1,74 +1,59 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Faculty;
 
-use App\Http\Requests\facultyRequest;
-use App\Models\Classes;
-use App\Models\Faculty;
+use App\Http\Requests\FacultyRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-
+use App\Repositories\Faculty\FacultyRepositoryInterFace;
 class FacultyController extends Controller
 {
-    //show faculties list
+    protected $facultyRepository;
+
+    public function __construct(FacultyRepositoryInterFace $facultyRepository)
+    {
+        $this->facultyRepository = $facultyRepository;
+    }
+
     public function index()
     {
-        $faculties = Faculty::paginate(8);
-        $data = array();
-        $data['faculties'] = $faculties;
-        return view('faculty.index',$data);
+        $faculty = $this->facultyRepository->getAllList();
+        return view('faculty.index',compact('faculty'));
     }
-    //show form create faculty
+
     public function create()
     {
-        $faculties = new Faculty();
-        $data = array();
-        $data['faculties'] = $faculties;
         return view('faculty.create');
     }
 
-    //save new faculty
     public function store(FacultyRequest $request)
     {
-        $this-> insertOrUpdate($request);
+        $this->facultyRepository->store($request->all());
         return redirect('faculty')->with('success','Create faculty successfully');
     }
 
+
     public function edit($id)
     {
-        $faculty = Faculty::find($id);
-        return view('faculty.update',compact('faculty'));
+      $faculty =  $this->facultyRepository->getListById($id);
+      return view('faculty.update',compact('faculty'));
     }
 
-    public function update(FacultyRequest $request,$id)
+
+    public function update($id,FacultyRequest $request )
     {
-        $this->insertOrUpdate($request,$id);
+        $this->facultyRepository->update($id,$request->all());
         return redirect('faculty')->with('success','Update faculty successfully');
     }
 
-    public function insertOrUpdate($request, $id='')
-    {
-        $faculty = new Faculty();
-        if($id)
-        {
-            $faculty = Faculty::find($id);
-        }
-
-        $faculty ->name = $request->name;
-
-        $faculty ->save();
-    }
-
-    public function delete($id)
-    {
-        $faculty = Faculty::find($id);
-        return view('faculty.delete',compact('faculty'));
+    public function delete($id) {
+      $faculty = $this->facultyRepository->getListById($id);
+      return view('faculty.delete',compact('faculty'));
     }
 
     public function destroy($id)
     {
-        $faculty = Faculty::find($id)->delete();
+        $this->facultyRepository->destroy($id);
         return redirect('faculty')->with('warning','Delete faculty successfully');
     }
 }

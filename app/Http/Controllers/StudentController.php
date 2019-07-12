@@ -3,101 +3,66 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
-use App\Models\Classes;
-use App\Models\Mark;
-use App\Models\Student;
+use App\Repositories\Student\StudentRepositoryInterface;
+use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
-    //show students list
-    public function index()
+    protected $studentRepository;
+
+    public function __construct(StudentRepositoryInterface $studentRepository)
     {
-        $students = Student::paginate(8);
-        $data = array();
-        $data['students'] = $students;
-        return view('student.index',$data);
-    }
-    //show form create student
-    public function create()
-    {
-        $classes = Classes::all();
-        $data = array();
-        $data['classes'] = $classes;
-        return view('student.create',$data);
+        $this->studentRepository = $studentRepository;
     }
 
-    //save new student
+    public function index()
+    {
+        $student = $this->studentRepository->getAllList();
+        return view('student.index',compact('student'));
+    }
+
+    public function create()
+    {
+        $student  = $this->studentRepository->getAllList();
+        return view('student.create',compact('student'));
+    }
+
     public function store(StudentRequest $request)
     {
-        $this-> insertOrUpdate($request);
-        return redirect('/student')->with('success','Create student successfully');
+        $this->studentRepository->store($request);
+        return redirect('student')->with('success','Create student successfully');
     }
+
 
     public function edit($id)
     {
-        $classes = Classes::all();
-        $student = Student::find($id);
-        $data = array();
-        $data['classes'] = $classes;
-        $data['student'] = $student;
-        return view('student.update',$data);
+        $student = $this->studentRepository->getAllList();
+        $item =  $this->studentRepository->getListById($id);
+        return view('student.update',compact('item'),compact('student'));
     }
 
-    public function update(StudentRequest $request,$id)
+
+    public function update($id,StudentRequest $request )
     {
-        $this->insertOrUpdate($request,$id);
-        return redirect('/student')->with('success','Update student successfully');
+        $this->studentRepository->update($id,$request);
+        return redirect('student')->with('success','Update student successfully');
     }
 
-    public function insertOrUpdate($request, $id='')
-    {
-        $student = new Student();
-        if($id)
-        {
-            $student = Student::find($id);
-        }
-
-        $student ->name = $request->name;
-        $student-> class_id = $request->class_id;
-        $student->birthday = $request->birthday;
-        $student->gender = $request -> gender;
-
-        if($request-> hasFile('avatar'))
-        {
-            $file = $request->avatar;
-            $fileExtention = $file-> getClientOriginalExtension();
-            $fileName = Str::slug($request->name).'.'.$fileExtention;
-            $uploadPath = public_path('/upload');
-
-            $file->move($uploadPath,$fileName);
-
-            $student->avatar = '/upload/'.$fileName;
-        }
-
-        $student ->save();
-    }
-    //show mark
-    public function mark($id)
-    {
-        $marks = Mark::where('student_id',$id)->paginate(8);
-
-        $data = array();
-        $data['marks'] = $marks;
-        return view('student.mark',$data);
-    }
-
-    public function delete($id)
-    {
-        $student = Student::find($id);
+    public function delete($id) {
+        $student = $this->studentRepository->getListById($id);
         return view('student.delete',compact('student'));
     }
 
     public function destroy($id)
     {
-        $student = Student::find($id)->delete();
-        return redirect('/student')->with('success','Delete student successfully');
+        $this->studentRepository->destroy($id);
+        return redirect('student')->with('warning','Delete student successfully');
+    }
+
+    public function showMark($id){
+        $mark = $this->studentRepository->showMark($id);
+        return view('subject.mark',compact('mark'));
     }
 }

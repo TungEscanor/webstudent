@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClassRequest extends FormRequest
+class SpecialtyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ClassRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|unique:classes,name,'.$this->id,
+            'name'=> 'required|unique:specialties,name,'.$this->id,
             'faculty_id' => 'required'
         ];
     }
@@ -32,8 +32,8 @@ class ClassRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Please type class name',
-            'name.unique' => 'Please chose another class name',
+            'name.required' => 'Please type specialty name',
+            'name.unique' => 'Please chose another specialty name',
         ];
     }
 }

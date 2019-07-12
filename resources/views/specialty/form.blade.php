@@ -3,8 +3,8 @@
         {{csrf_field()}}
         <div class="col-md-12">
             <div class="form-group">
-                <label for="name">Class name:</label>
-                <input type="text" class="form-control" name="name" value="{{old('name',isset($class -> name) ? $class -> name : '')}}" placeholder="Class name">
+                <label for="name">Specialty name:</label>
+                <input type="text" class="form-control" name="name" value="{{old('name',isset($item -> name) ? $item -> name : '')}}" placeholder="Class name">
                 @if($errors->has('name'))
                     <div class="error-text text-danger">
                         {{$errors->first('name')}}
@@ -15,13 +15,13 @@
                 <label for="name">Faculty:</label>
                 <select name="faculty_id" class="form-control" style="width: auto">
                     <option selected value="">Please chose faculty</option>
-                    @if(isset($faculties) && isset($class))
-                        @foreach($faculties as $faculty)
-                            <option value="{{$faculty -> id}}" {{$faculty -> id == $class -> faculty_id ? "selected = 'selected'" : ""}}>{{$faculty -> name}}</option>
+                    @if(isset($specialty) && isset($item))
+                        @foreach($specialty as $value)
+                            <option value="{{$value ->faculty-> id}}" {{$value ->faculty -> id == $item -> faculty_id ? "selected = 'selected'" : ""}}>{{$value -> faculty-> name}}</option>
                         @endforeach
-                    @elseif (isset($faculties))
-                        @foreach($faculties as $faculty)
-                            <option value="{{$faculty -> id}}">{{$faculty -> name}}</option>
+                    @elseif(isset($specialty))
+                        @foreach($specialty as $value)
+                            <option value="{{$value ->faculty-> id}}">{{$value -> faculty-> name}}</option>
                         @endforeach
                     @else
                         <option value=""></option>

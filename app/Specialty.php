@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
-class Classes extends Model
+class Specialty extends Model
 {
+    protected $table = 'specialties';
     protected $fillable=['name', 'faculty_id'];
 
     public function faculty() {

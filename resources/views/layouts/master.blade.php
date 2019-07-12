@@ -15,35 +15,35 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset("ad/css/bootstrap.css")}}" rel='stylesheet' type='text/css' />
+    <link href="{{asset("admin/css/bootstrap.css")}}" rel='stylesheet' type='text/css' />
 
     <!-- Custom CSS -->
-    <link href="{{asset("ad/css/style.css")}}" rel='stylesheet' type='text/css' />
+    <link href="{{asset("admin/css/style.css")}}" rel='stylesheet' type='text/css' />
 
     <!-- font-awesome icons CSS -->
-    <link href="{{asset("ad/css/font-awesome.css")}}" rel="stylesheet">
+    <link href="{{asset("admin/css/font-awesome.css")}}" rel="stylesheet">
     <!-- //font-awesome icons CSS-->
 
     <!-- side nav css file -->
-    <link href="{{asset("ad/css/SidebarNav.min.css")}}" media='all' rel='stylesheet' type='text/css'/>
+    <link href="{{asset("admin/css/SidebarNav.min.css")}}" media='all' rel='stylesheet' type='text/css'/>
     <!-- //side nav css file -->
 
     <!-- js-->
-    <script src="{{asset("ad/js/jquery-1.11.1.min.js")}}"></script>
-    <script src="{{asset("ad/js/modernizr.custom.js")}}"></script>
+    <script src="{{asset("admin/js/jquery-1.11.1.min.js")}}"></script>
+    <script src="{{asset("admin/js/modernizr.custom.js")}}"></script>
 
     <!--webfonts-->
     <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     <!--//webfonts-->
 
     <!-- chart -->
-    <script src="{{asset("ad/js/Chart.js")}}"></script>
+    <script src="{{asset("admin/js/Chart.js")}}"></script>
     <!-- //chart -->
 
     <!-- Metis Menu -->
-    <script src="{{asset("ad/js/metisMenu.min.js")}}"></script>
-    <script src="{{asset("ad/js/custom.js")}}"></script>
-    <link href="{{asset("ad/css/custom.css")}}" rel="stylesheet">
+    <script src="{{asset("admin/js/metisMenu.min.js")}}"></script>
+    <script src="{{asset("admin/js/custom.js")}}"></script>
+    <link href="{{asset("admin/css/custom.css")}}" rel="stylesheet">
     <!--//Metis Menu -->
     <style>
         #chartdiv {
@@ -52,7 +52,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         }
     </style>
     <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
-    <script src="{{asset("ad/js/pie-chart.js")}}" type="text/javascript"></script>
+    <script src="{{asset("admin/js/pie-chart.js")}}" type="text/javascript"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -93,8 +93,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
 
     <!-- requried-jsfiles-for owl -->
-    <link href="{{asset("ad/css/owl.carousel.css")}}" rel="stylesheet">
-    <script src="{{asset("ad/js/owl.carousel.js")}}"></script>
+    <link href="{{asset("admin/css/owl.carousel.css")}}" rel="stylesheet">
+    <script src="{{asset("admin/js/owl.carousel.js")}}"></script>
     <script>
         $(document).ready(function() {
             $("#owl-demo").owlCarousel({
@@ -139,8 +139,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('class.index')}}">
-                                <i class="fa fa-product-hunt"></i> <span>Classes</span>
+                            <a href="{{route('specialty.index')}}">
+                                <i class="fa fa-product-hunt"></i> <span>Specialty</span>
                             </a>
                         </li>
 
@@ -207,7 +207,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     <li class="dropdown profile_details_drop">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <div class="profile_img">
-                                <span class="prfil-img"><img src="{{asset("ad/images/1.jpg")}}" alt="" width="50px" height="50px"> </span>
+                                <span class="prfil-img"><img src="{{asset("admin/images/1.jpg")}}" alt="" width="50px" height="50px"> </span>
                                 <div class="user-name">
                                     <p>Trịnh Tùng</p>
                                     <span>Administrator</span>
@@ -245,8 +245,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 <!-- new added graphs chart js-->
 
-<script src="{{asset("ad/js/Chart.bundle.js")}}"></script>
-<script src="{{asset("ad/js/utils.js")}}"></script>
+<script src="{{asset("admin/js/Chart.bundle.js")}}"></script>
+<script src="{{asset("admin/js/utils.js")}}"></script>
 
 <script>
     var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -367,7 +367,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- new added graphs chart js-->
 
 <!-- Classie --><!-- for toggle left push menu script -->
-<script src="{{asset("ad/js/classie.js")}}"></script>
+<script src="{{asset("admin/js/classie.js")}}"></script>
 <script>
     var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
         showLeftPush = document.getElementById( 'showLeftPush' ),
@@ -390,19 +390,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- //Classie --><!-- //for toggle left push menu script -->
 
 <!--scrolling js-->
-<script src="{{asset("ad/js/jquery.nicescroll.js")}}"></script>
-<script src="{{asset("ad/js/scripts.js")}}"></script>
+<script src="{{asset("admin/js/jquery.nicescroll.js")}}"></script>
+<script src="{{asset("admin/js/scripts.js")}}"></script>
 <!--//scrolling js-->
 
 <!-- side nav js -->
-<script src="{{asset("ad/js/SidebarNav.min.js")}}" type='text/javascript'></script>
+<script src="{{asset("admin/js/SidebarNav.min.js")}}" type='text/javascript'></script>
 <script>
     $('.sidebar-menu').SidebarNav()
 </script>
 <!-- //side nav js -->
 
 <!-- for index page weekly sales java script -->
-<script src="{{asset("ad/js/SimpleChart.js")}}"></script>
+<script src="{{asset("admin/js/SimpleChart.js")}}"></script>
 <script>
     var graphdata1 = {
         linecolor: "#CCA300",
@@ -660,7 +660,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{asset("ad/js/bootstrap.js")}}"> </script>
+<script src="{{asset("admin/js/bootstrap.js")}}"> </script>
 <!-- //Bootstrap Core JavaScript -->
 
 </body>
