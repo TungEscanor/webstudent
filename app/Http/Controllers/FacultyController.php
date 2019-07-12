@@ -5,12 +5,12 @@ use App\Faculty;
 
 use App\Http\Requests\FacultyRequest;
 use Illuminate\Http\Request;
-use App\Repositories\Faculty\FacultyRepositoryInterFace;
+use App\Repositories\Faculty\FacultyRepositoryInterface;
 class FacultyController extends Controller
 {
     protected $facultyRepository;
 
-    public function __construct(FacultyRepositoryInterFace $facultyRepository)
+    public function __construct(FacultyRepositoryInterface $facultyRepository)
     {
         $this->facultyRepository = $facultyRepository;
     }
