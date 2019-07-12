@@ -6,6 +6,7 @@ use App\Mark;
 use App\Student;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -75,7 +76,11 @@ class StudentRepository  implements  StudentRepositoryInterface {
     {
         $student = Student::find($id);
 
-        Storage::disk('public')->delete($student->avatar);
+        if(File::exists(public_path($student->avatar))) {
+            File::delete(public_path($student->avatar));
+        }
+
+        $student->delete();
     }
 
     public function showMark($id){
