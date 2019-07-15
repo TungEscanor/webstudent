@@ -16,6 +16,8 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
+            $table->bigInteger('faculty_id')->nullable()->unsigned();
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
             $table->timestamps();
         });
     }

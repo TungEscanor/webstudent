@@ -15,12 +15,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('class_id')->unsigned();
+            $table->bigInteger('class_id')->nullable()->unsigned();
             $table->string('name');
             $table->dateTime('birthday');
             $table->tinyInteger('gender');
             $table->string('avatar');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
     }
