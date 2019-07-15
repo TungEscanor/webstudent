@@ -53,7 +53,7 @@ class FacultyController extends Controller
     {
 
         $this->facultyRepository->destroy($id);
-        return back()->with('error','Delete faculty successfully !');
+        return back()->with('success','Delete faculty successfully !');
     }
 
     public function show($id) {

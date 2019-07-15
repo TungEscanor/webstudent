@@ -25,9 +25,8 @@ class MarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'subject_id' => ['required','numeric','between:0,10','unique_with:marks,student_id',
-            Rule::unique('marks')->ignore($this->mark),
-            ]
+            'mark' => 'required|numeric|between:0,10',
+            'student_id' => 'required|unique_with:marks,subject_id,'.$this->id,
         ];
     }
 }

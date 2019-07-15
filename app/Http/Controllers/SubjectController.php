@@ -62,7 +62,7 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         $this->subjectRepository->destroy($id);
-        return back()->with('warning', 'Delete subject successfully');
+        return back()->with('success', 'Delete subject successfully');
     }
 
     public function show($id)

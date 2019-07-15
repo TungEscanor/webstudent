@@ -53,7 +53,7 @@ class MarkController extends Controller
     public function destroy($id)
     {
         $this->markRepository->destroy($id);
-        return back()->with('warning','Delete mark successfully');
+        return back()->with('success','Delete mark successfully');
     }
 
 }

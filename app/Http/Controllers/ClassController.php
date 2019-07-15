@@ -54,7 +54,7 @@ class ClassController extends Controller
     public function destroy($id)
     {
         $this->classRepository->destroy($id);
-        return back()->with('warning','Delete class successfully');
+        return back()->with('success','Delete class successfully');
     }
 
     public function show($id){
