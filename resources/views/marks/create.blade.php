@@ -49,7 +49,7 @@
                 </div>
             @endif
         </div>
-        {{Form::submit('create', ['class'=> 'btn btn-success'])}}
+        {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>
 @endsection

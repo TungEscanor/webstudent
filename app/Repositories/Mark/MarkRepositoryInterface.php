@@ -5,7 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Mark;
 use App\Repositories\Base\BaseRepositoryInterface;
 interface MarkRepositoryInterface extends BaseRepositoryInterface{
-    public function showStudentAndMark();
+    public function showStudentAndSubject();
+
+    public function checkStudentAndSubject($request);
 
 }
 ?>

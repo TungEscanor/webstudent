@@ -11,7 +11,7 @@
         </ol>
     </nav>
     <div class="panel-body widget-shadow">
-        {{Form::open(['method' =>'PUT','route' =>['marks.update',$mark->id]])}}
+        {{Form::open(['route' =>'marks.store'])}}
         <div class="form-group">
             {!! Form::label('student','Student') !!}
             {!! Form::select('student_id',$data['students'],$mark->student->id, ['class' => 'form-control']) !!}
@@ -43,7 +43,7 @@
                 </div>
             @endif
         </div>
-        {{Form::submit('create', ['class'=> 'btn btn-success'])}}
+        {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>
 @endsection

@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{(($classes->currentPage() - 1 ) * $classes->perPage() ) + $key +1}}</td>
                         <td>{{$class->name}}</td>
-                        <td>{{isset($class->faculty->name) ? $class->faculty->name : '[N\A]'}}</td>
+                        <td>{{isset($class->faculty->name) ? $class->faculty->name : ''}}</td>
                         <td><a class="btn btn-success btn-sm" href="{{route('classes.show', $class->id)}}">Show student</a></td>
                         <td style="display: flex">
                             <a class="btn btn-primary btn-sm"  style="margin-right: 10px"  href="{{route('classes.edit',$class->id)}}" >Edit</a>

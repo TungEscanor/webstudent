@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{(($subjects->currentPage() - 1 ) * $subjects->perPage() ) + $key +1}}</td>
                         <td>{{$subject->name}}</td>
-                        <td>{{isset($subject->faculty->name) ? $subject->faculty->name : '[N\A]'}}</td>
+                        <td>{{isset($subject->faculty->name) ? $subject->faculty->name : ''}}</td>
                         <td><a class="btn btn-success btn-sm" href="{{route('subjects.show',$subject->id)}}">Show mark</a></td>
                         <td style="display:flex;">
                             <a class="btn btn-primary btn-sm"  style="margin-right: 10px"  href="{{route('subjects.edit',$subject->id)}}" >Edit</a>

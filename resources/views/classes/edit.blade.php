@@ -24,7 +24,7 @@
 
         <div class="form-group">
             {!! Form::label('faculty','Faculty') !!}
-            {!! Form::select('faculty_id',$faculties,$class->faculty->id, ['class' => 'form-control']) !!}
+            {!! Form::select('faculty_id',$faculties,isset($class->faculty->id) ? $class->faculty->id : '', ['class' => 'form-control']) !!}
         </div>
         <div>
             @if($errors->has('faculty_id'))

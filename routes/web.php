@@ -21,3 +21,4 @@ Route::resource('classes', 'ClassController');
 Route::resource('subjects', 'SubjectController');
 
 Route::resource('marks','MarkController');
+

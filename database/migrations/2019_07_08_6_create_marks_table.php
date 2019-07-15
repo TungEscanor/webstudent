@@ -15,11 +15,11 @@ class CreateMarksTable extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('subject_id')->nullable()->unsigned();
-            $table->bigInteger('student_id')->nullable()->unsigned();
+            $table->bigInteger('subject_id')->unsigned();
+            $table->bigInteger('student_id')->unsigned();
             $table->float('mark');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('set null');
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('set null');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->timestamps();
         });
     }

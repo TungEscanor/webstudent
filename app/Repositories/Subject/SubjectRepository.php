@@ -16,7 +16,7 @@ class SubjectRepository extends BaseRepository implements SubjectRepositoryInter
 
     public function showMarks($id)
     {
-       return $this->mark->where('subject_id',$id);
+       return $this->mark->where('subject_id',$id)->paginate(8);
 
     }
 

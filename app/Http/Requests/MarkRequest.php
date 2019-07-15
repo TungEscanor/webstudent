@@ -26,7 +26,9 @@ class MarkRequest extends FormRequest
     {
         return [
             'mark' => 'required|numeric|between:0,10',
-            'student_id' => 'required|unique_with:marks,subject_id,'.$this->id,
+            'student_id' => 'required',
+            'subject_id' => 'required',
+
         ];
     }
 }
