@@ -1,11 +1,11 @@
 <?php
 namespace App\Repositories\Subject;
+use App\Repositories\Base\BaseRepositoryInterface;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Subject;
-use App\Repositories\BaseRepositoryInterface;
 interface SubjectRepositoryInterface extends BaseRepositoryInterface{
-    public function showMark($id);
+    public function showFaculties();
+
+    public function showMarks($id);
 }
 ?>
 

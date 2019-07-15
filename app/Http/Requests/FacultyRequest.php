@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FacultyRequest extends FormRequest
 {
@@ -24,15 +25,9 @@ class FacultyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|unique:faculties,name,'.$this->id,
+            'name'=> ['required',
+            Rule::unique('faculties')->ignore($this->faculty),
+            ],
         ];
-    }
-
-    public function messages()
-    {
-       return [
-           'name.required' => 'Please type faculty name',
-           'name.unique' => 'Please chose another faculty name',
-       ];
     }
 }

@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\MarkRequest;
-use App\Mark;
 use App\Repositories\Mark\MarkRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class MarkController extends Controller
 {
@@ -20,47 +17,43 @@ class MarkController extends Controller
 
     public function index()
     {
-        $mark = $this->markRepository->getAllList();
-        return view('mark.index',compact('mark'));
+        $marks = $this->markRepository->getAllList();
+        return view('marks.index',compact('marks'));
     }
 
     public function create()
     {
-        $mark = $this->markRepository->getAllList();
-        return view('mark.create',compact('mark'));
+        $data = $this->markRepository->showStudentAndMark();
+        $marks = $this->markRepository->getAllList();
+        return view('marks.create',compact('data'),compact('marks'));
     }
 
     public function store(MarkRequest $request)
     {
 
         $this->markRepository->store($request->all());
-        return redirect('mark')->with('success','Create mark successfully');
+        return redirect('marks')->with('success','Create mark successfully');
     }
 
 
     public function edit($id)
     {
-        $mark = $this->markRepository->getAllList();
-        $item =  $this->markRepository->getListById($id);
-        return view('mark.update',compact('item'),compact('mark'));
+        $data = $this->markRepository->showStudentAndMark();
+        $mark = $this->markRepository->getListById($id);
+        return view('marks.edit',compact('data'),compact('mark'));
     }
 
 
     public function update($id,MarkRequest $request )
     {
         $this->markRepository->update($id,$request->all());
-        return redirect('mark')->with('success','Update mark successfully');
-    }
-
-    public function delete($id) {
-        $mark = $this->markRepository->getListById($id);
-        return view('mark.delete',compact('mark'));
+        return redirect('marks')->with('success','Update mark successfully');
     }
 
     public function destroy($id)
     {
         $this->markRepository->destroy($id);
-        return redirect('mark')->with('warning','Delete mark successfully');
+        return back()->with('warning','Delete mark successfully');
     }
 
 }

@@ -13,7 +13,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
+    <!-- sweet alert-->
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset("admin/css/bootstrap.css")}}" rel='stylesheet' type='text/css' />
 
@@ -121,43 +122,43 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <h1><a class="navbar-brand" href="{{route('student.index')}}"><span class="fa fa-area-chart"></span> Admin<span class="dashboard_text">Trang quản trị</span></a></h1>
+                    <h1><a class="navbar-brand" href=""><span class="fa fa-area-chart"></span> Admin<span class="dashboard_text">Trang quản trị</span></a></h1>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="sidebar-menu">
                         <li class="header">Navigation Bar</li>
                         <li class="treeview">
-                            <a href="{{route('student.index')}}">
+                            <a href="{{route('students.index')}}">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('faculty.index')}}">
+                            <a href="{{route('faculties.index')}}">
                                 <i class="fa fa-list"></i> <span>Faculties</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('specialty.index')}}">
-                                <i class="fa fa-product-hunt"></i> <span>Specialty</span>
+                            <a href="{{route('classes.index')}}">
+                                <i class="fa fa-product-hunt"></i> <span>Classes</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('subject.index')}}">
+                            <a href="{{route('subjects.index')}}">
                                 <i class="fa fa-calendar"></i> <span>Subjects</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('student.index')}}">
+                            <a href="{{route('students.index')}}">
                                 <i class="fa fa-user"></i> <span>Student</span>
                             </a>
                         </li>
 
                         <li class="treeview">
-                            <a href="{{route('mark.index')}}">
+                            <a href="{{route('marks.index')}}">
                                 <i class="fa fa-contao"></i> <span>Marks</span>
                             </a>
                         </li>

@@ -1,18 +1,27 @@
 <?php
 namespace App\Repositories\Subject;
 
-use App\Mark;
-use App\Subject;
-use Illuminate\Database\Eloquent\Model;
-use App\Repositories\BaseRepository;
+use App\Models\Faculty;
+use App\Models\Mark;
+use App\Models\Subject;
+use App\Repositories\Base\BaseRepository;
 class SubjectRepository extends BaseRepository implements SubjectRepositoryInterface {
-    public function __construct(Subject $subject){
+    protected $mark;
+    protected $faculty;
+    public function __construct(Subject $subject, Mark $mark, Faculty $faculty){
         parent::__construct($subject);
+        $this->mark= $mark;
+        $this->faculty= $faculty;
     }
 
-    public function showMark($id){
-        $marks = Mark::where('subject_id',$id)->paginate(8);
-        return $marks;
+    public function showMarks($id)
+    {
+       return $this->mark->where('subject_id',$id);
+
+    }
+
+    public function showFaculties() {
+        return $this->faculty::all()->pluck('name','id');
     }
 }
 ?>

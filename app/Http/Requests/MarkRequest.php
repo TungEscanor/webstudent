@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MarkRequest extends FormRequest
 {
@@ -24,18 +25,9 @@ class MarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'mark'=> 'required|numeric|between:0,10',
-            'student_id' => 'required',
-            'subject_id' => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'mark.between:0,10' => 'Mark is only from 0 to 10',
-            'student_id.required' => 'Please chose student_id',
-            'subject_id.required' => 'Please chose subject_id',
+            'subject_id' => ['required','numeric','between:0,10','unique_with:marks,student_id',
+            Rule::unique('marks')->ignore($this->mark),
+            ]
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SubjectRequest extends FormRequest
 {
@@ -24,15 +25,10 @@ class SubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|unique:subjects,name,'.$this->id,
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required' => 'Please type subject name',
-            'name.unique' => 'Please chose another subject name',
+            'name'=> ['required',
+                Rule::unique('subjects')->ignore($this->subject),
+            ],
+            'faculty_id' => 'required',
         ];
     }
 }

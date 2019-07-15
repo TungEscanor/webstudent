@@ -15,12 +15,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('specialty_id')->unsigned();
+            $table->bigInteger('class_id')->unsigned();
             $table->string('name');
             $table->dateTime('birthday');
             $table->tinyInteger('gender');
             $table->string('avatar');
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->timestamps();
         });
     }

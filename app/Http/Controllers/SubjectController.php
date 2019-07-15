@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SubjectRequest;
 use App\Repositories\Subject\SubjectRepositoryInterface;
-use App\Subject;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class SubjectController extends Controller
 {
@@ -19,48 +17,57 @@ class SubjectController extends Controller
 
     public function index()
     {
-       $subject = $this->subjectRepository->getAllList();
-        return view('subject.index',compact('subject'));
+        $subjects = $this->subjectRepository->getAllList();
+        return view('subjects.index', compact('subjects'));
     }
 
     public function create()
     {
-        return view('subject.create');
+        $faculties = $this->subjectRepository->showFaculties();
+        return view('subjects.create',compact('faculties'));
     }
 
     public function store(SubjectRequest $request)
     {
+
         $this->subjectRepository->store($request->all());
-        return redirect('subject')->with('success','Create subject successfully');
+        return redirect('subjects')->with('success', 'Create subject successfully');
     }
 
 
     public function edit($id)
     {
-       $subject =  $this->subjectRepository->getListById($id);
-        return view('subject.update',compact('subject'));
+        $faculties = $this->subjectRepository->showFaculties();
+        $subject = $this->subjectRepository->getListById($id);
+        return view('subjects.edit', compact('subject'), compact('faculties'));
     }
 
-
-    public function update($id,SubjectRequest $request )
+    public function update($id, SubjectRequest $request)
     {
-        $this->subjectRepository->update($id,$request->all());
-        return redirect('subject')->with('success','Update subject successfully');
+        if ($this->subjectRepository->getListById($id)->name == $request->name
+            && $this->subjectRepository->getListById($id)->faculty_id == $request->faculty_id) {
+            return redirect('subjects')->with('info', 'Nothing was changed !');
+        } else {
+            $this->subjectRepository->update($id, $request->all());
+            return redirect('subjects')->with('success', 'Update subject successfully');
+        }
     }
 
-    public function delete($id) {
-       $subject = $this->subjectRepository->getListById($id);
-        return view('subject.delete',compact('subject'));
+    public function delete($id)
+    {
+        $subject = $this->subjectRepository->getListById($id);
+        return view('subjects.delete', compact('subject'));
     }
 
     public function destroy($id)
     {
         $this->subjectRepository->destroy($id);
-        return redirect('subject')->with('warning','Delete subject successfully');
+        return back()->with('warning', 'Delete subject successfully');
     }
 
-    public function showMark($id){
-        $mark = $this->subjectRepository->showMark($id);
-        return view('subject.mark',compact('mark'));
+    public function show($id)
+    {
+        $marks = $this->subjectRepository->showMarks($id);
+        return view('subjects.showMark', compact('marks'));
     }
 }

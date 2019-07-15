@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Providers;
-
-use App\Mark;
-use App\Repositories\Faculty\FacultyRepository;
-use App\Repositories\Faculty\FacultyRepositoryInterface;
+use App\Repositories\ClassRepository\ClassRepository;
+use App\Repositories\ClassRepository\ClassRepositoryInterface;
 use App\Repositories\Mark\MarkRepository;
 use App\Repositories\Mark\MarkRepositoryInterface;
-use App\Repositories\Specialty\SpecialtyRepository;
-use App\Repositories\Specialty\SpecialtyRepositoryInterface;
+use App\Repositories\Faculty\FacultyRepository;
+use App\Repositories\Faculty\FacultyRepositoryInterface;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Student\StudentRepositoryInterface;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(ClassRepositoryInterface::class,ClassRepository::class);
         $this->app->singleton(FacultyRepositoryInterface::class,FacultyRepository::class);
-        $this->app->singleton(SpecialtyRepositoryInterface::class,SpecialtyRepository::class);
         $this->app->singleton(SubjectRepositoryInterface::class,SubjectRepository::class);
         $this->app->singleton(StudentRepositoryInterface::class,StudentRepository::class);
         $this->app->singleton(MarkRepositoryInterface::class,MarkRepository::class);
@@ -39,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
+//        URL::forceScheme('https');
     }
 }
