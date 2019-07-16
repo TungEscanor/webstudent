@@ -13,6 +13,7 @@ use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use mysql_xdevapi\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
+//        URL::forceScheme('https');
     }
 }

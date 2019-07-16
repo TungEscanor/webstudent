@@ -11,6 +11,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        \Illuminate\Database\Eloquent\Model::unguard();
+
+        $this->call(FacultiesTableSeeder::class);
+
+        \Illuminate\Database\Eloquent\Model::reguard();
+        \Illuminate\Database\Eloquent\Model::unguard();
+
+        $this->call(ClassesTableSeeder::class);
+
+        \Illuminate\Database\Eloquent\Model::reguard();
+
+        \Illuminate\Database\Eloquent\Model::unguard();
+
+        $this->call(StudentsTableSeeder::class);
+
+        \Illuminate\Database\Eloquent\Model::reguard();
+
+        \Illuminate\Database\Eloquent\Model::unguard();
+
+        $this->call(SubjectsTableSeeder::class);
+
+        \Illuminate\Database\Eloquent\Model::reguard();
+
+        \Illuminate\Database\Eloquent\Model::unguard();
+
+        $this->call(MarksTableSeeder::class);
+
+        \Illuminate\Database\Eloquent\Model::reguard();
     }
 }
