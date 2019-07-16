@@ -28,11 +28,12 @@ class StudentController extends Controller
 
     public function store(StudentRequest $request)
     {
+        $data = $request->all();
         if ($request->hasFile('avatar')) {
             $file = upload_image('avatar');
 
             if (isset($file['name'])) {
-                $data = $request->all();
+
                 $data['avatar'] = $file['name'];
             }
         }
