@@ -19,6 +19,11 @@ class MarkRepository extends BaseRepository implements MarkRepositoryInterface
         $this->student = $student;
     }
 
+    public function getAllList()
+    {
+        return $this->model->orderBy('student_id')->paginate(8);
+    }
+
     public function showStudentAndSubject()
     {
         $students = $this->student->all()->pluck('name', 'id');

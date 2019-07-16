@@ -25,15 +25,9 @@ class StudentRequest extends FormRequest
     {
         return [
             'name'=> 'required',
-            'birthday' => 'required',
+            'birthday' =>'required|date|date_format:Y-m-d|after:1-1-1995|before:now',
+            'gender' => 'required',
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'name.required' => 'Please type student name',
-            'birthday.required' => 'Please type birthday',
-        ];
-    }
 }

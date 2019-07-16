@@ -1,61 +1,37 @@
 <?php
 
 namespace App\Repositories\Student;
+use App\Http\Requests\StudentRequest;
+use App\Models\ClassModel;
+use App\Models\Mark;
 use App\Models\Student;
 use App\Repositories\Base\BaseRepository;
 
 class StudentRepository extends BaseRepository implements StudentRepositoryInterface
 {
-
-    public function __construct(Student $student)
+    protected $class;
+    protected $mark;
+    public function __construct(Student $student, ClassModel $class,Mark $mark)
     {
         parent::__construct($student);
+        $this->class=$class;
+        $this->mark=$mark;
     }
 
-    public function store($request)
+    public function getAllList()
     {
-//        $student = new Student();
-//
-//        $data = $request->all();
-//
-//        if ($request->hasFile('avatar')) {
-//            $data['avatar'] = $this->getFileUrl($request);
-//        }
-//
-//        $student->save($data);
-
+        return $this->model->orderBy('name')->paginate(8);
     }
 
-    public function destroy($id)
+    public function showClasses()
     {
-//        $student = $this->model->find($id);
-//
-//        if (File::exists(public_path($student->avatar))) {
-//            File::delete(public_path($student->avatar));
-//        }
-//
-//        $student->delete();
+        return $this->class->all()->pluck('name','id');
     }
 
-    /**
-     * @param $request
-     * @return string
-     */
-//    public function getFileUrl($request)
-//    {
-//        if($request->avatar) {
-//            $request = $request->avatar;
-//            $fileExtention = $request->getClientOriginalExtension();
-//            $fileName = time() . '.' . $fileExtention;
-//            $uploadPath = public_path('/upload');
-//
-//            $request->move($uploadPath, $fileName);
-//
-//            return sprintf('/upload/%s', $fileName);
-//        }
-//
-//        return '';
-//    }
+    public function showMarks($id) {
+        return $this->mark->where('student_id',$id)->paginate(8);
+    }
+
 }
 
 ?>

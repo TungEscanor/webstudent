@@ -27,7 +27,7 @@
             @if (isset($marks))
                 @foreach($marks as $key => $mark)
                     <tr>
-                        <td>{{$key+1}}</td>
+                        <td>{{(($marks->currentPage() - 1 ) * $marks->perPage() ) + $key +1}}</td>
                         <td>{{$mark->student->name}}</td>
                         <td>{{$mark->subject->name}}</td>
                         <td>{{number_format($mark->mark,2)}}</td>

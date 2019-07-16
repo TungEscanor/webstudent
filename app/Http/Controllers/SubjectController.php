@@ -68,6 +68,6 @@ class SubjectController extends Controller
     public function show($id)
     {
         $marks = $this->subjectRepository->showMarks($id);
-        return view('subjects.showMark', compact('marks'));
+        return view('subjects.showMarks', compact('marks'));
     }
 }

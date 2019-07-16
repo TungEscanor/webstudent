@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Students Mark
+
 @endsection
 @section('content')
     <nav aria-label="breadcrumb">
@@ -9,10 +9,11 @@
             <li class="breadcrumb-item"><a href="">Mark</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
+        @include('flash-message')
     </nav>
     <div class="panel-body widget-shadow">
         <table class="table table-hover table-bordered">
-            <h3 class="page-header">Student Mark<a class="btn btn-sm btn-success pull-right" href="{{route('mark.create')}}" title=""><i class="fa fa-plus"></i></a></h3>
+            <h3 class="page-header">Mark Manager<a class="btn btn-sm btn-success pull-right" href="{{route('marks.create')}}" title=""><i class="fa fa-plus"></i></a></h3>
             <thead>
             <tr>
                 <th>#</th>
@@ -26,18 +27,23 @@
             @if (isset($marks))
                 @foreach($marks as $key => $mark)
                     <tr>
-                        <td>{{$key+1}}</td>
+                        <td>{{(($marks->currentPage() - 1 ) * $marks->perPage() ) + $key +1}}</td>
                         <td>{{$mark->student->name}}</td>
                         <td>{{$mark->subject->name}}</td>
                         <td>{{number_format($mark->mark,2)}}</td>
-                        <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('mark.edit',$mark->id)}}"><b><i class="fa fa-edit" title="Sửa"></i></b></a>
-                            <a class="btn btn-danger btn-sm" href="{{route('mark.delete',$mark->id)}}" title="Xóa"><b><i class="fa fa-remove"></i></b></a>
+                        <td style="display: flex">
+                            <a class="btn btn-primary btn-sm"  style="margin-right: 10px"  href="{{route('marks.edit',$mark->id)}}" >Edit</a>
+                            <div onclick="return confirm('Are you sure want to delete item ?')">
+                                {{Form::open(['method' => 'DELETE', 'route' => ['marks.destroy', $mark->id]])}}
+                                {{Form::submit('Delete',['class' => 'btn btn-danger btn-sm'])}}
+                                {{Form::close()}}
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
+        {{$marks ->links()}}
     </div>
 @endsection

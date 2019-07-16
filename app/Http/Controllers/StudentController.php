@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
-use App\Repositories\Student\StudentRepositoryInterface;
+use App\Repositories\Student\StudentRepository;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
 
-    public function __construct(StudentRepositoryInterface $studentRepository)
+    public function __construct(StudentRepository $studentRepository)
     {
         $this->studentRepository = $studentRepository;
     }
@@ -22,34 +22,28 @@ class StudentController extends Controller
 
     public function create()
     {
-        $students = $this->studentRepository->getAllList();
-        return view('students.create', compact('students'));
+        $classes = $this->studentRepository->showClasses();
+        return view('students.create', compact('classes'));
     }
 
     public function store(StudentRequest $request)
     {
-        $this->studentRepository->store($request);
+        $this->studentRepository->store($request->all());
         return redirect('students')->with('success', 'Create student successfully');
     }
 
 
     public function edit($id)
     {
-        $students = $this->studentRepository->getAllList();
-        $item = $this->studentRepository->getListById($id);
-        return view('students.update', compact('item'), compact('students'));
+        $classes = $this->studentRepository->showClasses();
+        $student = $this->studentRepository->getListById($id);
+        return view('students.edit', compact('student'), compact('classes'));
     }
 
 
-    public function update($id, StudentRequest $request)
+    public function update($id,StudentRequest $request)
     {
-        $image = $this->studentRepository->getFileUrl($request);
-
-        if (!empty($image)) {
-            $request->avatar = $image;
-        }
-
-        $this->studentRepository->update($id, $request->all());
+        $this->studentRepository->update($id,$request->all());
         return redirect('students')->with('success', 'Update student successfully');
     }
 
@@ -62,12 +56,12 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $this->studentRepository->destroy($id);
-        return back()->with('warning', 'Delete student successfully');
+        return back()->with('success', 'Delete student successfully');
     }
 
     public function show($id)
     {
-        $students = $this->studentRepository->getListById($id);
-        return view('subjects.mark', compact('students'));
+        $marks = $this->studentRepository->showMarks($id);
+        return view('students.showMarks', compact('marks'));
     }
 }

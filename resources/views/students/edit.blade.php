@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="">Home</a></li>
             <li class="breadcrumb-item"><a href="">Student</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Student</li>
+            <li class="breadcrumb-item active" aria-current="page">Update Student</li>
         </ol>
     </nav>
     <div class="forms">
@@ -19,9 +19,9 @@
                     </div>
                     <div class="form-body">
                         <div class="form-group">
-                            {{Form::open(['route' => 'students.store'])}}
+                            {{Form::open(['method' => 'PUT','route' => ['students.update',$student->id]])}}
                             {{Form::label('exampleInputEmail1','Student name:')}}
-                            {{Form::text('name','',['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
+                            {{Form::text('name',isset($student) ? $student->name : '',['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
                             @if($errors->has('name'))
                                 <div class="error-text text-danger">
                                     {{$errors->first('name')}}
@@ -31,7 +31,7 @@
                         <div class="form-group row">
                             {{Form::label('birth day','Birthday:')}}
                             <br>
-                            {{Form::date('birthday', \Carbon\Carbon::now()),['class' => 'form-control1','id' => 'example-date-input']}}
+                            {{Form::date('birthday',isset($student->birthday) ? date('Y-m-d',strtotime($student->birthday)) :\Carbon\Carbon::now()),['class' => 'form-control1','id' => 'example-date-input']}}
                             @if($errors->has('birthday'))
                                 <div class="error-text text-danger">
                                     {{$errors->first('birthday')}}
@@ -41,9 +41,9 @@
                         <div class="form-group">
                             {{Form::label('gender','Gender:')}}
                             <br>
-                            {{ Form::radio('gender','male')}}
-                            {{Form::label('male','Male',['class' => 'form-check-input'])}}
-                            {{ Form::radio('gender','female')}}
+                            {{Form::radio('gender','male',null,[(isset($student->gender) && $student->gender == 'male')? 'checked' : ''])}}
+                            {{Form::label('male','Male')}}
+                            {{Form::radio('gender','female',null,[(isset($student->gender) && $student->gender == 'female')? 'checked' : ''])}}
                             {{Form::label('female','Female',['class' => 'form-check-input'])}}
                             <div>
                                 @if($errors->has('gender'))
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             {{Form::label('class','Class :')}}
-                            {{Form::select('class_id',$classes,null, ['class' => 'form-control1'])}}
+                            {{Form::select('class_id',$classes,$student->classRelation->id, ['class' => 'form-control1'])}}
                             <div>
                                 @if($errors->has('class_id'))
                                     <div class="error-text text-danger">
@@ -64,7 +64,7 @@
                                 @endif
                             </div>
                         </div>
-                        {{Form::submit('create', ['class'=> 'btn btn-success'])}}
+                        {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
                         {{Form::close()}}
                     </div>
                 </div>

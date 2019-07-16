@@ -10,7 +10,12 @@
             <li class="breadcrumb-item active" aria-current="page">Update Subjects</li>
         </ol>
     </nav>
+<div class="forms">
     <div class="panel-body widget-shadow">
+        <div class="form-title">
+            <h4>Faculty Form :</h4>
+        </div>
+        <br><br>
         {{Form::open(['method' => 'PUT','route' =>['subjects.update',$subject->id]])}}
         <div class="form-group">
             {{Form::label('name', 'Subject name')}}
@@ -36,4 +41,5 @@
         {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>
+</div>
 @endsection
