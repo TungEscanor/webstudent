@@ -73,7 +73,8 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = $this->studentRepository->getListById($id);
-        unlink(public_path(pare_url_file($student->avatar)));
+        if(!empty($student->avatar)) {
+        unlink(public_path(pare_url_file($student->avatar)));}
         $this->studentRepository->destroy($id);
 
         return back()->with('success', 'Delete student successfully');
