@@ -11,6 +11,7 @@ use App\Repositories\Student\StudentRepository;
 use App\Repositories\Student\StudentRepositoryInterface;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
