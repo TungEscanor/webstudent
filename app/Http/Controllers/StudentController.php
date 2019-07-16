@@ -28,10 +28,17 @@ class StudentController extends Controller
 
     public function store(StudentRequest $request)
     {
-        $this->studentRepository->store($request->all());
+        if ($request->hasFile('avatar')) {
+            $file = upload_image('avatar');
+
+            if (isset($file['name'])) {
+                $data = $request->all();
+                $data['avatar'] = $file['name'];
+            }
+        }
+        $this->studentRepository->store($data);
         return redirect('students')->with('success', 'Create student successfully');
     }
-
 
     public function edit($id)
     {
@@ -41,9 +48,18 @@ class StudentController extends Controller
     }
 
 
-    public function update($id,StudentRequest $request)
+    public function update($id, StudentRequest $request)
     {
-        $this->studentRepository->update($id,$request->all());
+        $data = $request->all();
+        if ($request->hasFile('avatar')) {
+            $file = upload_image('avatar');
+
+            if (isset($file['name'])) {
+
+            $data['avatar'] = $file['name'];
+            }
+        }
+        $this->studentRepository->update($id, $data);
         return redirect('students')->with('success', 'Update student successfully');
     }
 

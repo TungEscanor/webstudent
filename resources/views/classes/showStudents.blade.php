@@ -20,28 +20,31 @@
                 <th>Student name</th>
                 <th>Class</th>
                 <th>Gender</th>
-                <th>Avatar</th>
                 <th>Birthday</th>
                 <th>Mark</th>
-                <th>Action</th>
+                <th colspan="2" style="text-align: center">Action</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($students as  $student)
-                <tr>
-                    <td>{{$student->id}}</td>
+            @foreach($students as $key =>  $student)
+                <tr style="">
+                    <td>{{($students->currentPage() - 1 ) * $students->perPage() + $key +1}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->classRelation->name}}</td>
-                    <td>{{$student->gender == 1 ? 'Male' : 'Female'}}</td>
-                    <td><img src="{{url($student->avatar)}}" alt="" width="50px" height="50px"></td>
+                    <td>{{$student->gender}}</td>
                     <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
-                    <td><a class="btn btn-success" href="{{route('students.show',$student->id)}}">Show mark</a></td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="{{route('students.edit',$student->id)}}"><b><i
-                                        class="fa fa-edit" title="Edit"></i></b></a>
-                        <a class="btn btn-danger btn-sm" href="{{route('students.destroy',$student->id)}}"
-                           title="Delete"><b><i class="fa fa-remove"></i></b></a>
+                    <td><a class="btn btn-success btn-sm" href="{{route('students.show',$student->id)}}">Show mark</a></td>
+                    <td style="">
+                        <a class="btn btn-primary btn-sm" style="margin-right: 10px" href="{{route('students.edit', $student->id)}}">Edit</a>
                     </td>
+                    <td>
+                        <div style="" class="d-inline-block" onclick="return confirm('Are you sure want to delete item ?')">
+                            {{Form::open(['method' => 'DELETE', 'route' => ['students.destroy', $student->id]])}}
+                            {{Form::submit('Delete',['class' => 'btn btn-danger btn-sm'])}}
+                            {{Form::close()}}
+                        </div>
+                    </td>
+
                 </tr>
             @endforeach
             </tbody>

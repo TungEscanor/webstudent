@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-body">
                         <div class="form-group">
-                            {{Form::open(['route' => 'students.store'])}}
+                            {{Form::open(['route' => 'students.store','enctype' => 'multipart/form-data'])}}
                             {{Form::label('exampleInputEmail1','Student name:')}}
                             {{Form::text('name','',['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
                             @if($errors->has('name'))
@@ -31,7 +31,7 @@
                         <div class="form-group row">
                             {{Form::label('birth day','Birthday:')}}
                             <br>
-                            {{Form::date('birthday', \Carbon\Carbon::now()),['class' => 'form-control1','id' => 'example-date-input']}}
+                            {{Form::date('birthday','1999-12-20' ),['class' => 'form-control1','id' => 'example-date-input']}}
                             @if($errors->has('birthday'))
                                 <div class="error-text text-danger">
                                     {{$errors->first('birthday')}}
@@ -41,9 +41,9 @@
                         <div class="form-group">
                             {{Form::label('gender','Gender:')}}
                             <br>
-                            {{ Form::radio('gender','male')}}
+                            {{Form::radio('gender','male')}}
                             {{Form::label('male','Male',['class' => 'form-check-input'])}}
-                            {{ Form::radio('gender','female')}}
+                            {{Form::radio('gender','female')}}
                             {{Form::label('female','Female',['class' => 'form-check-input'])}}
                             <div>
                                 @if($errors->has('gender'))
@@ -53,6 +53,15 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            {{Form::label('avatar','Avatar: ')}}
+                            {!! Form::file('avatar') !!}
+                        </div>
+                        @if($errors->has('image'))
+                            <div class="error-text text-danger">
+                                {{$errors->first('image')}}
+                            </div>
+                        @endif
                         <div class="form-group">
                             {{Form::label('class','Class :')}}
                             {{Form::select('class_id',$classes,null, ['class' => 'form-control1'])}}

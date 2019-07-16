@@ -21,6 +21,7 @@ Student list
                 <th>Class</th>
                 <th>Gender</th>
                 <th>Birthday</th>
+                <th>Avatar</th>
                 <th>Mark</th>
                 <th colspan="2" style="text-align: center">Action</th>
             </tr>
@@ -33,6 +34,7 @@ Student list
                     <td>{{$student->classRelation->name}}</td>
                     <td>{{$student->gender}}</td>
                     <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
+                    <td><img src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive" width="50px" height="50px"></td>
                     <td><a class="btn btn-success btn-sm" href="{{route('students.show',$student->id)}}">Show mark</a></td>
                     <td style="">
                         <a class="btn btn-primary btn-sm" style="margin-right: 10px" href="{{route('students.edit', $student->id)}}">Edit</a>

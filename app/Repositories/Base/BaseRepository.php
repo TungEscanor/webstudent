@@ -31,8 +31,9 @@ class BaseRepository implements BaseRepositoryInterface
 
     public function update($id, $data)
     {
-        $models = $this->getListById($id);
-        return $models->update($data);
+        $model = $this->getListById($id);
+
+        return $model->update($data);
     }
 
     public function destroy($id)

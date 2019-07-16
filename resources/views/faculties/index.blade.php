@@ -42,5 +42,6 @@
             @endif
             </tbody>
         </table>
+        {{$faculties->links()}}
     </div>
 @endsection

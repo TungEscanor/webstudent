@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-body">
                         <div class="form-group">
-                            {{Form::open(['method' => 'PUT','route' => ['students.update',$student->id]])}}
+                            {{Form::open(['method' => 'PUT','enctype' => 'multipart/form-data','route' => ['students.update',$student->id]])}}
                             {{Form::label('exampleInputEmail1','Student name:')}}
                             {{Form::text('name',isset($student) ? $student->name : '',['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
                             @if($errors->has('name'))
@@ -53,6 +53,15 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            {{Form::label('avatar','Avatar: ')}}
+                            {{Form::file('avatar')}}
+                        </div>
+                        @if($errors->has('avatar'))
+                            <div class="error-text text-danger">
+                                {{$errors->first('avatar')}}
+                            </div>
+                        @endif
                         <div class="form-group">
                             {{Form::label('class','Class :')}}
                             {{Form::select('class_id',$classes,$student->classRelation->id, ['class' => 'form-control1'])}}
