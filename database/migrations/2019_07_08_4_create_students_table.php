@@ -19,7 +19,6 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->dateTime('birthday');
             $table->string('gender');
-            $table->string('avatar');
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
