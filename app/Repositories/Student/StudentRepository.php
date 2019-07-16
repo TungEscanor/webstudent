@@ -20,7 +20,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
 
     public function getAllList()
     {
-        return $this->model->orderBy('name')->paginate(8);
+        return $this->model->paginate(8);
     }
 
     public function showClasses()
