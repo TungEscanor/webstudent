@@ -9,7 +9,7 @@ class Student extends Model
 
     protected $fillable = ['name','class_id','birthday','gender','avatar'];
 
-    public function class() {
+    public function classRelation() {
         return $this->belongsTo(ClassModel::class,'class_id','id');
     }
 

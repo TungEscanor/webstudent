@@ -27,11 +27,11 @@ Student list
             </tr>
             </thead>
             <tbody>
-            @foreach($students as $key => $student)
+            @foreach($students as $key =>  $student)
                 <tr style="">
                     <td>{{($students->currentPage() - 1 ) * $students->perPage() + $key +1}}</td>
                     <td>{{$student->name}}</td>
-                    <td>{{$student->class->name}}</td>
+                    <td>{{isset($student->classRelation->name) ? $student->classRelation->name : ''}}</td>
                     <td>{{$student->gender}}</td>
                     <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
                     <td><img src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive" width="50px" height="50px"></td>
