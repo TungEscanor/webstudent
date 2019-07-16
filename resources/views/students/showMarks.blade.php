@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-
+Show mark
 @endsection
 @section('content')
     <nav aria-label="breadcrumb">
