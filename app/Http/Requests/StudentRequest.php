@@ -25,7 +25,7 @@ class StudentRequest extends FormRequest
     {
         return [
             'name'=> 'required',
-            'birthday' =>'required|date|date_format:Y-m-d|after:1-1-1995|before:now',
+            'birthday' =>'required|date|date_format:Y-m-d|after:1-1-1990|before:1-1-2000',
             'gender' => 'required',
         ];
     }
