@@ -46,14 +46,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="{{asset("admin/js/custom.js")}}"></script>
     <link href="{{asset("admin/css/custom.css")}}" rel="stylesheet">
     <!--//Metis Menu -->
+
     <style>
         #chartdiv {
             width: 100%;
             height: 295px;
         }
     </style>
+    <!--range-->
+
+    <!--/range-->
     <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
     <script src="{{asset("admin/js/pie-chart.js")}}" type="text/javascript"></script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -663,7 +668,21 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset("admin/js/bootstrap.js")}}"> </script>
 <!-- //Bootstrap Core JavaScript -->
+<!--search bar -->
+<script>
+    $(document).ready(function(e){
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#","");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
+</script>
+<!--range-->
 
+<!--/range-->
 </body>
 </html>
 

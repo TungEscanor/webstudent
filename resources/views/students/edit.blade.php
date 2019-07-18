@@ -54,6 +54,17 @@ Edit student
                             </div>
                         </div>
                         <div class="form-group">
+                            {{Form::label('phone number', 'Phone number: ',['style' => 'font-weight:bold'])}}
+                            {{Form::text('phone_number',isset($student->phone_number) ? $student->phone_number : '',['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
+                            <div>
+                                @if($errors->has('phone_number'))
+                                    <div class="error-text text-danger">
+                                        {{$errors->first('phone_number')}}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             {{Form::label('avatar','Avatar: ')}}
                             {{Form::file('avatar')}}
                         </div>

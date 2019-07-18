@@ -11,14 +11,25 @@
 |
 */
 Route::get('/', 'StudentController@index');
-
+/**
+ * faculty route
+ */
 Route::resource('faculties', 'FacultyController');
-
+/**
+ * student route
+ */
 Route::resource('students', 'StudentController');
 
+/**
+ * class route
+ */
 Route::resource('classes', 'ClassController');
-
+/**
+ * subject route
+ */
 Route::resource('subjects', 'SubjectController');
-
+/**
+ * mark route
+ */
 Route::resource('marks','MarkController');
 

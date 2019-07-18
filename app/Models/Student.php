@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 
-    protected $fillable = ['name','class_id','birthday','gender','avatar'];
+    protected $fillable = ['name','class_id','birthday','gender','avatar','phone_number'];
 
     public function classRelation() {
         return $this->belongsTo(ClassModel::class,'class_id','id');

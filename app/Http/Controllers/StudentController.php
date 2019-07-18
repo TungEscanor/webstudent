@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Student;
 use App\Repositories\Student\StudentRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class StudentController extends Controller
 {
@@ -14,10 +18,11 @@ class StudentController extends Controller
         $this->studentRepository = $studentRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $students = $this->studentRepository->getAllList();
-        return view('students.index', compact('students'));
+        $data = $request->all();
+        $students = $this->studentRepository->searchStudent($request->all());
+        return view('students.index',compact('students','data'));
     }
 
     public function create()
@@ -73,11 +78,16 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = $this->studentRepository->getListById($id);
-        if(!empty($student->avatar)) {
-        unlink(public_path(pare_url_file($student->avatar)));}
         $this->studentRepository->destroy($id);
+        if(!empty($student->avatar)) {
+            if(empty($this->studentRepository->checkAvatar($student->avatar))) {
+            unlink(public_path(pare_url_file($student->avatar)));}}
 
         return back()->with('success', 'Delete student successfully');
+    }
+
+    public function search(Request $request) {
+
     }
 
     public function show($id)

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentRequest extends FormRequest
 {
@@ -24,12 +25,13 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required',
-            'birthday' =>'required|date|date_format:Y-m-d|after:1-1-1990|before:1-1-2000',
+            'name' => 'required',
+            'birthday' => 'required|date|date_format:Y-m-d|after:1-1-1990|before:31-12-2001',
             'gender' => 'required',
+            'phone_number' => ['digits_between:9,11','numeric','nullable','min:0',
+            Rule::unique('students')->ignore($this->student)]
         ];
     }
-
 
 
 }

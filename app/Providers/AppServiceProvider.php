@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\ClassRepository\ClassRepositoryInterface;
@@ -14,7 +13,6 @@ use App\Repositories\Subject\SubjectRepositoryInterface;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use mysql_xdevapi\Schema;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(StudentRepositoryInterface::class,StudentRepository::class);
         $this->app->singleton(MarkRepositoryInterface::class,MarkRepository::class);
     }
-
     /**
      * Bootstrap any application services.
      *
@@ -38,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
+//        URL::forceScheme('https');
     }
 }
