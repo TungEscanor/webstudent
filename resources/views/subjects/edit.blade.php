@@ -3,22 +3,14 @@
 Edit Subject
 @endsection
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Subjects</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Update Subjects</li>
-        </ol>
-    </nav>
-<div class="forms">
-    <div class="panel-body widget-shadow">
-        <div class="form-title">
-            <h4>Faculty Form :</h4>
-        </div>
-        <br><br>
+    <div class="banner">
+        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Subject</span><i class="fa fa-angle-right"></i><span>Edit subject</span></h2>
+    </div>
+<div class="grid-form">
+    <div class="content-top-1">
         {{Form::open(['method' => 'PUT','route' =>['subjects.update',$subject->id]])}}
         <div class="form-group">
-            {{Form::label('name', 'Subject name')}}
+            {{Form::label('name', 'Subject name: ')}}
             {{Form::text('name',$subject->name,['class'=> 'form-control'])}}
             @if($errors->has('name'))
                 <div class="error-text text-danger">
@@ -38,6 +30,7 @@ Edit Subject
                 </div>
             @endif
         </div>
+        {{ Form::hidden('redirects_to', URL::previous()) }}
         {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>

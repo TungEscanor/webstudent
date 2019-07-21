@@ -32,6 +32,4 @@ class StudentRequest extends FormRequest
             Rule::unique('students')->ignore($this->student)]
         ];
     }
-
-
 }

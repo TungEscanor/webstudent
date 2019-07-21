@@ -27,7 +27,7 @@ class FacultyController extends Controller
     public function store(FacultyRequest $request)
     {
         $this->facultyRepository->store($request->all());
-        return redirect('faculties')->with('success','Create faculty successfully !');
+        return redirect($request->redirects_to)->with('success','Create faculty successfully !');
     }
 
 
@@ -45,7 +45,7 @@ class FacultyController extends Controller
 
         else {
             $this->facultyRepository->update($id, $request->all());
-            return redirect('faculties')->with('success', 'Update faculty successfully !');
+            return redirect($request->redirects_to)->with('success', 'Update faculty successfully !');
         }
     }
 

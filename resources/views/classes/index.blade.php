@@ -3,16 +3,14 @@
 Class list
 @endsection
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Classes</a></li>
-            <li class="breadcrumb-item active" aria-current="page">List</li>
-        </ol>
-    @include('flash-message')
-    </nav>
-    <div class="panel-body widget-shadow">
-        <table class="table table-hover table-bordered">
+    <div class="banner">
+        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Class</span><i class="fa fa-angle-right"></i><span>Create class</span></h2>
+    </div>
+
+    <div class="grid-form">
+        @include('flash-message')
+        <div class="content-top-1">
+        <table class="table-bordered table table-hover">
             <h3 class="page-header">Classes Manage<a class="btn btn-sm btn-success pull-right" href="{{route('classes.create')}}" title=""><i class="fa fa-plus"></i></a></h3>
             <thead>
             <tr>
@@ -44,6 +42,7 @@ Class list
             @endif
             </tbody>
         </table>
+        </div>
         {{$classes ->links()}}
     </div>
 @endsection

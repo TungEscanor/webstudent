@@ -5,25 +5,27 @@ namespace App\Repositories\Student;
 use App\Models\ClassModel;
 use App\Models\Mark;
 use App\Models\Student;
+use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
-use function foo\func;
 
 class StudentRepository extends BaseRepository implements StudentRepositoryInterface
 {
     protected $class;
     protected $mark;
+    protected $subject;
 
-    public function __construct(Student $student, ClassModel $class, Mark $mark)
+    public function __construct(Student $student, ClassModel $class, Mark $mark,Subject $subject)
     {
         parent::__construct($student);
         $this->class = $class;
         $this->mark = $mark;
+        $this->subject = $subject;
     }
 
     public function getAllList()
     {
-        return $this->model->paginate(8);
+        return $this->model->paginate(5);
     }
 
     public function showClasses()
@@ -33,7 +35,16 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
 
     public function showMarks($id)
     {
-        return $this->mark->where('student_id', $id)->paginate(8);
+        return $this->mark->where('student_id', $id)->paginate(5);
+    }
+
+    public function showSubjects($classId) {
+        $class = $this->class->where('id',$classId)->first();
+        $subject = $this->subject->where('faculty_id', $class->faculty_id)
+                ->orWhereHas('faculty', function ($query) {
+                    $query->where('name', 'Khoa cơ bản');
+                });
+        return $subject->get()->pluck('name','id');
     }
 
     public function checkAvatar($avatar)
@@ -64,10 +75,17 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
                 }
             });
         }}
-        $result = $students->paginate(8);
 
-        return $result;
+        if(isset($data['min_mark']) && isset($data['max_mark']) && isset($data['subject_id'])) {
+            $students->whereHas('mark',function ($query) use ($data) {
+                $query->where('subject_id',$data['subject_id'])
+                    ->whereBetween('mark',[$data['min_mark'],$data['max_mark']]);
+            });
+        }
+        return $students->paginate(5);
     }
+
+
 }
 
 ?>

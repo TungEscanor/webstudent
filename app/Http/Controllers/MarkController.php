@@ -30,16 +30,20 @@ class MarkController extends Controller
 
     public function store(MarkRequest $request)
     {
-        $check = $this->markRepository->checkStudentAndSubject($request);
-        if(isset($check->id)) {
-            $this->markRepository->update($check->id, $request->all());
-            return redirect('marks')->with('success', 'Update mark successfully');
-        }
-        else {
-            $this->markRepository->store($request->all());
-            return redirect('marks')->with('success', 'Create mark successfully');
-        }
+        $data = $request->all();
+        $result= [];
+        foreach($data as $key => $value) {
 
+        }
+        dd($result);
+        $check = $this->markRepository->checkStudentAndSubject($result);
+        if (isset($check->id)) {
+            $this->markRepository->update($check->id, $result);
+        } else {
+            $this->markRepository->store($result);
+
+        }
+        return redirect($request->redirects_to)->with('success', 'Done !');
     }
 
 

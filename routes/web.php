@@ -18,6 +18,7 @@ Route::resource('faculties', 'FacultyController');
 /**
  * student route
  */
+Route::get('student/{id}/create_mark','StudentController@createMarks')->name('students.createMarks');
 Route::resource('students', 'StudentController');
 
 /**

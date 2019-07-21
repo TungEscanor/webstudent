@@ -28,7 +28,7 @@ class ClassController extends Controller
     public function store(ClassRequest $request)
     {
         $this->classRepository->store($request->all());
-        return redirect('classes')->with('success','Create class successfully');
+        return redirect($request->redirects_to)->with('success','Create class successfully');
     }
 
 
@@ -44,11 +44,11 @@ class ClassController extends Controller
     {
         if($this->classRepository->getListById($id)->name == $request->name
             && $this->classRepository->getListById($id)->faculty_id ==$request->faculty_id) {
-            return redirect('classes')->with('info', 'Nothing was changed !');
+            return redirect($request->redirects_to)->with('info', 'Nothing was changed !');
         }
         else {
         $this->classRepository->update($id,$request->all());
-        return redirect('classes')->with('success','Update class successfully');}
+        return redirect($request->redirects_to)->with('success','Update class successfully');}
     }
 
     public function destroy($id)

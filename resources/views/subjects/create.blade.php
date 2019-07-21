@@ -3,19 +3,11 @@
 Create subject
 @endsection
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Subject</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Subject</li>
-        </ol>
-    </nav>
-<div class="forms">
-    <div class="panel-body widget-shadow">
-        <div class="form-title">
-            <h4>Subject Form :</h4>
-        </div>
-        <br><br>
+    <div class="banner">
+    <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Subject</span><i class="fa fa-angle-right"></i><span>Create subject</span></h2>
+    </div>
+    <div class="grid-form">
+    <div class="grid-form1">
         {{Form::open(['route' => 'subjects.store'])}}
         <div class="form-group">
             {{Form::label('name', 'Subject name')}}
@@ -38,6 +30,7 @@ Create subject
                 </div>
             @endif
         </div>
+        {{ Form::hidden('redirects_to', URL::previous()) }}
         {{Form::submit('create', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>

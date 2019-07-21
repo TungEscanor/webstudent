@@ -31,7 +31,7 @@ class SubjectController extends Controller
     {
 
         $this->subjectRepository->store($request->all());
-        return redirect('subjects')->with('success', 'Create subject successfully');
+        return redirect($request->redirects_to)->with('success', 'Create subject successfully');
     }
 
 
@@ -46,10 +46,10 @@ class SubjectController extends Controller
     {
         if ($this->subjectRepository->getListById($id)->name == $request->name
             && $this->subjectRepository->getListById($id)->faculty_id == $request->faculty_id) {
-            return redirect('subjects')->with('info', 'Nothing was changed !');
+            return redirect($request->redirects_to)->with('info', 'Nothing was changed !');
         } else {
             $this->subjectRepository->update($id, $request->all());
-            return redirect('subjects')->with('success', 'Update subject successfully');
+            return redirect($request->redirects_to)->with('success', 'Update subject successfully');
         }
     }
 

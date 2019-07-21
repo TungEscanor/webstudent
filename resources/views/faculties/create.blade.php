@@ -3,19 +3,11 @@
 Create faculty
 @endsection
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Faculty</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Faculty</li>
-        </ol>
-    </nav>
-<div class="forms">
-    <div class="panel-body widget-shadow">
-        <div class="form-title">
-            <h4>Faculty Form :</h4>
-        </div>
-        <br><br>
+    <div class="banner">
+        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Faculties</span><i class="fa fa-angle-right"></i><span>Create faculty</span></h2>
+    </div>
+<div class="grid-form">
+    <div class="grid-form1">
         {{Form::open(['route' => 'faculties.store'])}}
         <div class="form-group">
             {{Form::label('name','Faculty name :')}}
@@ -28,6 +20,7 @@ Create faculty
                 {{$errors->first('name')}}
             </div>
         @endif
+        {{ Form::hidden('redirects_to', URL::previous()) }}
         {{Form::submit('Submit', ['class'=> 'btn btn-success'])}}
         {{Form::close()}}
     </div>

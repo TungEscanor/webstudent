@@ -10,9 +10,7 @@ use App\Repositories\Student\StudentRepository;
 use App\Repositories\Student\StudentRepositoryInterface;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use mysql_xdevapi\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
