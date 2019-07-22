@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 {!! Form::label('faculty','Faculty :') !!}
-                {!! Form::select('faculty_id',$faculties,isset($class->faculty->id) ? $class->faculty->id : null, ['class' => 'form-control1 custom-select mr-sm-2']) !!}
+                {!! Form::select('faculty_id',$faculties,isset($class->faculty->id) ? $class->faculty->id : null, ['class' => 'form-control1 custom-select mr-sm-2','placeholder' => 'choose faculty...']) !!}
             </div>
             <div>
                 @if($errors->has('faculty_id'))

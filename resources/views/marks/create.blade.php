@@ -12,7 +12,7 @@
             {{Form::open(['route' => 'marks.store'])}}
             <div class="form-group">
                 {!! Form::label('student','Student: ') !!}
-                {!! Form::select('student_id',$data['students'],null, ['class' => 'form-control']) !!}
+                {!! Form::select('student_id[]',$data['students'],null, ['class' => 'form-control','placeholder' => 'choose student...']) !!}
             </div>
             <div>
                 @if($errors->has('student_id'))
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('subject','Subject: ') !!}
-                {!! Form::select('subject_id',$data['subjects'],null, ['class' => 'form-control']) !!}
+                {!! Form::select('subject_id[]',$data['subjects'],null, ['class' => 'form-control','placeholder' => 'choose subject...']) !!}
             </div>
             <div>
                 @if($errors->has('subject_id'))
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('mark', 'Mark :')}}
-                {{Form::text('mark','',['class'=> 'form-control'])}}
+                {{Form::text('mark[]','',['class'=> 'form-control'])}}
                 @if($errors->has('mark'))
                     <div class="error-text text-danger">
                         {{$errors->first('mark')}}

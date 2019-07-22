@@ -66,7 +66,7 @@
             @endif
             <div class="form-group">
                 {{Form::label('class','Class :')}}
-                {{Form::select('class_id',$classes,isset($student->classRelation->id) ? $student->classRelation->id : null , ['class' => 'form-control1'])}}
+                {{Form::select('class_id',$classes,isset($student->classRelation->id) ? $student->classRelation->id : null , ['class' => 'form-control1','placeholder' => 'choose class...'])}}
                 <div>
                     @if($errors->has('class_id'))
                         <div class="error-text text-danger">

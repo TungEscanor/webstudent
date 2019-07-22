@@ -21,7 +21,7 @@ Create subject
 
         <div class="form-group">
             {!! Form::label('faculty','Faculty') !!}
-            {!! Form::select('faculty_id',$faculties,null, ['class' => 'form-control1']) !!}
+            {!! Form::select('faculty_id',$faculties,null, ['class' => 'form-control1','placeholder' => 'choose faculty...']) !!}
         </div>
         <div>
             @if($errors->has('faculty_id'))

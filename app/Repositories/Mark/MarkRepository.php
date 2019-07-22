@@ -38,15 +38,22 @@ class MarkRepository extends BaseRepository implements MarkRepositoryInterface
         return $data;
     }
 
-    public function checkStudentAndSubject($request)
+    public function checkStudentAndSubject($data)
     {
-        return $this->model->where('student_id', $request->student_id)
-            ->where('subject_id', $request->subject_id)->first();
+       $result = [];
+       if(!empty($data)) {
+               foreach ($data as $key => $value) {
+                $check =  $this->model->orwhere([['student_id',$value['student_id']],['subject_id',$value['subject_id']]])
+                    ->first();
 
+                if(isset($check)) {
+                    $check->mark = $value['mark'];
+                    array_push($result,$check->toArray());
+                }
+               }
+       }
+       return $result;
     }
-
-    
-
 }
 
 ?>

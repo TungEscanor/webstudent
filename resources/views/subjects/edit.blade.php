@@ -21,7 +21,7 @@ Edit Subject
 
         <div class="form-group">
             {!! Form::label('faculty','Faculty') !!}
-            {!! Form::select('faculty_id',$faculties,isset($subject->faculty_id) ? $subject->faculty_id : '', ['class' => 'form-control']) !!}
+            {!! Form::select('faculty_id',$faculties,isset($subject->faculty_id) ? $subject->faculty_id : '', ['class' => 'form-control','placeholder' => 'choose faculty...']) !!}
         </div>
         <div>
             @if($errors->has('faculty_id'))

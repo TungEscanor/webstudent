@@ -8,9 +8,17 @@
                     class="fa fa-angle-right"></i><span>Create marks</span></h2>
     </div>
     <div class="grid-form">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $error }}</strong>
+                </div>
+            @endforeach
+        @endif
         <div class="content-top-1">
             {{Form::open(['route' => 'marks.store'])}}
-            <div >
+            <div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -22,25 +30,16 @@
                     <tbody class="form-add">
                     <tr>
                         <td>
-                        {!! Form::select('subject_id[]',isset($subjects) ? $subjects : null ,null, ['class' => 'form-control amount']) !!}
-                            @if($errors->has('subject_id'))
-                                <div class="error-text text-danger">
-                                    {{$errors->first('subject_id')}}
-                                </div>
-                            @endif
+                            {!! Form::select('subject_id[]',isset($subjects) ? $subjects : null ,null, ['class' => 'form-control','placeholder' => 'choose subject...']) !!}
                         </td>
                         <td>
-                        {{Form::text('mark[]','',['class'=> 'form-control amount'])}}
-                            @if($errors->has('mark'))
-                                <div class="error-text text-danger">
-                                    {{$errors->first('mark')}}
-                                </div>
-                            @endif
+                            {{Form::text('mark[]','',['class'=> 'form-control amount'])}}
+                            {{ Form::hidden('student_id[]', $student->id) }}
                         </td>
-                        <td><a href="#" class="btn btn-danger remove"><i class="fa fa-remove" style="color: white"></i></a></td>
+                        <td><a href="#" class="btn btn-danger remove"><i class="fa fa-remove" style="color: white"></i></a>
+                        </td>
                     </tr>
                     </tbody>
-                {{ Form::hidden('student_id[]', $student->id) }}
                 </table>
             </div>
             {{ Form::hidden('redirects_to', URL::previous()) }}
@@ -50,24 +49,24 @@
         </div>
     </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        var form =$('.form-add').html();
+            var form = $('.form-add').html();
 
-        $('.clickadd').click(function () {
+            $('.clickadd').click(function () {
                 $('.form-add').append(form);
+            });
+
+            $(document).on('click', '.remove', function () {
+                var last = $('tbody.form-add tr').length;
+                if (last === 1) {
+                    alert('You cant remove it !');
+                } else {
+                    $(this).parent().parent().remove();
+                }
+            });
         });
 
-        $(document).on('click','.remove',function () {
-            var last =$('tbody.form-add tr').length;
-            if(last === 1) {
-                alert('You cant remove it !');
-            }
-            else {
-                $(this).parent().parent().remove();
-            }
-        });
-    })
-</script>
+    </script>
 @endsection
