@@ -18,7 +18,7 @@
         @endif
         <div class="content-top-1">
             {{Form::open(['route' => 'marks.store'])}}
-            <div>
+            <div id="page-load">
                 <table class="table">
                     <thead>
                     <tr>
@@ -48,7 +48,8 @@
             {{Form::close()}}
         </div>
     </div>
-
+@endsection
+@section('script')
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -68,5 +69,14 @@
             });
         });
 
+        var $select = $("select");
+        $select.on("change", function() {
+            var selected = [];
+            $.each($select, function(index, select) {
+                if (select.value !== "") { selected.push(select.value); }
+            });
+            $("option").prop("disabled", false);
+            for (var index in selected) { $('option[value="'+selected[index]+'"]').prop("disabled", true); }
+        });
     </script>
 @endsection

@@ -66,6 +66,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{asset('web/js/scripts.js')}}"></script>
 <!--//scrolling js-->
 <script src="{{asset('web/js/bootstrap.min.js')}}"></script>
+
+@yield('script')
 </body>
 </html>
 
