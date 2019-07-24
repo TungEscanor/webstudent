@@ -15,10 +15,10 @@ class ClassModel extends Model
     }
 
     public function faculties() {
-        return $this->hasMany(Faculty::class,'id','faculty_id');
+        return $this->belongsTo(Faculty::class,'id','faculty_id');
     }
 
-    public function student() {
+    public function students() {
         return $this->hasMany(Student::class,'class_id','id');
     }
 

@@ -57,7 +57,8 @@ class FacultyController extends Controller
     }
 
     public function show($id) {
-        $classes = $this->facultyRepository->showClasses($id);
+        $faculty = $this->facultyRepository->getListById($id);
+        $classes = $faculty->classRelations()->paginate();
         return view('faculties.showClasses',compact('classes'));
     }
 }

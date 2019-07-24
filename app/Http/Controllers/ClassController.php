@@ -63,7 +63,7 @@ class ClassController extends Controller
 
     public function show($id){
        $class = $this->classRepository->getListById($id);
-        $students = $class->student()->paginate(10);
+        $students = $class->students()->paginate();
         return view('classes.showStudents',compact('class','students'));
     }
 }

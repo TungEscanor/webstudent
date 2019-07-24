@@ -96,7 +96,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = $this->studentRepository->getListById($id);
-        $marks = $student->mark()->paginate($this->paginate);
+        $marks = $student->marks()->paginate($this->paginate);
         return view('students.showMarks', compact('marks'),['id'=>$id]);
     }
 
@@ -108,8 +108,7 @@ class StudentController extends Controller
             ->orWhereHas('faculty', function ($query) {
                 $query->where('name', 'Khoa cơ bản');
             })->pluck('name','id');
-
-        return view('students.createMark',compact('subjects','student'));
+        $marks = $student->marks()->get();
+        return view('students.createMark',compact('subjects','student','marks'));
     }
-
 }

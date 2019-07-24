@@ -14,9 +14,9 @@ class Student extends Model
         return $this->belongsTo(ClassModel::class, 'class_id', 'id');
     }
 
-    public function mark()
+    public function marks()
     {
-        return $this->hasMany(Mark::class);
+        return $this->hasMany(Mark::class,'student_id','id');
     }
 
     public function subjects()
