@@ -15,7 +15,7 @@ class FacultyController extends Controller
 
     public function index()
     {
-        $faculties = $this->facultyRepository->getAllList();
+        $faculties = $this->facultyRepository->paginate();
         return view('faculties.index',compact('faculties'));
     }
 

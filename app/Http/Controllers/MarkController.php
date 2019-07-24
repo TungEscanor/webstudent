@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MarkRequest;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Mark\MarkRepositoryInterface;
+use App\Repositories\Student\StudentRepository;
+use function foo\func;
 
 
 class MarkController extends Controller
 {
     protected $markRepository;
+    protected $studentRepository;
+    protected $classRepository;
 
-    public function __construct(MarkRepositoryInterface $markRepository)
+    public function __construct(MarkRepositoryInterface $markRepository,StudentRepository $studentRepository,ClassRepository $classRepository)
     {
         $this->markRepository = $markRepository;
+        $this->studentRepository = $studentRepository;
+        $this->classRepository = $classRepository;
     }
-
 
     public function index()
     {
@@ -40,34 +48,18 @@ class MarkController extends Controller
                 ]);
             }
         }
+
         $check = $this->markRepository->checkStudentAndSubject($data);
-
         if (!empty($check)) {
-            $diff = $data;
-            $del = [];
-            foreach ($check as $key => $value) {
 
-                if (!empty($diff)) {
-                    for ($i = 0; $i < count($diff); $i++) {
-                        if ($diff[$i]['student_id'] == $value['student_id'] &&
-                            $diff[$i]['subject_id'] == $value['subject_id']) {
-                            $del[] = (int) $i;
-                        }
-                    }
-                }
-                $this->markRepository->update($value['id'], $value);
+
+
+            foreach ($check as $value) {
+                $this->markRepository->update($value['id'],$value);
             }
 
-            if (!empty($del)) {
-                foreach ($del as $key => $value) {
-                    unset($diff[$value]);
-                }
-            }
-            if (!empty($diff)) {
-                foreach ($diff as $key => $value) {
-
-                    $this->markRepository->store($value);
-                }
+            foreach ($diff as $value) {
+                $this->markRepository->store($value);
             }
         } else {
             foreach ($data as $key => $value) {
@@ -79,9 +71,15 @@ class MarkController extends Controller
 
     public function edit($id)
     {
-        $data = $this->markRepository->showStudentAndSubject();
         $mark = $this->markRepository->getListById($id);
-        return view('marks.edit', compact('data'), compact('mark'));
+        $student = $this->studentRepository->getListById($mark->student_id);
+        $class_id = $student->class_id;
+        $class = $this->classRepository->getListById($class_id);
+        $subjects = Subject::where('faculty_id', $class->faculty_id)
+            ->orWhereHas('faculty', function ($query) {
+                $query->where('name', 'Khoa cơ bản');
+            })->pluck('name','id');
+        return view('marks.edit', compact('subjects'), compact('mark'));
     }
 
 

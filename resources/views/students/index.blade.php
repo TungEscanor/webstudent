@@ -21,13 +21,11 @@
                 <label for="Subject">Subject</label>
                 <select class="form-control" id="Subject" name="subject_id">
                     <option value="">Select subject</option>
-                    @foreach($students as $student)
-                        @foreach($student->subjects as $subject)
-                            <option value={{$subject->id}} {{isset($data['subject_id']) && $data['subject_id'] == $subject->id ? 'selected' : ''}}>{{$subject->name}}</option>
-                        @endforeach
-                </select>
-                @break
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
                     @endforeach
+                </select>
+
             </div>
             <div class="form-group">
                 {{Form::label('mark1','Mark from: ')}}

@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('subject','Subject :') !!}
-                {!! Form::select('subject_id[]',$data['subjects'],$mark->subject->id, ['class' => 'form-control']) !!}
+                {!! Form::select('subject_id[]',$subjects,$mark->subject->id, ['class' => 'form-control']) !!}
             </div>
             <div>
                 @if($errors->has('subject_id'))

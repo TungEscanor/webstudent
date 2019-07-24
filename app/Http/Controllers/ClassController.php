@@ -19,7 +19,7 @@ class ClassController extends Controller
 
     public function index()
     {
-        $classes = $this->classRepository->getAllList();
+        $classes = $this->classRepository->paginate();
         return view('classes.index',compact('classes'));
     }
 

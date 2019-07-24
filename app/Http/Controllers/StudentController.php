@@ -5,24 +5,28 @@ use App\Http\Requests\StudentRequest;
 use App\Models\Subject;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
+use App\Repositories\Subject\SubjectRepository;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
     protected $classRepository;
+    protected $subjectRepository;
 
-    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository)
+    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository,SubjectRepository $subjectRepository)
     {
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
+        $this->subjectRepository = $subjectRepository;
     }
 
     public function index(Request $request)
     {
         $data = $request->all();
+        $subjects = $this->subjectRepository->getAllList();
         $students = $this->studentRepository->searchStudent($request->all());
-        return view('students.index',compact('students','data'));
+        return view('students.index',compact('students','data','subjects'));
     }
 
     public function create()

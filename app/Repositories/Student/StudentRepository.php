@@ -1,11 +1,7 @@
 <?php
 
 namespace App\Repositories\Student;
-
-use App\Models\ClassModel;
-use App\Models\Mark;
 use App\Models\Student;
-use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
 

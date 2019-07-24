@@ -16,6 +16,11 @@ class BaseRepository implements BaseRepositoryInterface
 
     public function getAllList()
     {
+        return $this->model->all();
+    }
+
+    public function paginate()
+    {
         return $this->model->paginate(8);
     }
 
@@ -41,6 +46,8 @@ class BaseRepository implements BaseRepositoryInterface
         $models = $this->getListById($id);
         return $models->delete();
     }
+
+
 }
 
 ?>
