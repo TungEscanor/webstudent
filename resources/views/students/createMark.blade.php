@@ -17,6 +17,7 @@
             @endforeach
         @endif
         <div class="content-top-1">
+            <h3 style="color:#5a6268;">{{$student->name}}</h3>
             {{Form::open(['route' => 'marks.store'])}}
             <div id="page-load">
                 <table class="table">
@@ -69,14 +70,14 @@
             });
         });
 
-        var $select = $("select");
-        $select.on("change", function() {
-            var selected = [];
-            $.each($select, function(index, select) {
-                if (select.value !== "") { selected.push(select.value); }
-            });
-            $("option").prop("disabled", false);
-            for (var index in selected) { $('option[value="'+selected[index]+'"]').prop("disabled", true); }
-        });
+        // var $select = $("select");
+        // $select.on("change", function() {
+        //     var selected = [];
+        //     $.each($select, function(index, select) {
+        //         if (select.value !== "") { selected.push(select.value); }
+        //     });
+        //     $("option").prop("disabled", false);
+        //     for (var index in selected) { $('option[value="'+selected[index]+'"]').prop("disabled", true); }
+        // });
     </script>
 @endsection

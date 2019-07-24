@@ -30,7 +30,6 @@ class MarkController extends Controller
 
     public function store(MarkRequest $request)
     {
-
         $data = [];
         if (count($request->student_id) > 0) {
             foreach ($request->student_id as $item => $value) {

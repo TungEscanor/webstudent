@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
+use App\Models\Subject;
+use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
+    protected $classRepository;
 
-    public function __construct(StudentRepository $studentRepository)
+    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->classRepository = $classRepository;
     }
 
     public function index(Request $request)
@@ -23,7 +27,7 @@ class StudentController extends Controller
 
     public function create()
     {
-        $classes = $this->studentRepository->showClasses();
+        $classes = $this->classRepository->getAllList();
         return view('students.create', compact('classes'));
     }
 
@@ -44,7 +48,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $classes = $this->studentRepository->showClasses();
+        $classes = $this->classRepository->getAllList();
         $student = $this->studentRepository->getListById($id);
         return view('students.edit', compact('student'),compact('classes'));
     }
@@ -87,13 +91,20 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        $marks = $this->studentRepository->showMarks($id);
+        $student = $this->studentRepository->getListById($id);
+        $marks = $student->mark()->paginate($this->paginate);
         return view('students.showMarks', compact('marks'),['id'=>$id]);
     }
 
     public function createMarks($id) {
         $student = $this->studentRepository->getListById($id);
-        $subjects = $this->studentRepository->showSubjects($student->class_id);
+        $class_id = $this->studentRepository->getListById($id)->class_id;
+        $class = $this->classRepository->getListById($class_id);
+        $subjects = Subject::where('faculty_id', $class->faculty_id)
+            ->orWhereHas('faculty', function ($query) {
+                $query->where('name', 'Khoa cơ bản');
+            })->pluck('name','id');
+
         return view('students.createMark',compact('subjects','student'));
     }
 

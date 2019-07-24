@@ -58,7 +58,10 @@
             <div class="form-group">
                 {{Form::label('avatar','Avatar: ')}}
                 {{Form::file('avatar')}}
+                <img src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive"
+                     width="50px" height="50px">
             </div>
+
             @if($errors->has('avatar'))
                 <div class="error-text text-danger">
                     {{$errors->first('avatar')}}

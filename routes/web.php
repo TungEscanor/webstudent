@@ -34,7 +34,7 @@ Route::resource('subjects', 'SubjectController');
  */
 Route::resource('marks','MarkController');
 
-Route::group(['prefix' => 'ajax'],function () {
+Route::group(['prefix' => 'marks/ajax'],function () {
     Route::get('subject/{studentId}','AjaxController@getSubject');
 });
 

@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ClassRequest;
 use App\Repositories\ClassRepository\ClassRepositoryInterface;
+use App\Repositories\Faculty\FacultyRepository;
+use App\Repositories\Faculty\FacultyRepositoryInterface;
 
 class ClassController extends Controller
 {
     protected $classRepository;
+    protected $facultyRepository;
 
-    public function __construct(ClassRepositoryInterface $classRepository)
+    public function __construct(ClassRepositoryInterface $classRepository, FacultyRepositoryInterface $facultyRepository)
     {
         $this->classRepository = $classRepository;
+        $this->facultyRepository = $facultyRepository;
     }
 
     public function index()
@@ -34,8 +38,8 @@ class ClassController extends Controller
 
     public function edit($id)
     {
-        $faculties = $this->classRepository->showFaculties();
         $class =  $this->classRepository->getListById($id);
+        $faculties = $this->facultyRepository->getAllList()->pluck('name','id');
         return view('classes.edit',compact('class'),compact('faculties'));
     }
 
@@ -58,7 +62,8 @@ class ClassController extends Controller
     }
 
     public function show($id){
-        $students = $this->classRepository->showStudents($id);
-        return view('classes.showStudents',compact('students'));
+       $class = $this->classRepository->getListById($id);
+        $students = $class->student()->paginate(10);
+        return view('classes.showStudents',compact('class','students'));
     }
 }

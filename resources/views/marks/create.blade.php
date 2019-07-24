@@ -12,7 +12,7 @@
             {{Form::open(['route' => 'marks.store'])}}
             <div class="form-group">
                 {!! Form::label('student','Student: ') !!}
-                {!! Form::select('student_id[]',$data['students'],null, ['class' => 'form-control','placeholder' => 'choose student...','id' => 'student123']) !!}
+                {!! Form::select('student_id[]',$data['students'],null, ['class' => 'form-control','placeholder' => 'choose student...','id' => 'student']) !!}
             </div>
             <div>
                 @if($errors->has('student_id'))
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('subject','Subject: ') !!}
-                {!! Form::select('subject_id[]',$data['subjects'],null, ['class' => 'form-control','placeholder' => 'choose subject...','id' => 'subject123']) !!}
+                {!! Form::select('subject_id[]',$data['subjects'],null, ['class' => 'form-control','placeholder' => 'choose subject...','id' => 'subject']) !!}
             </div>
             <div>
                 @if($errors->has('subject_id'))
@@ -50,11 +50,10 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#student123').on('change',function () {
+            $('#student').on('change',function () {
                 var student_id = $(this).val();
                 $.get('ajax/subject/' + student_id,function (data) {
-                    alert(data);
-                    // $('#subject').html(data);
+                    $('#subject').html(data);
                 });
             });
         });
