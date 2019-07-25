@@ -30,8 +30,8 @@
                     <tbody id="form-add">
                     @if(isset($marks))
                         @foreach($marks as $mark)
-                            <tr style="background-color: #9d9d9d" class="studentmark">
-                                <td>
+                            <tr  class="studentmark">
+                                <td style="background-color: whitesmoke">
                                     <select class="form-control" name="subject_id[]">
                                         <option value="{{$mark->subject_id}}" selected>{{$mark->subject->name}}</option>
                                     </select>
@@ -87,11 +87,18 @@
             var form = $('.addform').html();
             $('.clickadd').click(function () {
                 $('#form-add').append('<tr>' + form + '</tr>');
+                var $select = $("select");
+                var selected = [];
                 $.each($select, function (index, select) {
                     if (select.value !== "") {
                         selected.push(select.value);
                     }
                 });
+
+                $("option").prop("disabled", false);
+                for (var index in selected) {
+                    $('option[value="' + selected[index] + '"]').css("display","none");
+                }
             });
             $(document).on('click', '.remove', function () {
 
@@ -100,11 +107,17 @@
                 } else {
                     $(this).parent().parent().remove();
                 }
+                var $select = $("select");
+                var selected = [];
                 $.each($select, function (index, select) {
                     if (select.value !== "") {
                         selected.push(select.value);
                     }
                 });
+                $("option").prop("disabled", false);
+                for (var index in selected) {
+                    $('option[value="' + selected[index] + '"]').css("display","none");
+                }
             });
         });
     </script>
