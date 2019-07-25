@@ -43,9 +43,13 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         }
 
         if (isset($data['min_mark']) && isset($data['max_mark']) && isset($data['subject_id'])) {
-            $students->whereHas('mark', function ($query) use ($data) {
+            $students->whereHas('marks', function ($query) use ($data) {
                 $query->where('subject_id', $data['subject_id'])
                     ->whereBetween('mark', [$data['min_mark'], $data['max_mark']]);
+            });
+        } elseif(isset($data['min_mark']) && isset($data['max_mark'])) {
+            $students->whereHas('marks', function ($query) use ($data) {
+                $query->whereBetween('mark', [$data['min_mark'], $data['max_mark']]);
             });
         }
         return $students->paginate(8);

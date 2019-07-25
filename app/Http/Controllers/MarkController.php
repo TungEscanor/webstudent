@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MarkRequest;
-use App\Models\Student;
-use App\Models\Subject;
 use App\Repositories\ClassRepository\ClassRepository;
-use App\Repositories\Mark\MarkRepositoryInterface;
+use App\Repositories\Mark\MarkRepository;
 use App\Repositories\Student\StudentRepository;
-use function foo\func;
+use App\Repositories\Subject\SubjectRepository;
 
 
 class MarkController extends Controller
@@ -16,12 +14,14 @@ class MarkController extends Controller
     protected $markRepository;
     protected $studentRepository;
     protected $classRepository;
+    protected $subjectRepository;
 
-    public function __construct(MarkRepositoryInterface $markRepository,StudentRepository $studentRepository,ClassRepository $classRepository)
+    public function __construct(MarkRepository $markRepository, StudentRepository $studentRepository, ClassRepository $classRepository, SubjectRepository $subjectRepository)
     {
         $this->markRepository = $markRepository;
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
+        $this->subjectRepository = $subjectRepository;
     }
 
     public function index()
@@ -32,11 +32,32 @@ class MarkController extends Controller
 
     public function create()
     {
-        $data = $this->markRepository->showStudentAndSubject();
+        $students = $this->studentRepository->getAllList()->pluck('name', 'id');
+
+        $subject = $this->subjectRepository->getAllList()->pluck('name', 'id');
+
+        $data = [];
+
+        $data['students'] = $students;
+        $data['subjects'] = $subject;
         return view('marks.create', compact('data'));
     }
 
     public function store(MarkRequest $request)
+    {
+        $check = $this->markRepository->query()->where('student_id', $request->student_id)
+            ->where('subject_id', $request->subject_id)->first();
+        if (isset($check)) {
+            $this->markRepository->update($check->id, $request->all());
+        } else {
+            $this->markRepository->store($request->all());
+        }
+
+        return redirect('marks')->with('success', 'Done !');
+    }
+
+
+    public function storeMore(MarkRequest $request)
     {
         $data = [];
         if (count($request->student_id) > 0) {
@@ -49,24 +70,16 @@ class MarkController extends Controller
             }
         }
 
-        $check = $this->markRepository->checkStudentAndSubject($data);
-        if (!empty($check)) {
+        $student = $this->studentRepository->getListById($request->student_id[0]);
 
-
-
-            foreach ($check as $value) {
-                $this->markRepository->update($value['id'],$value);
-            }
-
-            foreach ($diff as $value) {
-                $this->markRepository->store($value);
-            }
-        } else {
-            foreach ($data as $key => $value) {
-                $this->markRepository->store($value);
-            }
+        $marks = [];
+        foreach ($data as $key => $value) {
+            $marks[$value['subject_id']] = ['mark' => $value['mark']];
         }
-        return redirect($request->redirects_to)->with('success', 'Done !');
+
+        $student->subjects()->sync($marks);
+
+        return redirect('students/' . $request->student_id[0])->with('success', 'Done !');
     }
 
     public function edit($id)
@@ -75,13 +88,12 @@ class MarkController extends Controller
         $student = $this->studentRepository->getListById($mark->student_id);
         $class_id = $student->class_id;
         $class = $this->classRepository->getListById($class_id);
-        $subjects = Subject::where('faculty_id', $class->faculty_id)
+        $subjects = $this->subjectRepository->query()->where('faculty_id', $class->faculty_id)
             ->orWhereHas('faculty', function ($query) {
                 $query->where('name', 'Khoa cơ bản');
-            })->pluck('name','id');
+            })->pluck('name', 'id');
         return view('marks.edit', compact('subjects'), compact('mark'));
     }
-
 
     public function update($id, MarkRequest $request)
     {
@@ -93,6 +105,5 @@ class MarkController extends Controller
         $this->markRepository->destroy($id);
         return back()->with('success', 'Delete mark successfully');
     }
-
 
 }

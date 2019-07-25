@@ -23,5 +23,9 @@ class SubjectRepository extends BaseRepository implements SubjectRepositoryInter
     public function showFaculties() {
         return $this->faculty::all()->pluck('name','id');
     }
+
+    public function query() {
+        return $this->model->query();
+    }
 }
 ?>

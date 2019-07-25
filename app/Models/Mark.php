@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mark extends Model
 {
 
-    protected $fillable=['student_id','subject_id','mark','id'];
+    protected $fillable=['student_id','subject_id','mark'];
 
     public function student()
     {

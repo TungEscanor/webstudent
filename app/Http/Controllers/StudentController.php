@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
-use App\Models\Subject;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
@@ -31,7 +30,7 @@ class StudentController extends Controller
 
     public function create()
     {
-        $classes = $this->classRepository->getAllList();
+        $classes = $this->classRepository->getAllList()->pluck('name','id');
         return view('students.create', compact('classes'));
     }
 
@@ -104,7 +103,7 @@ class StudentController extends Controller
         $student = $this->studentRepository->getListById($id);
         $class_id = $this->studentRepository->getListById($id)->class_id;
         $class = $this->classRepository->getListById($class_id);
-        $subjects = Subject::where('faculty_id', $class->faculty_id)
+        $subjects = $this->subjectRepository->query()->where('faculty_id', $class->faculty_id)
             ->orWhereHas('faculty', function ($query) {
                 $query->where('name', 'Khoa cơ bản');
             })->pluck('name','id');
