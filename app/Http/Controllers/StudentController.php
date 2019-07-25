@@ -51,7 +51,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $classes = $this->classRepository->getAllList();
+        $classes = $this->classRepository->getAllList()->pluck('name','id');
         $student = $this->studentRepository->getListById($id);
         return view('students.edit', compact('student'),compact('classes'));
     }

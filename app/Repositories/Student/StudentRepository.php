@@ -20,11 +20,11 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
 
     public function searchStudent($data)
     {
-        if (isset($data['min_age']) && isset($data['max_age'])) {
-            $min = Carbon::now()->subYears($data['min_age']);
-            $max = Carbon::now()->subYears($data['max_age']);
+        if (isset($data['min_age']) || isset($data['max_age'])) {
+          isset($data['min_age']) ?  $min = Carbon::now()->subYears($data['min_age']) : $min = Carbon::now();
+          isset($data['max_age']) ?  $max = Carbon::now()->subYears($data['max_age']) : $max = Carbon::now()->subYears('100');dd($max);
             $students = $this->model->whereBetween('birthday', [$max, $min]);
-            if (!empty($data['phones'])) {
+            if (isset($data['phones'])) {
                 $students->where(function ($query) use ($data) {
                     foreach ($data['phones'] as $key => $phone) {
                         $query->orWhere('phone_number', 'regexp', $phone);
@@ -33,7 +33,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             }
         } else {
             $students = $this->model->query();
-            if (!empty($data['phones'])) {
+            if (isset($data['phones'])) {
                 $students->where(function ($query) use ($data) {
                     foreach ($data['phones'] as $key => $phone) {
                         $query->orWhere('phone_number', 'regexp', $phone);
@@ -42,20 +42,24 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             }
         }
 
-        if (isset($data['min_mark']) && isset($data['max_mark']) && isset($data['subject_id'])) {
-            $students->whereHas('marks', function ($query) use ($data) {
+        if (isset($data['min_mark']) || isset($data['max_mark']) && isset($data['subject_id'])) {
+            isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
+            isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
+            $students->whereHas('marks', function ($query) use ($data,$min,$max) {
                 $query->where('subject_id', $data['subject_id'])
-                    ->whereBetween('mark', [$data['min_mark'], $data['max_mark']]);
+                    ->whereBetween('mark', [$min, $max]);
             });
-        } elseif(isset($data['min_mark']) && isset($data['max_mark'])) {
-            $students->whereHas('marks', function ($query) use ($data) {
-                $query->whereBetween('mark', [$data['min_mark'], $data['max_mark']]);
+        }
+
+        if (isset($data['min_mark']) || isset($data['max_mark'])) {
+            isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
+            isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
+            $students->whereHas('marks', function ($query) use ($data,$min,$max) {
+                $query->whereBetween('mark',[$min, $max]);
             });
         }
         return $students->paginate(8);
     }
-
-
 }
 
 ?>

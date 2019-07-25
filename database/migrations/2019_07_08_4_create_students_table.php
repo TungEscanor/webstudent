@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->dateTime('birthday');
             $table->string('gender');
             $table->string('avatar')->nullable();
-            $table->integer('phone_number')->unsigned();
+            $table->string('phone_number')->unsigned();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->timestamps();
         });
