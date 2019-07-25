@@ -13,9 +13,9 @@
             {{Form::open(['method' => 'GET', 'route' => 'students.index', 'class' => 'form-inline'])}}
             <div class="form-group" style="margin-right: 50px">
                 {{Form::label('min1','Age from: ')}}
-                {{Form::text('min_age',isset($data['min_age']) ? $data['min_age'] : null, ['id'=> 'min1','class' => 'form-control','style' => 'width: 60px'])}}
+                {{Form::text('min_age',null, ['id'=> 'min1','class' => 'form-control','style' => 'width: 60px'])}}
                 {{Form::label('max1','To: ')}}
-                {{Form::text('max_age',isset($data['max_age']) ? $data['max_age'] : null, ['id'=> 'max1','class' => 'form-control','style' => 'width: 60px'])}}
+                {{Form::text('max_age',null, ['id'=> 'max1','class' => 'form-control','style' => 'width: 60px'])}}
             </div>
             <div class="form-group">
                 <label for="Subject">Subject</label>
@@ -29,9 +29,9 @@
             </div>
             <div class="form-group">
                 {{Form::label('mark1','Mark from: ')}}
-                {{Form::text('min_mark',isset($data['min_mark']) ? $data['min_mark'] : null, ['id'=> 'mark1','class' => 'form-control','style' => 'width: 60px'])}}
+                {{Form::text('min_mark',null, ['id'=> 'mark1','class' => 'form-control','style' => 'width: 60px'])}}
                 {{Form::label('mark2','To: ')}}
-                {{Form::text('max_mark',isset($data['max_mark']) ? $data['max_mark'] : null, ['id'=> 'mark2','class' => 'form-control','style' => 'width: 60px'])}}
+                {{Form::text('max_mark',null, ['id'=> 'mark2','class' => 'form-control','style' => 'width: 60px'])}}
             </div>
             <br><br>
             <div class="form-group">

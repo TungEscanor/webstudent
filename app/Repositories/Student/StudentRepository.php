@@ -22,7 +22,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
     {
         if (isset($data['min_age']) || isset($data['max_age'])) {
           isset($data['min_age']) ?  $min = Carbon::now()->subYears($data['min_age']) : $min = Carbon::now();
-          isset($data['max_age']) ?  $max = Carbon::now()->subYears($data['max_age']) : $max = Carbon::now()->subYears('100');dd($max);
+          isset($data['max_age']) ?  $max = Carbon::now()->subYears($data['max_age']) : $max = Carbon::now()->subYears('100');
             $students = $this->model->whereBetween('birthday', [$max, $min]);
             if (isset($data['phones'])) {
                 $students->where(function ($query) use ($data) {
@@ -42,7 +42,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             }
         }
 
-        if (isset($data['min_mark']) || isset($data['max_mark']) && isset($data['subject_id'])) {
+        if ((isset($data['min_mark']) || isset($data['max_mark'])) && $data['subject_id'] !== null) {
             isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
             isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
             $students->whereHas('marks', function ($query) use ($data,$min,$max) {
@@ -51,7 +51,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             });
         }
 
-        if (isset($data['min_mark']) || isset($data['max_mark'])) {
+        elseif ((isset($data['min_mark']) || isset($data['max_mark'])) && $data['subject_id'] === null) {
             isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
             isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
             $students->whereHas('marks', function ($query) use ($data,$min,$max) {
