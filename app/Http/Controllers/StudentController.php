@@ -24,7 +24,7 @@ class StudentController extends Controller
     {
         $data = $request->all();
         $subjects = $this->subjectRepository->getAllList();
-        $students = $this->studentRepository->searchStudent($request->all());
+        $students = $this->studentRepository->searchStudent($data);
         return view('students.index',compact('students','data','subjects'));
     }
 

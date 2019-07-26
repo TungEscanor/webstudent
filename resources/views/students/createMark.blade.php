@@ -8,7 +8,6 @@
                     class="fa fa-angle-right"></i><span>Create marks</span></h2>
     </div>
     <div class="grid-form">
-        @include('flash-message')
         @if ($errors->any())
             <div class="alert alert-danger">
                 <span>{{ 'subjects and marks cannot be null, mark from 0 to 10' }}</span>
@@ -17,8 +16,9 @@
         @endif
         <div class="content-top-1">
             <h3 style="color:#5a6268;">{{$student->name}}</h3>
-            {{Form::open(['route' => 'marks.storeMore'])}}
+            {{Form::open(['route' => 'marks.storeMore','id'=>'my-form'])}}
             <div id="page-load">
+                <p id="number-subject" style="display: none">{{count($subjects)}}</p>
                 <table class="table">
                     <thead>
                     <tr>
@@ -73,6 +73,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
+
             var $select = $("select");
             var selected = [];
             $.each($select, function (index, select) {
@@ -80,26 +81,19 @@
                     selected.push(select.value);
                 }
             });
-            $("option").prop("disabled", false);
-            for (var index in selected) {
-                $('option[value="' + selected[index] + '"]').css("display","none");
-            }
             var form = $('.addform').html();
             $('.clickadd').click(function () {
-                $('#form-add').append('<tr>' + form + '</tr>');
-                var $select = $("select");
-                var selected = [];
-                $.each($select, function (index, select) {
-                    if (select.value !== "") {
-                        selected.push(select.value);
-                    }
-                });
-
+                var len = $('tbody#form-add tr').length;
+                var subject = $('p#number-subject').html();
+                if(len < subject) {
+                    $('#form-add').append('<tr>' + form + '</tr>');
+                } else {alert('student has '+ subject + ' subject !')}
                 $("option").prop("disabled", false);
                 for (var index in selected) {
                     $('option[value="' + selected[index] + '"]').css("display","none");
                 }
             });
+
             $(document).on('click', '.remove', function () {
 
                 if ($(this).parent().parent().hasClass('studentmark')) {
@@ -107,17 +101,19 @@
                 } else {
                     $(this).parent().parent().remove();
                 }
-                var $select = $("select");
-                var selected = [];
-                $.each($select, function (index, select) {
-                    if (select.value !== "") {
-                        selected.push(select.value);
-                    }
-                });
+                var del =  $(this).parent().parent().find('select').val();
+                selected.splice(selected.indexOf(del.toString()),1);
                 $("option").prop("disabled", false);
                 for (var index in selected) {
-                    $('option[value="' + selected[index] + '"]').css("display","none");
+                    $('option[value="' + selected[index] +'"]').css("display","none");
                 }
+            });
+            $(document).on('click','select',function () {
+                for (var index in selected) {
+                    $('option[value="' + selected[index] +'"]').css("display","none");
+                }
+                var val = $(this).parent().parent().find('select').val();
+                selected.push(val);
             });
         });
     </script>
