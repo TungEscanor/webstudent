@@ -122,6 +122,7 @@
                         selected.push(select.value);
                     }
                 });
+                $('select > option').not(this).css('display','block');
                 $("option").prop("disabled", false);
                 for (var index in selected) {
                     $('option[value="' + selected[index] +'"]').css("display","none");
