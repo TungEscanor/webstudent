@@ -64,7 +64,7 @@
             </div>
             {{ Form::hidden('redirects_to', URL::previous()) }}
             <div class="clearfix"></div>
-            {{Form::submit('Create', ['class'=> 'btn btn-success'])}}
+            {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
             {{Form::close()}}
 
         </div>
