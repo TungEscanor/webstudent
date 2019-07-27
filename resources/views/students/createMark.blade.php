@@ -56,7 +56,7 @@
                             {{Form::text('mark[]',null,['class'=> 'form-control'])}}
                             {{ Form::hidden('student_id[]', $student->id) }}
                         </td>
-                        <td><i class="fa fa-remove btn btn-danger remove" style="color: white"></i>
+                        <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                         </td>
                     </tr>
                     </tbody>
@@ -74,13 +74,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var $select = $("select");
-            var selected = [];
-            $.each($select, function (index, select) {
-                if (select.value !== "") {
-                    selected.push(select.value);
-                }
-            });
             var form = $('.addform').html();
             $('.clickadd').click(function () {
                 var len = $('tbody#form-add tr').length;
@@ -88,19 +81,32 @@
                 if(len < subject) {
                     $('#form-add').append('<tr>' + form + '</tr>');
                 } else {alert('student has '+ subject + ' subject !')}
+                var $select = $("select");
+                var selected = [];
+                $.each($select, function (index, select) {
+                    if (select.value !== "") {
+                        selected.push(select.value);
+                    }
+                });
                 $("option").prop("disabled", false);
                 for (var index in selected) {
                     $('option[value="' + selected[index] + '"]').css("display","none");
                 }
             });
-
-            $(document).on('click', '.remove', function () {
+            $(document).on('click','.remove-item', function () {
 
                 if ($(this).parent().parent().hasClass('studentmark')) {
                     stop();
                 } else {
                     $(this).parent().parent().remove();
                 }
+                var $select = $("select");
+                var selected = [];
+                $.each($select, function (index, select) {
+                    if (select.value !== "") {
+                        selected.push(select.value);
+                    }
+                });
                 var del =  $(this).parent().parent().find('select').val();
                 selected.splice(selected.indexOf(del.toString()),1);
                 $("option").prop("disabled", false);
@@ -109,11 +115,24 @@
                 }
             });
             $(document).on('click','select',function () {
+                var $select = $("select");
+                var selected = [];
+                $.each($select, function (index, select) {
+                    if (select.value !== "") {
+                        selected.push(select.value);
+                    }
+                });
+                $("option").prop("disabled", false);
                 for (var index in selected) {
                     $('option[value="' + selected[index] +'"]').css("display","none");
                 }
-                var val = $(this).parent().parent().find('select').val();
-                selected.push(val);
+                $(this).parent().parent().find('td > i.remove-item').on('click',function () {
+                    var del =  $(this).val();
+                    selected.splice(selected.indexOf(del.toString()),1);
+                    for (var index in selected) {
+                        $('option[value="' + selected[index] +'"]').css("display","block");
+                    }
+                });
             });
         });
     </script>
