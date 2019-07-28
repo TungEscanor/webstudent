@@ -26,7 +26,7 @@ Faculty list
                     <tr>
                         <td>{{(($faculties->currentPage() - 1 ) * $faculties->perPage() ) + $key +1}}</td>
                         <td>{{$faculty->name}}</td>
-                        <td><a class="btn btn-success btn-sm" href="{{route('faculties.show', $faculty->id)}}">Show class</a></td>
+                        <td><a class="btn btn-success btn-sm" href="{{route('faculties.show', $faculty->id)}}" target="_blank">Show class</a></td>
                         <td style="display: flex;border-collapse: collapse">
                             <a class="btn btn-primary btn-sm" style="margin-right: 10px" href="{{route('faculties.edit', $faculty->id)}}">Edit</a>
                             <div style="display: none" class="d-inline-block" onclick="return confirm('Are you sure want to delete item ?')">
