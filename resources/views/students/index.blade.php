@@ -36,30 +36,19 @@
             <div class="form-group">
                 <span><b>Mobile network:</b></span>
                 <div class="form-check" style="display: inline-block">
-                    <input class="form-check-input" type="checkbox" value="^(016[2-9]|09[678])[0-9]{7}$"
-                           id="defaultCheck1"
-                           name="phones[viettel]" {{isset($data['phones']['viettel']) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="defaultCheck1">
-                        Viettel
-                    </label>
+                    {{Form::checkbox('phones[viettel]','^(016[2-9]|09[678])[0-9]{7}$',!empty(\Request::get('phones')['viettel']) == '^(016[2-9]|09[678])[0-9]{7}$',['id' => 'check1'])}}
+                    {{Form::label('check1','Viettel')}}
+
                 </div>
 
                 <div class="form-check" style="display: inline-block">
-                    <input class="form-check-input" type="checkbox" value="^(012[01268]|09[03])[0-9]{7}$"
-                           id="checkbox1"
-                           name="phones[mobiphone]" {{isset($data['phones']['mobiphone']) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="checkbox1">
-                        Mobiphone
-                    </label>
+                    {{Form::checkbox('phones[mobiphone]','^(012[01268]|09[03])[0-9]{7}$',!empty(\Request::get('phones')['mobiphone']) == '^(012[01268]|09[03])[0-9]{7}$',['id' => 'check2'])}}
+                    {{Form::label('check2','Mobiphone')}}
                 </div>
 
                 <div class="form-check" style="display: inline-block">
-                    <input class="form-check-input" type="checkbox" value="^(012[34579]|09[14])[0-9]{7}$"
-                           id="defaultCheck2"
-                           name="phones[vinaphone]" {{isset($data['phones']['vinaphone']) ? 'checked' : ''}}>
-                    <label class="form-check-label" for="defaultCheck2">
-                        Vinaphone
-                    </label>
+                    {{Form::checkbox('phones[vinaphone]','^(012[34579]|09[14])[0-9]{7}$',!empty(\Request::get('phones')['vinaphone']) == '^(012[34579]|09[14])[0-9]{7}$',['id' => 'check3'])}}
+                    {{Form::label('check3','Vinaphone')}}
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
