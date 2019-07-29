@@ -60,23 +60,20 @@ class MarkController extends Controller
     public function storeMore(MarkRequest $request)
     {
         $data = [];
-        if (count($request->student_id) > 0) {
-            foreach ($request->student_id as $item => $value) {
+        if (count($request->subject_id) > 0) {
+            foreach ($request->subject_id as $item => $value) {
                 array_push($data, [
                     'subject_id' => $request->subject_id[$item],
-                    'student_id' => $request->student_id[$item],
                     'mark' => $request->mark[$item],
                 ]);
             }
         }
-
-        $student = $this->studentRepository->getListById($request->student_id[0]);
+        $student = $this->studentRepository->getListById($request->student_id);
 
         $marks = [];
         foreach ($data as $key => $value) {
             $marks[$value['subject_id']] = ['mark' => $value['mark']];
         }
-
         $student->subjects()->sync($marks);
 
         return redirect('students/' . $request->student_id[0])->with('success', 'Done !');

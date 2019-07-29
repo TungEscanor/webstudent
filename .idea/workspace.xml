@@ -4,8 +4,7 @@
     <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Student/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Student/StudentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/students/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/students/createMark.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/createMark.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,11 +34,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/students/createMark.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MarkController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state relative-caret-position="226">
+              <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
               <folding>
                 <element signature="e#40#74#0#PHP" expanded="true" />
               </folding>
@@ -140,7 +148,6 @@
         <option value="$PROJECT_DIR$/public/.htaccess" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/students/createMark.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/faculties/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/classes/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/subjects/index.blade.php" />
@@ -150,6 +157,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Student/StudentRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/students/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/students/createMark.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" />
       </list>
     </option>
@@ -295,33 +303,6 @@
             <path>
               <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstudent" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-              <item name="Faculty" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-              <item name="Mark" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
-              <item name="Student" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -329,13 +310,6 @@
               <item name="webstudent" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="students" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -492,18 +466,19 @@
       <workItem from="1564369556435" duration="83000" />
       <workItem from="1564371513224" duration="24000" />
       <workItem from="1564373894952" duration="738000" />
-      <workItem from="1564381263303" duration="5395000" />
+      <workItem from="1564381263303" duration="12771000" />
+      <workItem from="1564404479361" duration="10348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="482555000" />
+    <option name="totallyTimeSpent" value="500279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2912254" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.295764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -859,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/students/createMark.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/students/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -882,18 +850,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        <state relative-caret-position="144">
+          <caret line="51" column="29" lean-forward="true" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
           <folding>
             <element signature="e#39#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/students/createMark.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MarkController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+        <state relative-caret-position="226">
+          <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
           <folding>
             <element signature="e#40#74#0#PHP" expanded="true" />
           </folding>

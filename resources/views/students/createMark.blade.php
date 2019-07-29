@@ -16,7 +16,7 @@
         @endif
         <div class="content-top-1">
             <h3 style="color:#5a6268;">{{$student->name}}</h3>
-            {{Form::open(['route' => 'marks.storeMore','id'=>'my-form'])}}
+            {{Form::open(['route' => ['marks.storeMore','student_id' => $student->id],'id'=>'my-form'])}}
             <div id="page-load">
                 <p id="number-subject" style="display: none">{{count($subjects)}}</p>
                 <table class="table">
@@ -37,8 +37,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control" name="mark[]" type="text" value="{{$mark->mark}}">
-                                    <input name="student_id[]" type="hidden" value="{{$mark->student_id}}">
+                                    <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}">
                                 </td>
                                 <td>
                                     <a onclick="return confirm('Are you sure want to delete item ?')"
@@ -53,8 +52,7 @@
                             {!! Form::select('subject_id[]',isset($subjects) ? $subjects : null ,null, ['class' => 'form-control','placeholder' => 'choose subject...']) !!}
                         </td>
                         <td>
-                            {{Form::text('mark[]',null,['class'=> 'form-control'])}}
-                            {{ Form::hidden('student_id[]', $student->id) }}
+                            {{Form::text('mark[]',null,['class'=> 'form-control mark'])}}
                         </td>
                         <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                         </td>
@@ -73,7 +71,6 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-
             var form = $('.addform').html();
             $('.clickadd').click(function () {
                 var len = $('tbody#form-add tr').length;
