@@ -15,4 +15,8 @@ class Subject extends Model
     public function students() {
         return $this->belongsToMany(Subject::class,'marks');
     }
+
+    public function classRelation () {
+        return $this->hasMany(ClassModel::class,'faculty_id','faculty_id');
+    }
 }

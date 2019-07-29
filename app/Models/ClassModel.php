@@ -22,7 +22,7 @@ class ClassModel extends Model
         return $this->hasMany(Student::class,'class_id','id');
     }
 
-    public function subject() {
-        return $this->hasOne(Subject::class,'faculty_id','faculty_id');
+    public function subjects() {
+        return $this->hasMany(Subject::class,'faculty_id','faculty_id');
     }
 }
