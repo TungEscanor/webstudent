@@ -45,6 +45,11 @@ class MarkController extends Controller
 
     public function store(MarkRequest $request)
     {
+        $request->validate([
+            'mark' => 'required|numeric|between:0,10',
+            'student_id' => 'required',
+            'subject_id' => 'required',
+        ]);
         $check = $this->markRepository->query()->where('student_id', $request->student_id)
             ->where('subject_id', $request->subject_id)->first();
         if (isset($check)) {

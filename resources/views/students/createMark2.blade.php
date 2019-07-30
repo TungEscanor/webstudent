@@ -8,12 +8,15 @@
                     class="fa fa-angle-right"></i><span>Create marks</span></h2>
     </div>
     <div class="grid-form">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <span>{{ 'subjects and marks cannot be null, mark from 0 to 10' }}</span>
-                <button type="button" class="close" data-dismiss="alert">×</button>
-            </div>
-        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="content-top-1">
             <h3 style="color:#5a6268;">{{$student->name}}</h3>
             {{Form::open(['route' => ['marks.storeMore','student_id' => $student->id],'id'=>'my-form'])}}
@@ -32,12 +35,12 @@
                         @foreach($marks as $mark)
                             <tr  class="studentmark">
                                 <td style="background-color: whitesmoke">
-                                    <select class="form-control" name="subject_id[]">
+                                    <select class="form-control" name="data[{{$mark->subject_id}}]">
                                         <option value="{{$mark->subject_id}}" selected>{{$mark->subject->name}}</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}">
+                                    <input class="form-control mark" name="data[{{$mark->subject_id}}][mark]" type="text" value="{{$mark->mark}}">
                                 </td>
                                 <td>
                                     <a onclick="return confirm('Are you sure want to delete item ?')"
@@ -47,16 +50,24 @@
                             </tr>
                         @endforeach
                     @endif
-                    <tr class="addform">
-                        <td>
-                            {!! Form::select('subject_id[]',isset($subjects) ? $subjects : null ,null, ['class' => 'form-control','placeholder' => 'choose subject...']) !!}
-                        </td>
-                        <td>
-                            {{Form::text('mark[]',null,['class'=> 'form-control mark'])}}
-                        </td>
-                        <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
-                        </td>
-                    </tr>
+                    @if(!empty($subjects))
+
+                            <tr class="addform">
+                                <td>
+                                    <select class="form-control" name="subject_id">
+                                        @foreach($subjects as $id => $name)
+                                        <option value="{{$id}}" selected>{{$name}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control mark" name="mark" type="text">
+                                </td>
+                                <td>
+                                    <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
+                                </td>
+                            </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -70,6 +81,13 @@
 @endsection
 @section('script')
     <script type="text/javascript">
+        var $select = $("select");
+        $.each($select, function (index, select) {
+            if (select.value !== "") {
+                $(this).attr('name','data[' + select.value + ']');
+                $(this).parent().parent().find('input.mark').attr('name','data[' + select.value + '][mark]')
+            }
+        });
         $(document).ready(function () {
             var form = $('.addform').html();
             $('.clickadd').click(function () {
@@ -91,6 +109,7 @@
                 }
             });
             $(document).on('click','.remove-item', function () {
+
                 if ($(this).parent().parent().hasClass('studentmark')) {
                     stop();
                 } else {
