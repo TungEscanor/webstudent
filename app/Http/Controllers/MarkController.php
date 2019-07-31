@@ -81,7 +81,7 @@ class MarkController extends Controller
         }
         $student->subjects()->sync($marks);
 
-        return redirect('students/' . $request->student_id[0])->with('success', 'Done !');
+        return redirect('students/' . $request->student_id)->with('success', 'Done !');
     }
 
     public function edit($id)

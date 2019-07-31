@@ -37,6 +37,7 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->all();
+        $data['password'] = bcrypt($request->password);
         if ($request->hasFile('avatar')) {
             $file = upload_image('avatar');
 
@@ -103,10 +104,7 @@ class StudentController extends Controller
         $student = $this->studentRepository->getListById($id);
         $class_id = $this->studentRepository->getListById($id)->class_id;
         $class = $this->classRepository->getListById($class_id);
-        $subjects = $class->subjects()->where('faculty_id', $class->faculty_id)
-            ->orWhereHas('faculty', function ($query) {
-                $query->where('name', 'Khoa cơ bản');
-            })->pluck('name','id');
+        $subjects = $class->subjects()->pluck('name','id');
         $marks = $student->marks()->get();
         return view('students.createMark',compact('subjects','student','marks'));
     }

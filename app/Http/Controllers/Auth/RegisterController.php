@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Repositories\ClassRepository\ClassRepository;
+use App\Repositories\Student\StudentRepository;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +12,15 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+    protected $studentRepository;
+    protected $classRepository;
+
+    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository)
+    {
+        $this->studentRepository = $studentRepository;
+        $this->classRepository = $classRepository;
+        $this->middleware('guest');
+    }
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -35,10 +46,6 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -46,6 +53,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    public function getRegister() {
+        $classes = $this->classRepository->getAllList()->pluck('name','id');
+        return view('students.create', compact('classes'));
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -61,6 +73,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         return User::create([

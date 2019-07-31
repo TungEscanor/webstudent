@@ -3,6 +3,7 @@
 namespace App\Repositories\Student;
 
 use App\Models\Student;
+use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
 
@@ -41,7 +42,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             });
         }
 
-
         isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
         isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
         $students->whereHas('marks', function ($query) use ($data, $min, $max) {
@@ -49,7 +49,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
                 $query = $query->where('subject_id', $data['subject_id']);
             }
 
-            $query->whereBetween('mark', [$min, $max]);
+            $query->where('mark', '>=',$min)->where('mark','<=',$max);
         });
 
         return $students->paginate(8);

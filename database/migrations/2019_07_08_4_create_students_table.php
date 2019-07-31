@@ -19,9 +19,11 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->dateTime('birthday');
             $table->string('gender');
+            $table->bigInteger('user_id');
             $table->string('avatar')->nullable();
             $table->string('phone_number')->unsigned();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

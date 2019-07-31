@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['namespace' => 'Auth'],function () {
+    Route::get('register','RegisterController@getRegister')->name('get.register');
+    Route::post('register','RegisterController@postRegister')->name('post.register');
+
+    Route::get('login','LoginController@getLogin')->name('get.login');
+    Route::post('login','LoginController@postLogin')->name('post.login');
+});
+
 Route::get('/', 'StudentController@index');
 /**
  * faculty route

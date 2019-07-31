@@ -26,7 +26,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-left: 20px">
                 {{Form::label('mark1','Mark from: ')}}
                 {{Form::text('min_mark',isset($data['min_mark']) ? $data['min_mark'] : null, ['id'=> 'mark1','class' => 'form-control','style' => 'width: 60px'])}}
                 {{Form::label('mark2','To: ')}}
@@ -49,6 +49,13 @@
                 <div class="form-check" style="display: inline-block">
                     {{Form::checkbox('phones[vinaphone]','^(012[34579]|09[14])[0-9]{7}$',!empty(\Request::get('phones')['vinaphone']) == '^(012[34579]|09[14])[0-9]{7}$',['id' => 'check3'])}}
                     {{Form::label('check3','Vinaphone')}}
+                </div>
+                <div class="form-check" style="display: inline-block;margin-left: 50px">
+                    {!! Form::label('check4','Complete all subject: ',['style' => 'font-weight:bold'] ) !!}
+                    {{Form::checkbox('done','1')}}
+                    {{Form::label('check5',' Or not')}}
+                    {{Form::checkbox('done','0')}}
+
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>

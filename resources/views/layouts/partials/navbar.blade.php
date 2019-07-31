@@ -1,13 +1,11 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-
             <li>
                 <a href="" class=" hvr-bounce-to-right"><i
                             class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span>
                 </a>
             </li>
-
             <li>
                 <a href="{{route('faculties.index')}}" class=" hvr-bounce-to-right"><i
                             class="fa fa-indent nav_icon"></i> <span
@@ -33,6 +31,16 @@
             <li>
                 <a href="{{route('marks.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span
                             class="nav-label">Mark</span> </a>
+            </li>
+            <li>
+                <a href="{{route('get.register')}}" class=" hvr-bounce-to-right"><i
+                            class="fa fa-cog nav_icon"></i> <span
+                            class="nav-label">Register</span></a>
+
+            </li>
+            <li>
+                <a href="{{route('get.login')}}" class=" hvr-bounce-to-right"><i class="fa fa-share nav_icon"></i> <span
+                            class="nav-label">Login</span> </a>
             </li>
         </ul>
     </div>
