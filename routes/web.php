@@ -44,7 +44,3 @@ Route::post('marks/store','MarkController@storeMore')->name('marks.storeMore');
 Route::resource('marks','MarkController');
 Route::get('marks/destroy/{id}','MarkController@destroy')->name('mark.post.destroy');
 
-Route::group(['prefix' => 'marks/ajax'],function () {
-    Route::get('subject/{studentId}','AjaxController@getSubject');
-});
-

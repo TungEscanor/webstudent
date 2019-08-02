@@ -10,6 +10,8 @@ use App\Repositories\Student\StudentRepository;
 use App\Repositories\Student\StudentRepositoryInterface;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Subject\SubjectRepositoryInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(SubjectRepositoryInterface::class,SubjectRepository::class);
         $this->app->singleton(StudentRepositoryInterface::class,StudentRepository::class);
         $this->app->singleton(MarkRepositoryInterface::class,MarkRepository::class);
+        $this->app->singleton(UserRepositoryInterface::class,UserRepository::class);
     }
     /**
      * Bootstrap any application services.

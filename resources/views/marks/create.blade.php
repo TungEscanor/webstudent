@@ -47,15 +47,3 @@
         </div>
     </div>
 @endsection
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#student').on('change',function () {
-                var student_id = $(this).val();
-                $.get('ajax/subject/' + student_id,function (data) {
-                    $('#subject').html(data);
-                });
-            });
-        });
-    </script>
-@endsection

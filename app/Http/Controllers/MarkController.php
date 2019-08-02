@@ -87,13 +87,7 @@ class MarkController extends Controller
     public function edit($id)
     {
         $mark = $this->markRepository->getListById($id);
-        $student = $this->studentRepository->getListById($mark->student_id);
-        $class_id = $student->class_id;
-        $class = $this->classRepository->getListById($class_id);
-        $subjects = $this->subjectRepository->query()->where('faculty_id', $class->faculty_id)
-            ->orWhereHas('faculty', function ($query) {
-                $query->where('name', 'Khoa cơ bản');
-            })->pluck('name', 'id');
+        $subjects = $this->subjectRepository->getAllList()->pluck('name', 'id');
         return view('marks.edit', compact('subjects'), compact('mark'));
     }
 

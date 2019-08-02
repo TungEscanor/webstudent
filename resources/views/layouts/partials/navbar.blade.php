@@ -32,16 +32,6 @@
                 <a href="{{route('marks.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span
                             class="nav-label">Mark</span> </a>
             </li>
-            <li>
-                <a href="{{route('get.register')}}" class=" hvr-bounce-to-right"><i
-                            class="fa fa-cog nav_icon"></i> <span
-                            class="nav-label">Register</span></a>
-
-            </li>
-            <li>
-                <a href="{{route('get.login')}}" class=" hvr-bounce-to-right"><i class="fa fa-share nav_icon"></i> <span
-                            class="nav-label">Login</span> </a>
-            </li>
         </ul>
     </div>
 </div>

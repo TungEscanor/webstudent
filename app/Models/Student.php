@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 
-    protected $fillable = ['name', 'class_id', 'birthday', 'gender', 'avatar', 'phone_number','id'];
+    protected $fillable = ['name', 'class_id', 'birthday', 'gender', 'avatar', 'phone_number','user_id'];
 
     public function classRelation()
     {

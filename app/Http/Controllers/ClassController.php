@@ -25,7 +25,7 @@ class ClassController extends Controller
 
     public function create()
     {
-        $faculties = $this->classRepository->showFaculties();
+        $faculties = $this->facultyRepository->getAllList()->pluck('name','id');
         return view('classes.create',compact('faculties'));
     }
 

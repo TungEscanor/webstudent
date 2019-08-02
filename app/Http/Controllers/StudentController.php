@@ -37,12 +37,11 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $data = $request->all();
-        $data['password'] = bcrypt($request->password);
+
         if ($request->hasFile('avatar')) {
+
             $file = upload_image('avatar');
-
             if (isset($file['name'])) {
-
                 $data['avatar'] = $file['name'];
             }
         }
@@ -102,9 +101,7 @@ class StudentController extends Controller
 
     public function createMarks($id) {
         $student = $this->studentRepository->getListById($id);
-        $class_id = $this->studentRepository->getListById($id)->class_id;
-        $class = $this->classRepository->getListById($class_id);
-        $subjects = $class->subjects()->pluck('name','id');
+        $subjects = $this->subjectRepository->getAllList()->pluck('name','id');
         $marks = $student->marks()->get();
         return view('students.createMark',compact('subjects','student','marks'));
     }

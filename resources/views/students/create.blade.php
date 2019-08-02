@@ -1,20 +1,21 @@
 @extends('layouts.master')
 @section('title')
-Create student
+    Create student
 @endsection
 @section('content')
     <div class="banner">
-        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i class="fa fa-angle-right"></i><span>Create student</span></h2>
+        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i
+                    class="fa fa-angle-right"></i><span>Create student</span></h2>
     </div>
     <div class="grid-form">
         <div class="grid-form1">
             <div class="row">
                 <div class="col-md-6">
                     <h1>Student information</h1>
-                    {{Form::open(['route' => 'students.store','enctype' => 'multipart/form-data'])}}
+                    {{Form::open(['route' => 'post.register','enctype' => 'multipart/form-data'])}}
                     <div class="form-group">
                         {{Form::label('exampleInputEmail1','Student name:',['style' => 'font-weight:bold'])}}
-                        {{Form::text('student[name]',null,['class' => 'form-control','id' =>"exampleInputEmail1"])}}
+                        {{Form::text('name',null,['class' => 'form-control','id' =>"exampleInputEmail1"])}}
                         @if($errors->has('name'))
                             <div class="error-text text-danger">
                                 {{$errors->first('name')}}
@@ -50,11 +51,11 @@ Create student
                         {{Form::label('phone number', 'Phone number: ',['style' => 'font-weight:bold'])}}
                         {{Form::text('phone_number',null,['class' => 'form-control1','id' =>"exampleInputEmail1"])}}
                         <div>
-                        @if($errors->has('phone_number'))
-                            <div class="error-text text-danger">
-                                {{$errors->first('phone_number')}}
-                            </div>
-                        @endif
+                            @if($errors->has('phone_number'))
+                                <div class="error-text text-danger">
+                                    {{$errors->first('phone_number')}}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,7 +83,7 @@ Create student
                     <h1>Login information</h1>
                     <div class="form-group" style="margin-top: 24px">
                         {{Form::label('check1','Username:',['style' => 'font-weight:bold'])}}
-                        {{Form::text('username','',['class' => 'form-control','id' =>"check1"])}}
+                        {{Form::text('username',null,['class' => 'form-control','id' =>"check1"])}}
                         @if($errors->has('username'))
                             <div class="error-text text-danger">
                                 {{$errors->first('username')}}
@@ -91,7 +92,7 @@ Create student
                     </div>
                     <div class="form-group">
                         {{Form::label('email','Email :',['style' => 'font-weight:bold'])}}
-                        {{Form::email('email','',['class' => 'form-control','id' =>"email"])}}
+                        {{Form::email('email',null,['class' => 'form-control','id' =>"email"])}}
                         @if($errors->has('email'))
                             <div class="error-text text-danger">
                                 {{$errors->first('email')}}

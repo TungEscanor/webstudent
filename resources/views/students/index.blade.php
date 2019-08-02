@@ -52,9 +52,9 @@
                 </div>
                 <div class="form-check" style="display: inline-block;margin-left: 50px">
                     {!! Form::label('check4','Complete all subject: ',['style' => 'font-weight:bold'] ) !!}
-                    {{Form::checkbox('done','1')}}
+                    {{Form::checkbox('done','1',!empty(\Request::get('done') == 1))}}
                     {{Form::label('check5',' Or not')}}
-                    {{Form::checkbox('done','0')}}
+                    {{Form::checkbox('not_done','1',!empty(\Request::get('not_done') == 1))}}
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
             </form>
             <table class="table table-hover table-bordered">
                 <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px"
-                   href="{{route('students.create')}}" title=""><i class="fa fa-plus"></i></a>
+                   href="{{route('get.register')}}" title=""><i class="fa fa-plus"></i></a>
                 <thead>
                 <tr>
                     <th>#</th>

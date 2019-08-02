@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class StudentRepository extends BaseRepository implements StudentRepositoryInterface
 {
@@ -23,6 +25,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
     public function searchStudent($data)
     {
         $students = $this->model->with('classRelation');
+
 
         if (!empty($data['min_age'])) {
             $min = Carbon::now()->subYears($data['min_age']);
@@ -42,17 +45,36 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             });
         }
 
-        isset($data['min_mark']) ? $min = $data['min_mark'] : $min = '0';
-        isset($data['max_mark']) ? $max = $data['max_mark'] : $max = '10';
-        $students->whereHas('marks', function ($query) use ($data, $min, $max) {
-            if (!empty($data['subject_id'])) {
-                $query = $query->where('subject_id', $data['subject_id']);
-            }
+        if(!empty($data['min_mark'])) {
+            $students->whereHas('marks', function ($query) use ($data) {
+                if (!empty($data['subject_id'])) {
+                    $query = $query->where('subject_id', $data['subject_id']);
+                }
 
-            $query->where('mark', '>=',$min)->where('mark','<=',$max);
-        });
+                $query->where('mark', '>=',$data['min_mark']);
+            });
+        }
 
-        return $students->paginate(8);
+        if(!empty($data['max_mark'])) {
+            $students->whereHas('marks', function ($query) use ($data) {
+                if (!empty($data['subject_id'])) {
+                    $query = $query->where('subject_id', $data['subject_id']);
+                }
+
+                $query->where('mark', '<=',$data['max_mark']);
+            });
+        }
+
+        $count_subjects = Subject::all()->count();
+
+        if(!empty($data['done'])) {
+            $students->has('subjects', '=', $count_subjects);
+        }
+        if(!empty($data['not_done'])) {
+            $students->has('subjects','<>',$count_subjects);
+        }
+
+        return $students->paginate(5);
     }
 }
 

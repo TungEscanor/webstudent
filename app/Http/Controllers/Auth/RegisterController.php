@@ -2,84 +2,60 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\StudentRequest;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
-use App\User;
+use App\Repositories\User\UserRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
     protected $studentRepository;
     protected $classRepository;
+    protected $userRepository;
 
-    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository)
+    public function __construct(UserRepository $userRepository, StudentRepository $studentRepository, ClassRepository $classRepository)
     {
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
+        $this->userRepository = $userRepository;
         $this->middleware('guest');
     }
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    public function getRegister() {
-        $classes = $this->classRepository->getAllList()->pluck('name','id');
+    public function getRegister()
+    {
+        $classes = $this->classRepository->getAllList()->pluck('name', 'id');
         return view('students.create', compact('classes'));
     }
 
-    protected function validator(array $data)
+    public function postRegister(StudentRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+        $data['re_password'] = Hash::make($request->re_password);
+        DB::beginTransaction();
+        try {
+            $user = $this->userRepository->store($data);
+            if ($request->hasFile('avatar')) {
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+                $file = upload_image('avatar');
+                if (isset($file['name'])) {
+                    $data['avatar'] = $file['name'];
+                }
+            }
+            $data['user_id'] = $user->id;
+            $this->studentRepository->store($data);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new \Exception($e->getMessage());
 
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        }
+        return redirect($request->redirects_to)->with('success','Done');
     }
 }
