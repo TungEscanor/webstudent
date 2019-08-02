@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Hello: {{$user->student->name}}</h1>
-    <p>Your avg marks is: {{$user->student->marks->avg('mark')}}</p>
+<h1><b>Hello: {{$user->student->name}}</b></h1>
+    <br>
+    <p>Your avg marks is: {{number_format($user->student->marks->avg('mark'),2)}}</p>
 </body>
 </html>

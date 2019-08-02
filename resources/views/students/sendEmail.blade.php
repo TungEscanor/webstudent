@@ -8,6 +8,7 @@
                     class="fa fa-angle-right"></i><span>List students</span></h2>
     </div>
     <div class="grid-form">
+        @include('flash-message')
         <div class="content-top-1">
             <table class="table table-hover table-bordered">
                 <thead>

@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Repositories\Student\StudentRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
