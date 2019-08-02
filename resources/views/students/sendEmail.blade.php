@@ -32,7 +32,7 @@
                         <td>{{(!empty ($student->phone_number)) ? rtrim($student->phone_number) : '' }}</td>
                         <td><a class="btn btn-success btn-sm"  href="{{route('students.show',$student->id)}}" target="_blank"><i style="color: white" class="fa fa-share"></i></a></td>
                         <td >
-                            <a class="btn btn-danger" href="{{route('email.students',['id'=>$student->user->id])}}" ><i class="fa fa-send " style="color: white"></i></a>
+                            <a class="btn btn-danger click" href="{{route('email.students',['id'=>$student->user->id])}}" ><i class="fa fa-send " style="color: white"></i></a>
                         </td>
 
                     </tr>
@@ -41,4 +41,13 @@
             </table>
         </div>
     </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click','.click',function () {
+                $(this).children('i.fa').css({'color':'black'});
+            })
+        })
+    </script>
 @endsection

@@ -14,7 +14,7 @@ class sendEmail extends Controller
 
         Mail::to($user->email)->send(new BadStudents($user));
 
-        return redirect()->back()->with('success','done');
+        return redirect()->back()->with('success','Done');
 
     }
 }
