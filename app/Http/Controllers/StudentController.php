@@ -105,4 +105,9 @@ class StudentController extends Controller
         $marks = $student->marks()->get();
         return view('students.createMark',compact('subjects','student','marks'));
     }
+
+    public function badStudents() {
+        $students = $this->studentRepository->badStudents();
+        return view('students.sendEmail')->with(compact('students'));
+    }
 }

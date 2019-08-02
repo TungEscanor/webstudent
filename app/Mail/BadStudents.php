@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Repositories\Student\StudentRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,9 +17,11 @@ class BadStudents extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    protected $user;
+
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +31,7 @@ class BadStudents extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $user = $this->user;
+        return $this->view('mails.badStudents')->with(compact('user'));
     }
 }

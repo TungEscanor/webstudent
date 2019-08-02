@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
+use function foo\func;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
@@ -25,7 +26,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
     public function searchStudent($data)
     {
         $students = $this->model->with('classRelation');
-
 
         if (!empty($data['min_age'])) {
             $min = Carbon::now()->subYears($data['min_age']);
@@ -75,6 +75,21 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         }
 
         return $students->paginate(5);
+    }
+
+    public function badStudents() {
+        $count_subjects = Subject::all()->count();
+        $students = $this->model->has('subjects','=',$count_subjects)->get();
+        $badStudents = [];
+        foreach ($students as $key => $student) {
+            $avg = $student->marks->avg('mark');
+            if($avg <= 5) {
+                $badStudents[] = $student;
+            }
+        }
+
+        return $badStudents;
+
     }
 }
 

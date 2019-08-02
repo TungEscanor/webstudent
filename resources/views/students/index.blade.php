@@ -63,6 +63,8 @@
             <table class="table table-hover table-bordered">
                 <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px"
                    href="{{route('get.register')}}" title=""><i class="fa fa-plus"></i></a>
+                <a class="btn btn-sm btn-danger pull-left" style="margin-top: 10px"
+                   href="{{route('students.bad')}}" title=""><i class="fa fa-send"></i></a>
                 <thead>
                 <tr>
                     <th>#</th>
