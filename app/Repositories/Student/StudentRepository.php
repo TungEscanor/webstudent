@@ -45,6 +45,12 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             });
         }
 
+        if(!empty($data['subject_id'])) {
+            $students->whereHas('marks', function ($query) use ($data) {
+                $query->where('subject_id', $data['subject_id']);
+            });
+        }
+
         if(!empty($data['min_mark'])) {
             $students->whereHas('marks', function ($query) use ($data) {
                 if (!empty($data['subject_id'])) {

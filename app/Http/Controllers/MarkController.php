@@ -58,7 +58,7 @@ class MarkController extends Controller
             $this->markRepository->store($request->all());
         }
 
-        return redirect('marks')->with('success', 'Done !');
+        return redirect('students/' . $request->student_id)->with('success', 'Done !');
     }
 
 

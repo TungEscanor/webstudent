@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
+use App\Mail\BadStudents;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
+use App\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
     protected $classRepository;
     protected $subjectRepository;
+    protected $userRepository;
 
-    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository,SubjectRepository $subjectRepository)
+    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository,SubjectRepository $subjectRepository,UserRepository $userRepository)
     {
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request)
@@ -109,5 +114,26 @@ class StudentController extends Controller
     public function badStudents() {
         $students = $this->studentRepository->badStudents();
         return view('students.sendEmail')->with(compact('students'));
+    }
+
+    public function mailStudent($id) {
+        $user = $this->userRepository->getListById($id);
+
+        Mail::to($user->email)->send(new BadStudents($user));
+
+        return redirect()->back()->with('success','Done');
+
+    }
+
+    public function sendAll() {
+        $students = $this->studentRepository->badStudents();
+
+        foreach ($students as $key => $student) {
+
+            Mail::to($student->user->email)->send(new BadStudents($student->user));
+
+        }
+
+        return redirect()->back()->with('success','Done');
     }
 }

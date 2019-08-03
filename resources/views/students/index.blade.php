@@ -61,10 +61,10 @@
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
             </form>
             <table class="table table-hover table-bordered">
-                <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px"
+                <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px;margin-bottom: 10px"
                    href="{{route('get.register')}}" title=""><i class="fa fa-plus"></i></a>
-                <a class="btn btn-sm btn-danger pull-left" style="margin-top: 10px"
-                   href="{{route('students.bad')}}" title=""><i class="fa fa-send"></i></a>
+                <a class="btn btn-sm btn-danger pull-left" style="margin-top: 10px;margin-bottom: 10px"
+                   href="{{route('students.bad')}}" title="">Student Averange < 5</a>
                 <thead>
                 <tr>
                     <th>#</th>
@@ -73,7 +73,7 @@
                     <th>Gender</th>
                     <th>Birthday</th>
                     <!--<th>Age</th>-->
-                    <th style="width: 50px">Phone number</th>
+                    <th style="width: 150px">Phone number</th>
                     <th>Avatar</th>
                     <th>Mark</th>
                     <th colspan="2" style="text-align: center;width: 30px">Action</th>
