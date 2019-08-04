@@ -39,15 +39,20 @@
                 @endforeach
                 </tbody>
             </table>
-            <a href="{{route('students.sendAll')}}" class="btn btn-danger">Send to all</a>
+            <div style="display: flex;justify-content: center;margin-top: 20px"><a href="{{route('students.sendAll')}}" class="btn btn-danger send-all">Send to all</a></div>
         </div>
     </div>
 @endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
+
             $(document).on('click','.click',function () {
-                $(this).children('i.fa').css({'color':'black'});
+                $(this).children('i.fa-send').css({'color':'black'});
+            });
+
+            $(document).on('click','.send-all',function () {
+                $('i.fa-send').css({'color':'black'});
             })
         })
     </script>
