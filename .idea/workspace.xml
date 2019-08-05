@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,12 +32,12 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassController.php">
+        <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1058">
-              <caret line="66" column="72" selection-start-line="66" selection-start-column="72" selection-end-line="66" selection-end-column="72" />
+            <state relative-caret-position="365">
+              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -140,13 +141,11 @@
         <option value="$PROJECT_DIR$/app/Repositories/ClassRepository/ClassRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClassController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PhpMailerController.php" />
         <option value="$PROJECT_DIR$/resources/views/mails/abc.html" />
         <option value="$PROJECT_DIR$/app/Models/Student.php" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/mail.php" />
         <option value="$PROJECT_DIR$/resources/views/mails/badStudents.blade.php" />
         <option value="$PROJECT_DIR$/app/Mail/BadStudents.php" />
@@ -157,6 +156,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MarkController.php" />
         <option value="$PROJECT_DIR$/resources/views/students/sendEmail.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -308,6 +309,12 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstudent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstudent" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Jobs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -505,11 +512,13 @@
       <workItem from="1564881661115" duration="1347000" />
       <workItem from="1564929695494" duration="281000" />
       <workItem from="1564975839791" duration="116000" />
+      <workItem from="1564978287934" duration="621000" />
+      <workItem from="1565004840592" duration="331000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="609073000" />
+    <option name="totallyTimeSpent" value="610025000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +533,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18986385" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19742814" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -537,7 +546,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.6295082" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4977307" weight="0.5360656" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4977307" weight="0.4557377" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50226927" side_tool="true" weight="0.55973816" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -636,13 +645,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/web/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -815,13 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/StudentRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -879,13 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-592">
           <caret line="54" column="54" selection-start-line="54" selection-start-column="54" selection-end-line="54" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -978,16 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="136" column="58" lean-forward="true" selection-start-line="136" selection-start-column="58" selection-end-line="136" selection-end-column="58" />
-          <folding>
-            <element signature="e#39#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/students/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
@@ -995,10 +973,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/StudentRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
+        <state relative-caret-position="409">
           <caret line="66" column="72" selection-start-line="66" selection-start-column="72" selection-end-line="66" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Jobs/SendEmailJob.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="37" column="61" lean-forward="true" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
+          <folding>
+            <element signature="e#28#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+          <folding>
+            <element signature="e#39#76#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
