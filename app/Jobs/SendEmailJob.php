@@ -21,10 +21,6 @@ class SendEmailJob implements ShouldQueue
      */
     protected $user;
 
-    public $tries = 3;
-
-    public $timeout = 60;
-
     public function __construct($user)
     {
         $this->user = $user;
@@ -38,7 +34,6 @@ class SendEmailJob implements ShouldQueue
     public function handle()
     {
         $user = $this->user;
-
         Mail::to($user->email)->send(new BadStudents($user));
     }
 }

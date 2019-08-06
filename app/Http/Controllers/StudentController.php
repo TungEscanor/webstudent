@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Jobs\SendEmailJob;
-use App\Mail\BadStudents;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\User\UserRepository;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+
 
 class StudentController extends Controller
 {
@@ -121,8 +119,7 @@ class StudentController extends Controller
     public function mailStudent($id) {
         $user = $this->userRepository->getListById($id);
 
-        $job = (new SendEmailJob($user))->delay(Carbon::now()->addMinutes(10));
-        dispatch($job);
+        dispatch(new SendEmailJob($user));
 
         return redirect()->back()->with('success','Done');
 
@@ -133,8 +130,7 @@ class StudentController extends Controller
 
         foreach ($students as $key => $student) {
 
-            $job = (new SendEmailJob($student->user))->delay(Carbon::now()->addMinutes(10));
-            dispatch($job);
+            dispatch(new SendEmailJob($student->user));
 
         }
 
