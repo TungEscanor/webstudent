@@ -40,9 +40,7 @@
                                     <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}">
                                 </td>
                                 <td>
-                                    <a onclick="return confirm('Are you sure want to delete item ?')"
-                                       href="{{route('mark.post.destroy',$mark->id)}}" class="btn btn-danger remove"><i
-                                                class="fa fa-remove" style="color: white"></i></a>
+                                    <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                                 </td>
                             </tr>
                         @endforeach
@@ -91,11 +89,7 @@
                 }
             });
             $(document).on('click','.remove-item', function () {
-                if ($(this).parent().parent().hasClass('studentmark')) {
-                    stop();
-                } else {
                     $(this).parent().parent().remove();
-                }
                 var $select = $("select");
                 var selected = [];
                 $.each($select, function (index, select) {

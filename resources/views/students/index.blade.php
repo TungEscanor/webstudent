@@ -36,35 +36,42 @@
             <div class="form-group">
                 <span><b>Mobile network:</b></span>
                 <div class="form-check" style="display: inline-block">
-                    {{Form::checkbox('phones[viettel]','^(016[2-9]|09[678])[0-9]{7}$',!empty(\Request::get('phones')['viettel']) == '^(016[2-9]|09[678])[0-9]{7}$',['id' => 'check1'])}}
+                    {{Form::checkbox('phones[viettel]','^(016[2-9]|09[678])[0-9]{7}$',!empty(\Request::get('phones')['viettel']) && \Request::get('phones')['viettel'] =='^(016[2-9]|09[678])[0-9]{7}$',['id' => 'check1'])}}
                     {{Form::label('check1','Viettel')}}
 
                 </div>
 
                 <div class="form-check" style="display: inline-block">
-                    {{Form::checkbox('phones[mobiphone]','^(012[01268]|09[03])[0-9]{7}$',!empty(\Request::get('phones')['mobiphone']) == '^(012[01268]|09[03])[0-9]{7}$',['id' => 'check2'])}}
+                    {{Form::checkbox('phones[mobiphone]','^(012[01268]|09[03])[0-9]{7}$',!empty(\Request::get('phones')['mobiphone']) && \Request::get('phones')['mobiphone'] == '^(012[01268]|09[03])[0-9]{7}$',['id' => 'check2'])}}
                     {{Form::label('check2','Mobiphone')}}
                 </div>
 
                 <div class="form-check" style="display: inline-block">
-                    {{Form::checkbox('phones[vinaphone]','^(012[34579]|09[14])[0-9]{7}$',!empty(\Request::get('phones')['vinaphone']) == '^(012[34579]|09[14])[0-9]{7}$',['id' => 'check3'])}}
+                    {{Form::checkbox('phones[vinaphone]','^(012[34579]|09[14])[0-9]{7}$',!empty(\Request::get('phones')['vinaphone']) && \Request::get('phones')['vinaphone'] == '^(012[34579]|09[14])[0-9]{7}$',['id' => 'check3'])}}
                     {{Form::label('check3','Vinaphone')}}
                 </div>
                 <div class="form-check" style="display: inline-block;margin-left: 50px">
                     {!! Form::label('check4','Complete all subject: ',['style' => 'font-weight:bold'] ) !!}
-                    {{Form::checkbox('done','1',!empty(\Request::get('done') == 1))}}
+                    {{Form::checkbox('done','1',!empty(\Request::get('done')) && \Request::get('done') == 1,['id' => 'check4'])}}
                     {{Form::label('check5',' Or not')}}
-                    {{Form::checkbox('not_done','1',!empty(\Request::get('not_done') == 1))}}
+                    {{Form::checkbox('not_done','1',!empty(\Request::get('not_done')) && \Request::get('not_done') == 1,['id' => 'check5'])}}
+
+                </div>
+                <div class="form-check" style="display: inline-block;margin-left: 50px">
+                    {!! Form::label('check6','AVG < 5: ',['style' => 'font-weight:bold'] ) !!}
+                    {{Form::checkbox('less_5','1',!empty(\Request::get('less_5')) && \Request::get('less_5') == 1,['id' => 'check6'])}}
+                    {{Form::label('check7',' Or not')}}
+                    {{Form::checkbox('greater_5','1',!empty(\Request::get('greater_5')) && \Request::get('greater_5') == 1,['id' => 'check7'])}}
 
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
-            </form>
+            {{Form::close()}}
             <table class="table table-hover table-bordered">
                 <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px;margin-bottom: 10px"
                    href="{{route('get.register')}}" title=""><i class="fa fa-plus"></i></a>
                 <a class="btn btn-sm btn-danger pull-left" style="margin-top: 10px;margin-bottom: 10px"
-                   href="{{route('students.bad')}}" title="">Student Averange < 5</a>
+                   href="{{route('students.bad')}}" title="">Send Email</a>
                 <thead>
                 <tr>
                     <th>#</th>

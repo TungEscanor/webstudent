@@ -6,9 +6,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Repositories\Base\BaseRepository;
 use Carbon\Carbon;
-use function foo\func;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+
 
 class StudentRepository extends BaseRepository implements StudentRepositoryInterface
 {
@@ -26,7 +24,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
     public function searchStudent($data)
     {
         $students = $this->model->with('classRelation');
-
+        // Age filter
         if (!empty($data['min_age'])) {
             $min = Carbon::now()->subYears($data['min_age']);
             $students->where('birthday', '<=', $min);
@@ -36,7 +34,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             $max = Carbon::now()->subYears($data['max_age']);
             $students->where('birthday', '>=', $max);
         }
-
+        //Phone filter
         if (!empty($data['phones'])) {
             $students->where(function ($query) use ($data) {
                 foreach ($data['phones'] as $key => $phone) {
@@ -44,57 +42,89 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
                 }
             });
         }
-
-        if(!empty($data['subject_id'])) {
+        //Subject filter
+        if (!empty($data['subject_id'])) {
             $students->whereHas('marks', function ($query) use ($data) {
                 $query->where('subject_id', $data['subject_id']);
             });
         }
-
-        if(!empty($data['min_mark'])) {
+        //Mark filter
+        if (!empty($data['min_mark'])) {
             $students->whereHas('marks', function ($query) use ($data) {
                 if (!empty($data['subject_id'])) {
                     $query = $query->where('subject_id', $data['subject_id']);
                 }
 
-                $query->where('mark', '>=',$data['min_mark']);
+                $query->where('mark', '>=', $data['min_mark']);
             });
         }
 
-        if(!empty($data['max_mark'])) {
+        if (!empty($data['max_mark'])) {
             $students->whereHas('marks', function ($query) use ($data) {
                 if (!empty($data['subject_id'])) {
                     $query = $query->where('subject_id', $data['subject_id']);
                 }
 
-                $query->where('mark', '<=',$data['max_mark']);
+                $query->where('mark', '<=', $data['max_mark']);
             });
         }
 
         $count_subjects = Subject::all()->count();
+        // Done all subject ?
+        if (!empty($data['done'])) {
 
-        if(!empty($data['done'])) {
-            $students->has('subjects', '=', $count_subjects);
+            if (!empty($data['not_done'])) {
+
+            } else {
+                $students->has('subjects', '=', $count_subjects);
+            }
+
         }
-        if(!empty($data['not_done'])) {
-            $students->has('subjects','<>',$count_subjects);
+        if (!empty($data['not_done'])) {
+
+            if (!empty($data['done'])) {
+
+            } else {
+                $students->has('subjects', '<>', $count_subjects);
+            }
+        }
+        //AVG < 5 ?
+        if (!empty($data['less_5'])) {
+
+            if (!empty($data['greater_5'])) {
+                $students->has('subjects', '=', $count_subjects);
+            } else {
+                $students->has('subjects', '=', $count_subjects)
+                    ->whereHas('marks', function ($query) {
+                        $query->havingRaw('AVG(mark) < 5');
+                    });
+            }
+
+        }
+        if (!empty($data['greater_5'])) {
+
+            if (!empty($data['less_5'])) {
+                $students->has('subjects', '=', $count_subjects);
+            } else {
+                $students->has('subjects', '=', $count_subjects)
+                    ->whereHas('marks', function ($query) {
+                        $query->havingRaw('AVG(mark) >= 5');
+                    });
+            }
         }
 
         return $students->paginate(5);
     }
 
-    public function badStudents() {
+    public function badStudents()
+    {
         $count_subjects = Subject::all()->count();
-        $students = $this->model->has('subjects','=',$count_subjects)->get();
-        $badStudents = [];
-        foreach ($students as $key => $student) {
-            $avg = $student->marks->avg('mark');
-            if($avg <= 5) {
-                $badStudents[] = $student;
-            }
-        }
+        $students = $this->model->has('subjects', '=', $count_subjects)
+            ->whereHas('marks', function ($query) {
+                $query->havingRaw('AVG(mark) < 5');
+            });
 
-        return $badStudents;
+        return $students->paginate(5);
 
     }
 }

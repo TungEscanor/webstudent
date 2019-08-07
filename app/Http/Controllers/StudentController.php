@@ -7,6 +7,7 @@ use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\User\UserRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -119,7 +120,7 @@ class StudentController extends Controller
     public function mailStudent($id) {
         $user = $this->userRepository->getListById($id);
 
-        dispatch(new SendEmailJob($user));
+        dispatch(new SendEmailJob($user))->delay(Carbon::now()->addMinutes(1));
 
         return redirect()->back()->with('success','Done');
 
@@ -130,7 +131,7 @@ class StudentController extends Controller
 
         foreach ($students as $key => $student) {
 
-            dispatch(new SendEmailJob($student->user));
+            dispatch(new SendEmailJob($student->user))->delay(Carbon::now()->addMinutes(1));
 
         }
 
