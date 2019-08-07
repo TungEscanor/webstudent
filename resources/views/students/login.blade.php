@@ -1,73 +1,63 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Student login</title>
-    <!-- Meta tag Keywords -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Glassy Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-        function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- Meta tag Keywords -->
-    <!-- css files -->
-    <link rel="stylesheet" href="{{asset('login/css/font-awesome.css')}}"> <!-- Font-Awesome-Icons-CSS -->
-    <link rel="stylesheet" href="{{asset('login/css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS -->
-    <!-- //css files -->
-    <!-- web-fonts -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700" rel="stylesheet">
-    <!-- //web-fonts -->
+    <title>Login Page</title>
+    <!--Made with love by Mutiullah Samim -->
+
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="{{asset('login/style.css')}}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
 </head>
 <body>
-<!--header-->
-<div class="header-w3l">
-    <h1>Student login</h1>
-</div>
-<!--//header-->
-<!--main-->
-<div class="main-w3layouts-agileinfo">
-    <!--form-stars-here-->
-    <div class="wthree-form">
-        <h2>Fill out the form below to login</h2>
-        <form action="#" method="post">
-            <div class="form-sub-w3">
-                <input type="text" name="Username" placeholder="Username " required="" />
-                <div class="icon-w3">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                </div>
-            </div>
-            <div class="form-sub-w3">
-                <input type="password" name="Password" placeholder="Password" required="" />
-                <div class="icon-w3">
-                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                </div>
-            </div>
-            <label class="anim">
-                <input type="checkbox" class="checkbox">
-                <span>Remember Me</span>
-                <a href="{{route('get.register')}}">Sign Up</a>
-            </label>
-            <div class="clear"></div>
-            <div class="submit-agileits">
-                <input type="submit" value="Login">
-            </div>
-        </form>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Sign In</h3>
 
+            </div>
+            <div class="card-body">
+                <form action="{{route('post.login')}}" method="post">
+                    {{ csrf_field() }}
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="username" name="username">
+
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    Don't have an account?<a href="{{route('get.register')}}">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <!--//form-ends-here-->
-
 </div>
-<!--//main-->
-<!--footer-->
-<div class="footer">
-    <p>&copy; 2019 Glassy Login Form. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-</div>
-<!--//footer-->
 </body>
 </html>

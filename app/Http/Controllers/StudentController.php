@@ -24,6 +24,7 @@ class StudentController extends Controller
         $this->classRepository = $classRepository;
         $this->subjectRepository = $subjectRepository;
         $this->userRepository = $userRepository;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)

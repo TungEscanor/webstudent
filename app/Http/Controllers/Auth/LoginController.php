@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class LoginController extends Controller
 {
     /*
@@ -27,17 +28,18 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+//    protected $redirectTo = '/public/students';
+//
+//    /**
+//     * Create a new controller instance.
+//     *
+//     * @return void
+//     */
+//    public function __construct()
+//    {
+//        $this->middleware('guest')->except('logout');
+//    }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
 
     public function getLogin() {
         return view('students.login');
@@ -46,7 +48,7 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...

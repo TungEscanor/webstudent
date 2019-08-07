@@ -92,7 +92,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         if (!empty($data['less_5'])) {
 
             if (!empty($data['greater_5'])) {
-                $students->has('subjects', '=', $count_subjects);
+//                $students->has('subjects', '=', $count_subjects);
             } else {
                 $students->has('subjects', '=', $count_subjects)
                     ->whereHas('marks', function ($query) {
@@ -104,7 +104,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         if (!empty($data['greater_5'])) {
 
             if (!empty($data['less_5'])) {
-                $students->has('subjects', '=', $count_subjects);
+//                $students->has('subjects', '=', $count_subjects);
             } else {
                 $students->has('subjects', '=', $count_subjects)
                     ->whereHas('marks', function ($query) {
