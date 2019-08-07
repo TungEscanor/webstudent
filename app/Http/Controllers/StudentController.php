@@ -121,7 +121,7 @@ class StudentController extends Controller
     public function mailStudent($id) {
         $user = $this->userRepository->getListById($id);
 
-        dispatch(new SendEmailJob($user))->delay(Carbon::now()->addMinutes(1));
+        dispatch(new SendEmailJob($user));
 
         return redirect()->back()->with('success','Done');
 
@@ -132,7 +132,7 @@ class StudentController extends Controller
 
         foreach ($students as $key => $student) {
 
-            dispatch(new SendEmailJob($student->user))->delay(Carbon::now()->addMinutes(1));
+            dispatch(new SendEmailJob($student->user));
 
         }
 
