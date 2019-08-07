@@ -34,14 +34,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- Brand and toggle get grouped for better mobile display -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="drop-men">
+            @if(Auth::check())
+            <div class="drop-men" >
                 <ul class=" nav_1">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{Auth::user()->student->name}}<i class="caret"></i></span>
+                            <img src="{{asset(pare_url_file( Auth::user()->student ->avatar))}}"
+                                 width="60px" height="60px"></a>
+                        <ul class="dropdown-menu " role="menu">
+                            <li><a href="{{route('students.edit',Auth::user()->student->id)}}"><i class="fa fa-edit"></i>Edit Profile</a></li>
+                            <li>
+                                <a href="{{route('get.logout')}}"><i class="fa fa-share"></i>Logout</a>
+                            </li>
+
+                        </ul>
+                    </li>
 
                 </ul>
             </div><!-- /.navbar-collapse -->
-            <div class="clearfix">
-
-            </div>
+                <div class="clearfix"><!-- /.navbar-collapse --></div>
+            @endif
+            <div class="clearfix"></div>
             <!--navbar-->
             @include('layouts.partials.navbar')
             <!--navbar-->

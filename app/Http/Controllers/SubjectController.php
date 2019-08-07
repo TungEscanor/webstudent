@@ -13,6 +13,7 @@ class SubjectController extends Controller
     public function __construct(SubjectRepositoryInterface $subjectRepository)
     {
         $this->subjectRepository = $subjectRepository;
+        $this->middleware('auth');
     }
 
     public function index()

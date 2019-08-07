@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="{{asset('login/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('logins/style.css')}}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -28,7 +28,7 @@
 
             </div>
             <div class="card-body">
-                <form action="{{route('post.login')}}" method="post">
+                <form action="{{route('login')}}" method="post">
                     {{ csrf_field() }}
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -50,7 +50,7 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="{{route('get.register')}}">Sign Up</a>
+                    Don't have an account?<a href="{{route('register')}}">Sign Up</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="">Forgot your password?</a>

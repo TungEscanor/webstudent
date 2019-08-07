@@ -27,13 +27,13 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    public function getRegister()
+    public function showRegistrationForm()
     {
         $classes = $this->classRepository->getAllList()->pluck('name', 'id');
         return view('students.create', compact('classes'));
     }
 
-    public function postRegister(StudentRequest $request)
+    public function register(StudentRequest $request)
     {
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
@@ -56,6 +56,6 @@ class RegisterController extends Controller
             throw new \Exception($e->getMessage());
 
         }
-        return redirect($request->redirects_to)->with('success','Done');
+        return view('students.login');
     }
 }

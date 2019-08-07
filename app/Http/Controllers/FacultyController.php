@@ -11,6 +11,7 @@ class FacultyController extends Controller
     public function __construct(FacultyRepositoryInterface $facultyRepository)
     {
         $this->facultyRepository = $facultyRepository;
+        $this->middleware('auth');
     }
 
     public function index()

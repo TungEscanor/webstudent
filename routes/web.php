@@ -11,11 +11,11 @@
 |
 */
 Route::group(['namespace' => 'Auth'],function () {
-    Route::get('register','RegisterController@getRegister')->name('get.register');
-    Route::post('register','RegisterController@postRegister')->name('post.register');
+    Route::get('register','RegisterController@showRegistrationForm');
+    Route::post('register','RegisterController@register');
 
-    Route::get('login','LoginController@getLogin')->name('get.login');
-    Route::post('login','LoginController@postLogin')->name('post.login');
+    Route::get('login','LoginController@showLoginForm ');
+    Route::post('login','LoginController@login');
 });
 
 Route::get('/', 'StudentController@index');
@@ -47,3 +47,7 @@ Route::post('marks/store','MarkController@storeMore')->name('marks.storeMore');
 Route::resource('marks','MarkController');
 Route::get('marks/destroy/{id}','MarkController@destroy')->name('mark.post.destroy');
 
+
+Auth::routes();
+Route::get('logout','Auth\LoginController@logout')->name('get.logout');
+Route::get('/home', 'HomeController@index')->name('home');

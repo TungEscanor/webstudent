@@ -22,6 +22,7 @@ class MarkController extends Controller
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->middleware('auth');
     }
 
     public function index()

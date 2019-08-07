@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1>Student information</h1>
-                    {{Form::open(['route' => 'post.register','enctype' => 'multipart/form-data'])}}
+                    {{Form::open(['route' => 'register','enctype' => 'multipart/form-data'])}}
                     <div class="form-group">
                         {{Form::label('exampleInputEmail1','Student name:',['style' => 'font-weight:bold'])}}
                         {{Form::text('name',null,['class' => 'form-control','id' =>"exampleInputEmail1"])}}

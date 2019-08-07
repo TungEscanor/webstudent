@@ -13,7 +13,7 @@ class Subject extends Model
     }
 
     public function students() {
-        return $this->belongsToMany(Subject::class,'marks');
+        return $this->belongsToMany(Student::class,'marks');
     }
 
     public function classRelation () {

@@ -15,6 +15,7 @@ class ClassController extends Controller
     {
         $this->classRepository = $classRepository;
         $this->facultyRepository = $facultyRepository;
+        $this->middleware('auth');
     }
 
     public function index()

@@ -68,8 +68,10 @@
             <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
             {{Form::close()}}
             <table class="table table-hover table-bordered">
+                @if(!Auth::check())
                 <a class="btn btn-sm btn-success pull-right" style="margin-top: 10px;margin-bottom: 10px"
-                   href="{{route('get.register')}}" title=""><i class="fa fa-plus"></i></a>
+                   href="{{route('register')}}" title=""><i class="fa fa-plus"></i></a>
+                @endif
                 <a class="btn btn-sm btn-danger pull-left" style="margin-top: 10px;margin-bottom: 10px"
                    href="{{route('students.bad')}}" title="">Send Email</a>
                 <thead>
