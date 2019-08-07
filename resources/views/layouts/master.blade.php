@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="">ADMIN</a></h1>
+            <h1><a class="navbar-brand" href="{{route('students.index')}}">ADMIN</a></h1>
         </div>
         <div class=" border-bottom">
             <div class="full-left">
