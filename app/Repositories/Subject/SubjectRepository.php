@@ -1,6 +1,5 @@
 <?php
 namespace App\Repositories\Subject;
-
 use App\Models\Faculty;
 use App\Models\Mark;
 use App\Models\Subject;
@@ -30,7 +29,7 @@ class SubjectRepository extends BaseRepository implements SubjectRepositoryInter
 
     public function getAllList()
     {
-        return $this->model->with('faculty')->paginate(8);
+        return $this->model->with('faculty')->get();
     }
 }
 ?>

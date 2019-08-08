@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Jobs\SendEmailJob;
 use App\Repositories\ClassRepository\ClassRepository;
+use App\Repositories\Mark\MarkRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\User\UserRepository;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class StudentController extends Controller
@@ -17,13 +18,15 @@ class StudentController extends Controller
     protected $classRepository;
     protected $subjectRepository;
     protected $userRepository;
+    protected $markRepository;
 
-    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository,SubjectRepository $subjectRepository,UserRepository $userRepository)
+    public function __construct(StudentRepository $studentRepository,ClassRepository $classRepository,SubjectRepository $subjectRepository,UserRepository $userRepository,MarkRepository $markRepository)
     {
         $this->studentRepository = $studentRepository;
         $this->classRepository = $classRepository;
         $this->subjectRepository = $subjectRepository;
         $this->userRepository = $userRepository;
+        $this->markRepository = $markRepository;
     }
 
     public function index(Request $request)
@@ -73,8 +76,13 @@ class StudentController extends Controller
             $data['avatar'] = $file['name'];
             }
         }
+        $student = $this->studentRepository->getListById($id);
+        $user = $student->user;
         $this->studentRepository->update($id, $data);
-        return redirect($request->redirects_to)->with('success', 'Update student successfully');
+
+        $this->userRepository->update($user->id,$data);
+
+        return redirect('students')->with('success', 'Update student successfully');
     }
 
     public function delete($id)
@@ -98,16 +106,29 @@ class StudentController extends Controller
 
     }
 
-    public function show($id)
+    public function show($id,Request $request)
     {
         $student = $this->studentRepository->getListById($id);
-        $marks = $student->marks()->with('subject')->with('student')->paginate($this->paginate);
+        $marks = $student->marks()->with('subject')->with('student');
+        if($request['subject_id'] !== 'all') {
+            $marks->where('subject_id', $request['subject_id']);
+        }
+
+        if($request['min_mark'] !== 'all') {
+            $marks->where('mark','>=',$request['min_mark']);
+        }
+
+        if($request['max_mark'] !== 'all') {
+            $marks->where('mark','<=',$request['max_mark']);
+        }
+       $marks =  $marks->paginate(8);
+//        $marks = $student->marks()->with('subject')->with('student')->paginate($this->paginate);
         return view('students.showMarks', compact('marks'),['id'=>$id]);
     }
 
     public function createMarks($id) {
         $student = $this->studentRepository->getListById($id);
-        $subjects = $this->subjectRepository->getAllList()->pluck('name','id');
+        $subjects = $this->subjectRepository->getAllList();
         $marks = $student->marks()->get();
         return view('students.createMark',compact('subjects','student','marks'));
     }

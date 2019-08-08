@@ -100,7 +100,11 @@
                         <td>{{(!empty ($student->phone_number)) ? rtrim($student->phone_number) : '' }}</td>
                         <td><img src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive"
                                  width="50px" height="50px"></td>
-                        <td><a class="btn btn-success btn-sm"  href="{{route('students.show',$student->id)}}" target="_blank"><i style="color: white" class="fa fa-share"></i></a></td>
+                        <td><a class="btn btn-success btn-sm"  href="{{route('students.show',
+                        ['student_id' => $student->id,
+                        'subject_id' => !empty(\Request::get('subject_id')) ? \Request::get('subject_id') : 'all',
+                        'min_mark' => !empty(\Request::get('min_mark')) ? \Request::get('min_mark') : 'all',
+                        'max_mark' => !empty(\Request::get('max_mark')) ? \Request::get('max_mark') : 'all',])}}" target="_blank"><i style="color: white" class="fa fa-share"></i></a></td>
                         <td style="">
                             <a class="btn btn-primary btn-sm" title="Edit"
                                href="{{route('students.edit', $student->id)}}"><i class="fa fa-edit" style="color: white"></i></a>

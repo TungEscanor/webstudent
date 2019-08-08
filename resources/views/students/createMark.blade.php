@@ -32,8 +32,13 @@
                         @foreach($marks as $mark)
                             <tr  class="studentmark">
                                 <td style="background-color: whitesmoke">
-                                    <select class="form-control" name="subject_id[]">
-                                        <option value="{{$mark->subject_id}}" selected>{{$mark->subject->name}}</option>
+                                    <select name="subject_id[]" class="form-control">
+                                    @foreach($subjects as $subject)
+                                        <option
+                                            value="{{$subject->id}}" {{$subject->id === $mark->subject_id ?'selected' : ''}}>
+                                            {{$subject->name}}
+                                        </option>
+                                    @endforeach
                                     </select>
                                 </td>
                                 <td>
@@ -47,10 +52,15 @@
                     @endif
                     <tr class="addform">
                         <td>
-                            {!! Form::select('subject_id[]',isset($subjects) ? $subjects : null ,null, ['class' => 'form-control','placeholder' => 'choose subject...']) !!}
+                            <select name="subject_id[]" class="form-control addselect">
+                                <option value="">choose subject...</option>
+                                @foreach($subjects as $key => $subject)
+                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                @endforeach
+                            </select>
                         </td>
                         <td>
-                            {{Form::text('mark[]',null,['class'=> 'form-control mark'])}}
+                            <input type="text" class="form-control" name="mark[]" >
                         </td>
                         <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                         </td>
@@ -60,7 +70,7 @@
             </div>
             {{ Form::hidden('redirects_to', URL::previous()) }}
             <div class="clearfix"></div>
-            {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
+            {{Form::submit('Save', ['class'=> 'btn btn-success','id'=>'saveform'])}}
             {{Form::close()}}
 
         </div>
@@ -69,12 +79,13 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            var form = $('.addform').html();
+            //add
+            form = $('tr.addform').html();
             $('.clickadd').click(function () {
                 var len = $('tbody#form-add tr').length;
                 var subject = $('p#number-subject').html();
                 if(len < subject) {
-                    $('#form-add').append('<tr>' + form + '</tr>');
+                    $('#form-add').append('<tr class="addform">' + form + '</tr>');
                 } else {alert('student has '+ subject + ' subject !')}
                 var $select = $("select");
                 var selected = [];
@@ -88,6 +99,8 @@
                     $('option[value="' + selected[index] + '"]').css("display","none");
                 }
             });
+
+            //remove
             $(document).on('click','.remove-item', function () {
                     $(this).parent().parent().remove();
                 var $select = $("select");
@@ -104,6 +117,7 @@
                     $('option[value="' + selected[index] +'"]').css("display","none");
                 }
             });
+            //select
             $(document).on('click','select',function () {
                 var $select = $("select");
                 var selected = [];
@@ -125,6 +139,7 @@
                     }
                 });
             });
+
         });
     </script>
 @endsection

@@ -8,10 +8,11 @@
                     class="fa fa-angle-right"></i><span>Edit student</span></h2>
     </div>
     <div class="grid-form">
+        @include('flash-message')
         <div class="grid-form1">
-{{--            <div class="row">--}}
-{{--                <div class="col-md-6">--}}
-{{--                    <h1>Student information</h1>--}}
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Student information</h1>
                     {{Form::open(['method' => 'PUT','enctype' => 'multipart/form-data','route' => ['students.update',$student->id]])}}
                     <div class="form-group">
                         {{Form::label('exampleInputEmail1','Student name:')}}
@@ -82,50 +83,34 @@
                         </div>
                     </div>
                     {{ Form::hidden('redirects_to', URL::previous()) }}
+{{--                    {{Form::submit('Save', ['class'=> 'btn btn-success'])}}--}}
+{{--                    {{Form::close()}}--}}
+                </div>
+                <div class="col-md-6">
+                    <h1>Login information</h1>
+                    <div class="form-group" style="margin-top: 24px">
+                        {{Form::label('check1','Username:',['style' => 'font-weight:bold'])}}
+                        {{Form::text('username',isset($student->user->username) ? $student->user->username : '',['class' => 'form-control','id' =>"check1"])}}
+                        @if($errors->has('username'))
+                            <div class="error-text text-danger">
+                                {{$errors->first('username')}}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('email','Email :',['style' => 'font-weight:bold'])}}
+                        {{Form::email('email',isset($student->user->email) ? $student->user->email : '',['class' => 'form-control','id' =>"email"])}}
+                        @if($errors->has('email'))
+                            <div class="error-text text-danger">
+                                {{$errors->first('email')}}
+                            </div>
+                        @endif
+                    </div>
+                    {{ Form::hidden('redirects_to', URL::previous()) }}
                     {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
                     {{Form::close()}}
                 </div>
-{{--                <div class="col-md-6">--}}
-{{--                    <h1>Login information</h1>--}}
-{{--                    <div class="form-group" style="margin-top: 24px">--}}
-{{--                        {{Form::label('check1','Username:',['style' => 'font-weight:bold'])}}--}}
-{{--                        {{Form::text('username',isset($student->username) ? $student->username : '',['class' => 'form-control','id' =>"check1"])}}--}}
-{{--                        @if($errors->has('username'))--}}
-{{--                            <div class="error-text text-danger">--}}
-{{--                                {{$errors->first('username')}}--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group">--}}
-{{--                        {{Form::label('email','Email :',['style' => 'font-weight:bold'])}}--}}
-{{--                        {{Form::email('email',isset($student->email) ? $student->email : '',['class' => 'form-control','id' =>"email"])}}--}}
-{{--                        @if($errors->has('email'))--}}
-{{--                            <div class="error-text text-danger">--}}
-{{--                                {{$errors->first('email')}}--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group">--}}
-{{--                        {{Form::label('check2','Password:',['style' => 'font-weight:bold'])}}--}}
-{{--                        {{Form::password('password',['class' => 'form-control','id' =>"check2"])}}--}}
-{{--                        @if($errors->has('password'))--}}
-{{--                            <div class="error-text text-danger">--}}
-{{--                                {{$errors->first('password')}}--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group">--}}
-{{--                        {{Form::label('check3','Confirm password:',['style' => 'font-weight:bold'])}}--}}
-{{--                        {{Form::password('re_password',['class' => 'form-control','id' =>"check3"])}}--}}
-{{--                        @if($errors->has('re_password'))--}}
-{{--                            <div class="error-text text-danger">--}}
-{{--                                {{$errors->first('re_password')}}--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+            </div>
+        </div>
     </div>
 @endsection

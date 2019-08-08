@@ -6,6 +6,7 @@
                             class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span>
                 </a>
             </li>
+            @if(Auth::check())
             <li>
                 <a href="{{route('faculties.index')}}" class=" hvr-bounce-to-right"><i
                             class="fa fa-indent nav_icon"></i> <span
@@ -32,6 +33,7 @@
                 <a href="{{route('marks.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span
                             class="nav-label">Mark</span> </a>
             </li>
+            @endif
         </ul>
     </div>
 </div>

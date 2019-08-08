@@ -88,7 +88,7 @@ class MarkController extends Controller
     {
         $mark = $this->markRepository->getListById($id);
         $subjects = $this->subjectRepository->getAllList()->pluck('name', 'id');
-        return view('marks.edit', compact('subjects'), compact('mark'));
+        return view('marks.edit', compact('subjects','mark'));
     }
 
     public function update($id, MarkRequest $request)
