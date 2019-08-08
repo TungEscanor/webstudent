@@ -31,5 +31,10 @@ class SubjectRepository extends BaseRepository implements SubjectRepositoryInter
     {
         return $this->model->with('faculty')->get();
     }
+
+    public function paginate() {
+        return $this->model->paginate(8);
+    }
+
 }
 ?>

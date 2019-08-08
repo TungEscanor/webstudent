@@ -33,7 +33,8 @@ class StudentController extends Controller
     {
         $data = $request->all();
         $subjects = $this->subjectRepository->getAllList();
-        $students = $this->studentRepository->searchStudent($data, count($subjects));
+
+        $students = $this->studentRepository->searchStudent($data,count($subjects));
         return view('students.index',compact('students','data','subjects'));
     }
 
@@ -110,15 +111,15 @@ class StudentController extends Controller
     {
         $student = $this->studentRepository->getListById($id);
         $marks = $student->marks()->with('subject')->with('student');
-        if($request['subject_id'] !== 'all') {
+        if(!empty($request['subject_id']) && $request['subject_id'] !== 'all') {
             $marks->where('subject_id', $request['subject_id']);
         }
 
-        if($request['min_mark'] !== 'all') {
+        if(!empty($request['min_mark'] ) && $request['min_mark'] !== 'all') {
             $marks->where('mark','>=',$request['min_mark']);
         }
 
-        if($request['max_mark'] !== 'all') {
+        if(!empty($request['max_mark']) && $request['max_mark'] !== 'all') {
             $marks->where('mark','<=',$request['max_mark']);
         }
        $marks =  $marks->paginate(8);

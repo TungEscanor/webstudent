@@ -17,7 +17,7 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = $this->subjectRepository->getAllList();
+        $subjects = $this->subjectRepository->paginate();
         return view('subjects.index', compact('subjects'));
     }
 

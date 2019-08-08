@@ -140,6 +140,16 @@
                 });
             });
 
+            // $('#saveform').on('click',function () {
+            //     var $select = $("select");
+            //     var selected = [];
+            //     $.each($select, function (index, select) {
+            //         if (select.value !== "" && $.isNumeric(select.value)) {
+            //             selected.push(select.value);
+            //         }
+            //     });
+            //
+            // });
         });
     </script>
 @endsection
