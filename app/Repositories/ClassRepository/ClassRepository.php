@@ -15,5 +15,9 @@ class ClassRepository extends BaseRepository implements ClassRepositoryInterface
         return $this->model->student->where('class_id',$id)->paginate(8);
     }
 
+    public function getAllList()
+    {
+        return $this->model->with('faculty')->paginate(8);
+    }
 }
 ?>

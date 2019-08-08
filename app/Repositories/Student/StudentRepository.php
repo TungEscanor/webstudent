@@ -21,7 +21,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         return $this->model->where('avatar', $avatar);
     }
 
-    public function searchStudent($data)
+    public function searchStudent($data, $count_subjects)
     {
         $students = $this->model->with('classRelation');
         // Age filter
@@ -69,25 +69,15 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             });
         }
 
-        $count_subjects = Subject::all()->count();
         // Done all subject ?
-        if (!empty($data['done'])) {
-
-            if (!empty($data['not_done'])) {
-
-            } else {
-                $students->has('subjects', '=', $count_subjects);
-            }
-
+        if (empty($data['done']) && !empty($data['not_done'])) {
+            $students->has('subjects', '=', $count_subjects);
         }
-        if (!empty($data['not_done'])) {
 
-            if (!empty($data['done'])) {
-
-            } else {
-                $students->has('subjects', '<>', $count_subjects);
-            }
+        if (!empty($data['not_done']) && empty($data['done'])) {
+            $students->has('subjects', '<', $count_subjects);
         }
+
         //AVG < 5 ?
         if (!empty($data['less_5'])) {
 
@@ -113,7 +103,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
             }
         }
 
-        return $students->paginate(5);
+        return $students->paginate(10);
     }
 
     public function badStudents()

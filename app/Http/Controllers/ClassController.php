@@ -15,12 +15,11 @@ class ClassController extends Controller
     {
         $this->classRepository = $classRepository;
         $this->facultyRepository = $facultyRepository;
-        $this->middleware('auth');
     }
 
     public function index()
     {
-        $classes = $this->classRepository->paginate();
+        $classes = $this->classRepository->getAllList();
         return view('classes.index',compact('classes'));
     }
 
@@ -64,7 +63,7 @@ class ClassController extends Controller
 
     public function show($id){
        $class = $this->classRepository->getListById($id);
-        $students = $class->students()->paginate();
+        $students = $class->students()->paginate(8);
         return view('classes.showStudents',compact('class','students'));
     }
 }

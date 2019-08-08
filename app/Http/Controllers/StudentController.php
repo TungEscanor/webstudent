@@ -24,14 +24,13 @@ class StudentController extends Controller
         $this->classRepository = $classRepository;
         $this->subjectRepository = $subjectRepository;
         $this->userRepository = $userRepository;
-        $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
         $data = $request->all();
         $subjects = $this->subjectRepository->getAllList();
-        $students = $this->studentRepository->searchStudent($data);
+        $students = $this->studentRepository->searchStudent($data, count($subjects));
         return view('students.index',compact('students','data','subjects'));
     }
 
@@ -102,7 +101,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = $this->studentRepository->getListById($id);
-        $marks = $student->marks()->paginate($this->paginate);
+        $marks = $student->marks()->with('subject')->with('student')->paginate($this->paginate);
         return view('students.showMarks', compact('marks'),['id'=>$id]);
     }
 

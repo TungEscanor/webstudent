@@ -18,36 +18,38 @@ Route::group(['namespace' => 'Auth'],function () {
     Route::post('login','LoginController@login');
 });
 
-Route::get('/', 'StudentController@index');
-/**
- * faculty route
- */
-Route::resource('faculties', 'FacultyController');
-/**
- * student route
- */
-Route::get('email/{email}/sendEmail','StudentController@mailStudent')->name('students.sendEmail');
-Route::get('email/sendAll','StudentController@sendAll')->name('students.sendAll');
-Route::get('students/badStudents','StudentController@badStudents')->name('students.bad');
-Route::get('students/{id}/create_mark','StudentController@createMarks')->name('students.createMarks');
-Route::resource('students', 'StudentController');
-
-/**
- * class route
- */
-Route::resource('classes', 'ClassController');
-/**
- * subject route
- */
-Route::resource('subjects', 'SubjectController');
-/**
- * mark route
- */
-Route::post('marks/store','MarkController@storeMore')->name('marks.storeMore');
-Route::resource('marks','MarkController');
-Route::get('marks/destroy/{id}','MarkController@destroy')->name('mark.post.destroy');
-
-
 Auth::routes();
-Route::get('logout','Auth\LoginController@logout')->name('get.logout');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'],function () {
+    Route::get('/', 'StudentController@index');
+    /**
+     * faculty route
+     */
+    Route::resource('faculties', 'FacultyController');
+    /**
+     * student route
+     */
+    Route::get('email/{email}/sendEmail', 'StudentController@mailStudent')->name('students.sendEmail');
+    Route::get('email/sendAll', 'StudentController@sendAll')->name('students.sendAll');
+    Route::get('students/badStudents', 'StudentController@badStudents')->name('students.bad');
+    Route::get('students/{id}/create_mark', 'StudentController@createMarks')->name('students.createMarks');
+    Route::resource('students', 'StudentController');
+
+    /**
+     * class route
+     */
+    Route::resource('classes', 'ClassController');
+    /**
+     * subject route
+     */
+    Route::resource('subjects', 'SubjectController');
+    /**
+     * mark route
+     */
+    Route::post('marks/store', 'MarkController@storeMore')->name('marks.storeMore');
+    Route::resource('marks', 'MarkController');
+    Route::get('marks/destroy/{id}', 'MarkController@destroy')->name('mark.post.destroy');
+
+
+    Route::get('logout', 'Auth\LoginController@logout')->name('get.logout');
+    Route::get('/home', 'HomeController@index')->name('home');
+});

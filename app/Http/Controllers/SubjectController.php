@@ -13,12 +13,11 @@ class SubjectController extends Controller
     public function __construct(SubjectRepositoryInterface $subjectRepository)
     {
         $this->subjectRepository = $subjectRepository;
-        $this->middleware('auth');
     }
 
     public function index()
     {
-        $subjects = $this->subjectRepository->paginate();
+        $subjects = $this->subjectRepository->getAllList();
         return view('subjects.index', compact('subjects'));
     }
 
