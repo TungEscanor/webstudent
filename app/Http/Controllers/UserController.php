@@ -37,4 +37,8 @@ class UserController extends Controller
 
         return redirect()->back()->with('error','Old password is not correct !');
     }
+
+    public function getFormReset () {
+        return view('students.forgotPassword');
+    }
 }

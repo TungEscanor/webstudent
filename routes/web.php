@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Auth'],function () {
 Auth::routes();
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', 'StudentController@index');
+    Route::get('/home', 'StudentController@index');
     /**
      * faculty route
      */
@@ -56,11 +57,13 @@ Route::group(['middleware' => 'auth'],function () {
 
 
     Route::get('logout', 'Auth\LoginController@logout')->name('get.logout');
-    Route::get('/home', 'HomeController@index')->name('home');
     /*
      * user password
      */
 
-    Route::get('reset_password','UserController@updatePassword')->name('user.update.password');
-    Route::post('reset_password','UserController@saveUpdatePassword')->name('user.save.password');
+    Route::get('update_password','UserController@updatePassword')->name('user.update.password');
+    Route::post('update_password','UserController@saveUpdatePassword')->name('user.save.password');
+
+
 });
+

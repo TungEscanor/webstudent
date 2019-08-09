@@ -31,6 +31,11 @@
                         <strong>{{ $message }}</strong>
                     </div>
                 @endif
+                @if ($message = Session::get('info'))
+                    <div class="alert alert-info alert-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
             </div>
             <div class="card-body">
                 <form action="{{route('login')}}" method="post">
@@ -57,7 +62,7 @@
                     Don't have an account?<a href="{{route('register')}}">Sign Up</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="">Forgot your password?</a>
+                    <a href="{{route('password.request')}}">Forgot your password?</a>
                 </div>
             </div>
         </div>
