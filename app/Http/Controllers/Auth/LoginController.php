@@ -65,5 +65,4 @@ class LoginController extends Controller
         Auth::logout();
         return view('students.login');
     }
-
 }

@@ -109,6 +109,7 @@
                     {{ Form::hidden('redirects_to', URL::previous()) }}
                     {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
                     {{Form::close()}}
+                    <a class="btn btn-primary" href="{{route('user.update.password')}}">Update password</a>
                 </div>
             </div>
         </div>

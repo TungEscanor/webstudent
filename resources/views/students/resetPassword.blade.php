@@ -1,50 +1,66 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
-
-    <!--Bootsrap 4 CDN-->
-
-
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logins/style.css')}}">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!------ Include the above in your HEAD tag ---------->
-
-</head>
-<body>
-<div class="container">
-    <div class="d-flex justify-content-center h-100">
-        <div class="card">
-            <div class="card-header">
-                <h3>Forgot your password</h3>
-
-            </div>
-            <div class="card-body">
-                <form action="{{route('password.update')}}" method="post">
-                    {{ csrf_field() }}
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="email" class="form-control" placeholder="email" name="email">
+@extends('layouts.master')
+@section('title')
+    Reset password
+@endsection
+@section('content')
+    <div class="banner">
+        <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i
+                    class="fa fa-angle-right"></i><span>Reset password</span></h2>
+    </div>
+    <div class="grid-form">
+        @include('flash-message')
+        <div class="grid-form1">
+            {{Form::open(['route' => 'user.save.password','enctype' => 'multipart/form-data'])}}
+            <div class="form-group" style="position: relative">
+                {{Form::label('check1','Current Password:',['style' => 'font-weight:bold'])}}
+                {{Form::password('old_password',['class' => 'form-control','id' =>"check1"])}}
+                <a style="position: absolute; top:35px;right: 10px;color: #333" href="javascript:;void(0)"><i class="fa fa-eye"></i></a>
+                @if($errors->has('old_password'))
+                    <div class="error-text text-danger">
+                        {{$errors->first('old_password')}}
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Login" class="btn float-right login_btn">
-                    </div>
-                </form>
+                @endif
             </div>
+            <div class="form-group" style="position: relative">
+                {{Form::label('check2','New Password:',['style' => 'font-weight:bold'])}}
+                {{Form::password('password',['class' => 'form-control','id' =>"check2"])}}
+                <a style="position: absolute; top:35px;right: 10px;color: #333" href="javascript:;void(0)"><i class="fa fa-eye"></i></a>
+                @if($errors->has('password'))
+                    <div class="error-text text-danger">
+                        {{$errors->first('password')}}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group" style="position: relative">
+                {{Form::label('check3','Confirm password:',['style' => 'font-weight:bold'])}}
+                {{Form::password('re_password',['class' => 'form-control','id' =>"check3"])}}
+                <a style="position: absolute; top:35px;right: 10px;color: #333" href="javascript:;void(0)"><i class="fa fa-eye"></i></a>
+                @if($errors->has('re_password'))
+                    <div class="error-text text-danger">
+                        {{$errors->first('re_password')}}
+                    </div>
+                @endif
+            </div>
+            {{ Form::hidden('redirects_to', URL::previous()) }}
+            {{Form::submit('Save', ['class'=> 'btn btn-success'])}}
+            {{Form::close()}}
         </div>
     </div>
-</div>
-</body>
-</html>
+@endsection
+@section('script')
+    <script>
+        $(function () {
+            $('.form-group a').click(function () {
+                let $this = $(this);
 
+                if($this.hasClass('active')) {
+                    $this.parents('.form-group').find('input').attr('type','password');
+                    $this.removeClass('active');
+                } else {
+                    $this.parents('.form-group').find('input').attr('type','text');
+                    $this.addClass('active');
+                }
+            })
+        })
+    </script>
+@endsection

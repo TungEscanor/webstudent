@@ -57,7 +57,7 @@
                     Don't have an account?<a href="{{route('register')}}">Sign Up</a>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="{{route('password.reset')}}">Forgot your password?</a>
+                    <a href="">Forgot your password?</a>
                 </div>
             </div>
         </div>

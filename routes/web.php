@@ -16,7 +16,12 @@ Route::group(['namespace' => 'Auth'],function () {
 
     Route::get('login','LoginController@showLoginForm ');
     Route::post('login','LoginController@login');
+
 });
+
+//User password
+
+
 
 Auth::routes();
 Route::group(['middleware' => 'auth'],function () {
@@ -52,4 +57,10 @@ Route::group(['middleware' => 'auth'],function () {
 
     Route::get('logout', 'Auth\LoginController@logout')->name('get.logout');
     Route::get('/home', 'HomeController@index')->name('home');
+    /*
+     * user password
+     */
+
+    Route::get('reset_password','UserController@updatePassword')->name('user.update.password');
+    Route::post('reset_password','UserController@saveUpdatePassword')->name('user.save.password');
 });
