@@ -79,28 +79,19 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         }
 
         //AVG < 5 ?
-        if (!empty($data['less_5'])) {
+        if (!empty($data['less_5']) && empty($data['greater_5'])) {
 
-            if (!empty($data['greater_5'])) {
-//                $students->has('subjects', '=', $count_subjects);
-            } else {
                 $students->has('subjects', '=', $count_subjects)
                     ->whereHas('marks', function ($query) {
                         $query->havingRaw('AVG(mark) < 5');
                     });
-            }
-
         }
-        if (!empty($data['greater_5'])) {
+        if (!empty($data['greater_5']) && empty($data['less_5'])) {
 
-            if (!empty($data['less_5'])) {
-//                $students->has('subjects', '=', $count_subjects);
-            } else {
                 $students->has('subjects', '=', $count_subjects)
                     ->whereHas('marks', function ($query) {
                         $query->havingRaw('AVG(mark) >= 5');
                     });
-            }
         }
 
         return $students->paginate(10);

@@ -64,8 +64,11 @@
                     {{Form::checkbox('greater_5','1',!empty(\Request::get('greater_5')) && \Request::get('greater_5') == 1,['id' => 'check7'])}}
 
                 </div>
+            </div><br>
+            <div style="display: flex;justify-content: center;margin-top: 20px">
+                <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
             </div>
-            <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+
             {{Form::close()}}
             <table class="table table-hover table-bordered">
                 @if(!Auth::check())

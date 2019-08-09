@@ -78,6 +78,7 @@
 @endsection
 @section('script')
     <script type="text/javascript">
+
         $(document).ready(function () {
             //add
             form = $('tr.addform').html();
@@ -149,7 +150,9 @@
             //         }
             //     });
             //
+            //
             // });
+
         });
     </script>
 @endsection
