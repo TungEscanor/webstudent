@@ -26,13 +26,13 @@
         <div class="card">
             <div class="card-header">
                 <h3>Sign In</h3>
+                <div class="d-flex justify-content-end social_icon">
+                    <span><a href="{{ URL::to('auth/facebook') }}"><i class="fab fa-facebook-square"></i></a></span>
+                    <span><a href="" style="color: #ac2925;"><i class="fab fa-google-plus-square"></i></a></span>
+                    <span><a href="" style="color: skyblue"><i class="fab fa-twitter-square"></i></a></span>
+                </div>
                 @if ($message = Session::get('warning'))
                     <div class="alert alert-danger alert-block">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-                @if ($message = Session::get('info'))
-                    <div class="alert alert-info alert-block">
                         <strong>{{ $message }}</strong>
                     </div>
                 @endif

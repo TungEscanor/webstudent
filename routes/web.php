@@ -10,14 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['namespace' => 'Auth'],function () {
-    Route::get('register','RegisterController@showRegistrationForm');
-    Route::post('register','RegisterController@register');
-
-    Route::get('login','LoginController@showLoginForm ');
-    Route::post('login','LoginController@login');
-
-});
+//Route::group(['namespace' => 'Auth'],function () {
+//    Route::get('register','RegisterController@showRegistrationForm');
+//    Route::post('register','RegisterController@register');
+//
+//    Route::get('login','LoginController@showLoginForm ');
+//    Route::post('login','LoginController@login');
+//
+//});
 
 //User password
 
@@ -66,4 +66,7 @@ Route::group(['middleware' => 'auth'],function () {
 
 
 });
+
+Route::get('/auth/facebook', 'SocialAuthController@redirectToProvider');
+Route::get('/auth/facebook/callback', 'SocialAuthController@handleProviderCallback');
 

@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => '358124921549657',
+        'client_secret' => '277bfe9955e2da8e1de0706d8fbe25fa',
+        'redirect' => 'http://localhost/webstudent/auth/facebook/callback',
+    ],
+
 ];
