@@ -66,7 +66,7 @@
                 </div>
             </div><br>
             <div style="display: flex;justify-content: center;margin-top: 20px">
-                <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
             </div>
 
             {{Form::close()}}

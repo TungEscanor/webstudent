@@ -47,7 +47,18 @@ return [
     'facebook' => [
         'client_id' => '358124921549657',
         'client_secret' => '277bfe9955e2da8e1de0706d8fbe25fa',
-        'redirect' => 'http://localhost/webstudent/auth/facebook/callback',
+        'redirect' => 'http://localhost/webstudent/public/callback/facebook',
+    ],
+
+    'twitter' => [
+        'client_id' => '9C83R9zQ2TOIEFW5k9hUbKks2',
+        'client_secret' =>'DS5Si26a486MaqmBERsIcwJrjxVSYETm10KCeUhz5Tog6xBuyQ',
+        'redirect' => 'http://localhost/webstudent/public/callback/twitter',
+    ],
+    'google' => [
+        'client_id' => '677100530778-7khlq1l1f68npnlvpev8rki1ibt7c85p.apps.googleusercontent.com',
+        'client_secret' => 'CmgmHivT5k_r9YnEiUYkKM66',
+        'redirect' => 'https://localhost/webstudent/public/callback/google',
     ],
 
 ];

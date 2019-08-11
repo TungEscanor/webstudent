@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\SocialAccountService;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
-    public function redirectToProvider()
+    public function redirect($social)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($social)->redirect();
     }
 
-    public function handleProviderCallback($provider)
+    public function callback($social)
     {
-        $user = Socialite::driver($provider)->user();
+        $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
+        auth()->login($user);
 
-        dd($user);
-
-        // Sau khi xác thực Facebook chuyển hướng về đây cùng với một token
-        // Các xử lý liên quan đến đăng nhập bằng mạng xã hội cũng đưa vào đây.
+        return redirect()->to('/home');
     }
 }
