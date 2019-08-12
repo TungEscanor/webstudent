@@ -29,7 +29,6 @@
                 <div class="d-flex justify-content-end social_icon">
                     <span><a href="{{ URL::to('redirect/facebook') }}"><i class="fab fa-facebook-square"></i></a></span>
                     <span><a href="{{ URL::to('redirect/google') }}" style="color: #ac2925;"><i class="fab fa-google-plus-square"></i></a></span>
-                    <span><a href="{{ URL::to('redirect/twitter') }}" style="color: skyblue"><i class="fab fa-twitter-square"></i></a></span>
                 </div>
                 @if ($message = Session::get('warning'))
                     <div class="alert alert-danger alert-block">
@@ -51,6 +50,13 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
                         <input type="password" class="form-control" placeholder="password" name="password">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="remember" style="color:white;">
+                            {{ __('Remember Me') }}
+                        </label>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Login" class="btn float-right login_btn">

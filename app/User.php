@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','id',
+        'username', 'email', 'password','id','permission'
     ];
 
     /**
@@ -40,4 +40,14 @@ class User extends Authenticatable
     public function student() {
         return $this->hasOne(Student::class);
     }
+
+    public function hasDefinePrivilege($permission)
+    {
+        if (!$permission) {
+            return false;
+        }
+
+        return $this->permission ==  $permission;
+    }
+
 }

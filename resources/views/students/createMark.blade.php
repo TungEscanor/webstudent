@@ -3,6 +3,7 @@
     Create Mark
 @endsection
 @section('content')
+{{--    {{dd(old())}}--}}
     <div class="banner">
         <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i
                     class="fa fa-angle-right"></i><span>Create marks</span></h2>
@@ -28,14 +29,17 @@
                     </tr>
                     </thead>
                     <tbody id="form-add">
+
+                    @if(!empty(old('subject_id')))
+                    @else
                     @if(isset($marks))
                         @foreach($marks as $mark)
                             <tr  class="studentmark">
-                                <td style="background-color: whitesmoke">
+                                <td>
                                     <select name="subject_id[]" class="form-control">
                                     @foreach($subjects as $subject)
                                         <option
-                                            value="{{$subject->id}}" {{$subject->id === $mark->subject_id ?'selected' : ''}}>
+                                            value="{{$subject->id}}" {{$subject->id === $mark->subject_id ?'selected' :''}}>
                                             {{$subject->name}}
                                         </option>
                                     @endforeach
@@ -50,7 +54,32 @@
                             </tr>
                         @endforeach
                     @endif
-                    <tr class="addform">
+                    @endif
+                    @if(!empty(old('subject_id')))
+                        @foreach(old('subject_id') as $key =>  $subject_id)
+                            @if($subject_id != '')
+                            <tr  class="studentmark">
+                                <td>
+                                    <select name="subject_id[]" class="form-control">
+                                        @foreach($subjects as $subject)
+                                            <option
+                                                    value="{{$subject->id}}" {{$subject->id == $subject_id ?'selected' : ''}}>
+                                                {{$subject->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control mark" name="mark[]" type="text" value="{{old('mark')[$key]}}">
+                                </td>
+                                <td>
+                                    <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
+                                </td>
+                            </tr>
+                            @endif
+                        @endforeach
+                    @endif
+                    <tr class="addform" style="display: none">
                         <td>
                             <select name="subject_id[]" class="form-control addselect">
                                 <option value="">choose subject...</option>
@@ -73,6 +102,7 @@
             {{Form::submit('Save', ['class'=> 'btn btn-success','id'=>'saveform'])}}
             {{Form::close()}}
 
+
         </div>
     </div>
 @endsection
@@ -85,8 +115,8 @@
             $('.clickadd').click(function () {
                 var len = $('tbody#form-add tr').length;
                 var subject = $('p#number-subject').html();
-                if(len < subject) {
-                    $('#form-add').append('<tr class="addform">' + form + '</tr>');
+                if(len -1 <  subject) {
+                    $('#form-add').append('<tr>' + form + '</tr>');
                 } else {alert('student has '+ subject + ' subject !')}
                 var $select = $("select");
                 var selected = [];
@@ -141,17 +171,10 @@
                 });
             });
 
-            // $('#saveform').on('click',function () {
-            //     var $select = $("select");
-            //     var selected = [];
-            //     $.each($select, function (index, select) {
-            //         if (select.value !== "" && $.isNumeric(select.value)) {
-            //             selected.push(select.value);
-            //         }
-            //     });
-            //
-            //
-            // });
+            $('#saveform').on('click',function () {
+                    $('tr.addform').remove();
+            });
+
 
         });
     </script>

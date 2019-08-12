@@ -58,7 +58,7 @@ class LoginController extends Controller
             return redirect()->route('students.index');
         }
 
-        return redirect()->back()->with('warning','Username or password is incorrect')->withInput();
+        return redirect('login')->with('warning','Username or password is incorrect')->withInput();
     }
 
     public function logout() {

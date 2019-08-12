@@ -36,11 +36,13 @@
                             <td style="display:flex;">
                                 <a class="btn btn-primary btn-sm" style="margin-right: 10px"
                                    href="{{route('subjects.edit',$subject->id)}}">Edit</a>
+                                @can('permission','admin')
                                 <div onclick="return confirm('Are you sure want to delete item ?')">
                                     {{Form::open(['method' => 'DELETE', 'route' => ['subjects.destroy', $subject->id]])}}
                                     {{Form::submit('Delete',['class' => 'btn btn-danger btn-sm'])}}
                                     {{Form::close()}}
                                 </div>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

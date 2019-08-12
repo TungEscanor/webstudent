@@ -78,6 +78,21 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('role','Your role:',['style' => 'font-weight:bold']) !!}
+                        <br>
+                        {{Form::radio('permission','user',null,['checked'])}}
+                        {{Form::label('user','User',['class' => 'form-check-input'])}}
+                        {{Form::radio('permission','admin')}}
+                        {{Form::label('admin','Admin',['class' => 'form-check-input'])}}
+                        <div>
+                            @if($errors->has('permission'))
+                                <div class="error-text text-danger">
+                                    {{$errors->first('permission')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <h1>Login information</h1>
@@ -117,6 +132,7 @@
                             </div>
                         @endif
                     </div>
+
                     {{ Form::hidden('redirects_to', URL::previous()) }}
                     {{Form::submit('Create', ['class'=> 'btn btn-success'])}}
                     {{Form::close()}}

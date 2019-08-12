@@ -35,8 +35,8 @@ class StudentRequest extends FormRequest
                 Rule::unique('students')->ignore($this->student)],
             'username' => 'required|string|max:50|unique:users',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'min:6|required_with:re_password|same:re_password',
-            're_password' => 'min:6',
+            'password' => 'min:8|required_with:re_password|same:re_password',
+            're_password' => 'min:8',
         ];
         if($this->student) {
             $student = Student::findOrFail($this->student);

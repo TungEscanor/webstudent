@@ -13,6 +13,7 @@ use App\Repositories\Subject\SubjectRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
@@ -40,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
     {
 //        URL::forceScheme('https');
 //        Blade::withoutDoubleEncoding();
+        Schema::defaultStringLength(191);
     }
 }

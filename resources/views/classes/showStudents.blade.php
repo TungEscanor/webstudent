@@ -42,6 +42,7 @@
                             <a class="btn btn-primary btn-sm" style="margin-right: 10px"
                                href="{{route('students.edit', $student->id)}}">Edit</a>
                         </td>
+                        @can('permission','admin')
                         <td>
                             <div style="" class="d-inline-block"
                                  onclick="return confirm('Are you sure want to delete item ?')">
@@ -50,7 +51,7 @@
                                 {{Form::close()}}
                             </div>
                         </td>
-
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

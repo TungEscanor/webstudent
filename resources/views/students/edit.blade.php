@@ -82,6 +82,21 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('role','Your role:',['style' => 'font-weight:bold']) !!}
+                        <br>
+                        {{Form::radio('permission','user',null,[(isset($student->user->permission) && $student->user->permission == 'user')? 'checked' : ''])}}
+                        {{Form::label('user','User',['class' => 'form-check-input'])}}
+                        {{Form::radio('permission','admin',null,[(isset($student->user->permission) && $student->user->permission == 'admin')? 'checked' : ''])}}
+                        {{Form::label('admin','Admin',['class' => 'form-check-input'])}}
+                        <div>
+                            @if($errors->has('permission'))
+                                <div class="error-text text-danger">
+                                    {{$errors->first('permission')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                     {{ Form::hidden('redirects_to', URL::previous()) }}
 {{--                    {{Form::submit('Save', ['class'=> 'btn btn-success'])}}--}}
 {{--                    {{Form::close()}}--}}
