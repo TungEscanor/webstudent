@@ -39,7 +39,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <ul class=" nav_1">
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{Auth::user()->student->name}}<i class="caret"></i></span>
+                        @if(!empty(Auth::user()->student))
+                        <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class="name-caret">{{Auth::user()->student->name}}<i class="caret"></i></span>
                             <img src="{{asset(pare_url_file( Auth::user()->student ->avatar))}}"
                                  width="60px" height="60px"></a>
                         <ul class="dropdown-menu " role="menu">
@@ -47,9 +48,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li>
                                 <a href="{{route('get.logout')}}"><i class="fa fa-share"></i>Logout</a>
                             </li>
-
                         </ul>
+                        @endif
                     </li>
+                    @if(empty(Auth::user()->student))
+                    <li style="list-style-type: none">
+                        <a href="{{route('get.logout')}}"><i class="fa fa-share"></i>Logout</a>
+                    </li>
+                    @endif
 
                 </ul>
             </div><!-- /.navbar-collapse -->

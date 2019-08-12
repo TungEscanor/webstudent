@@ -56,4 +56,10 @@ return [
         'redirect' => 'https://localhost/webstudent/public/callback/google',
     ],
 
+    'twitter' => [
+        'client_id' => 'LuksLmqEjMsaceX230wd10bvW',
+        'client_secret' => 'K9P8otngCpl3Z89D778FPpt8oISLVQDbIKJpnYRdTMe69MkhxE',
+        'redirect' => 'https://localhost/webstudent/public/callback/twitter',
+    ],
+
 ];

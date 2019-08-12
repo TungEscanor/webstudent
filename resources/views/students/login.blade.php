@@ -29,6 +29,7 @@
                 <div class="d-flex justify-content-end social_icon">
                     <span><a href="{{ URL::to('redirect/facebook') }}"><i class="fab fa-facebook-square"></i></a></span>
                     <span><a href="{{ URL::to('redirect/google') }}" style="color: #ac2925;"><i class="fab fa-google-plus-square"></i></a></span>
+                    <span><a href="{{ URL::to('redirect/twitter') }}" style="color: #3f9ae5;"><i class="fab fa-twitter-square"></i></a></span>
                 </div>
                 @if ($message = Session::get('warning'))
                     <div class="alert alert-danger alert-block">
