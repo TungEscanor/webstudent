@@ -3,7 +3,6 @@
     Create Mark
 @endsection
 @section('content')
-{{--    {{dd(old())}}--}}
     <div class="banner">
         <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i
                     class="fa fa-angle-right"></i><span>Create marks</span></h2>
@@ -37,6 +36,7 @@
                             <tr  class="studentmark">
                                 <td>
                                     <select name="subject_id[]" class="form-control">
+                                        <option value="">choose subject...</option>
                                     @foreach($subjects as $subject)
                                         <option
                                             value="{{$subject->id}}" {{$subject->id === $mark->subject_id ?'selected' :''}}>
@@ -57,10 +57,10 @@
                     @endif
                     @if(!empty(old('subject_id')))
                         @foreach(old('subject_id') as $key =>  $subject_id)
-                            @if($subject_id != '')
                             <tr  class="studentmark">
                                 <td>
                                     <select name="subject_id[]" class="form-control">
+                                        <option value="">choose subject...</option>
                                         @foreach($subjects as $subject)
                                             <option
                                                     value="{{$subject->id}}" {{$subject->id == $subject_id ?'selected' : ''}}>
@@ -76,7 +76,6 @@
                                     <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                                 </td>
                             </tr>
-                            @endif
                         @endforeach
                     @endif
                     <tr class="addform" style="display: none">

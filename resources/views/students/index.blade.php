@@ -130,3 +130,6 @@
         {{$students->appends($data)->links()}}
     </div>
 @endsection
+@section('form-add')
+
+@endsection
