@@ -5,6 +5,7 @@ use App\Http\Requests\ClassRequest;
 use App\Repositories\ClassRepository\ClassRepositoryInterface;
 use App\Repositories\Faculty\FacultyRepository;
 use App\Repositories\Faculty\FacultyRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 
 class ClassController extends Controller
 {
@@ -57,8 +58,12 @@ class ClassController extends Controller
 
     public function destroy($id)
     {
-        $this->classRepository->destroy($id);
-        return back()->with('success','Delete class successfully');
+        if (Gate::allows('permission', 'admin')) {
+            $this->classRepository->destroy($id);
+            return back()->with('success', 'Delete class successfully');
+        }
+
+        return back()->with('error', 'You can not delete this item');
     }
 
     public function show($id){

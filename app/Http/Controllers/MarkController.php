@@ -7,6 +7,7 @@ use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Mark\MarkRepository;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
+use Illuminate\Support\Facades\Gate;
 
 
 class MarkController extends Controller
@@ -98,8 +99,12 @@ class MarkController extends Controller
 
     public function destroy($id)
     {
-        $this->markRepository->destroy($id);
-        return back()->with('success', 'Delete mark successfully');
+        if (Gate::allows('permission', 'admin')) {
+            $this->markRepository->destroy($id);
+            return back()->with('success', 'Delete mark successfully');
+        }
+
+        return back()->with('error', 'You can not delete this item');
     }
 
 }

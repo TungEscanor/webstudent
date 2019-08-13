@@ -29,13 +29,13 @@ Faculty list
                         <td><a class="btn btn-success btn-sm" href="{{route('faculties.show', $faculty->id)}}" target="_blank">Show class</a></td>
                         <td style="display: flex;border-collapse: collapse">
                             <a class="btn btn-primary btn-sm" style="margin-right: 10px" href="{{route('faculties.edit', $faculty->id)}}">Edit</a>
-                            @can('permission','admin')
+{{--                            @can('permission','admin')--}}
                             <div style="" class="d-inline-block" onclick="return confirm('Are you sure want to delete item ?')">
                                 {{Form::open(['method' => 'DELETE', 'route' => ['faculties.destroy', $faculty->id]])}}
                                 {{Form::submit('Delete',['class' => 'btn btn-danger btn-sm'])}}
                                 {{Form::close()}}
                             </div>
-                            @endcan
+{{--                            @endcan--}}
                         </td>
                     </tr>
                 @endforeach

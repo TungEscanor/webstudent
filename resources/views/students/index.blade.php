@@ -112,7 +112,7 @@
                             <a class="btn btn-primary btn-sm" title="Edit"
                                href="{{route('students.edit', $student->id)}}"><i class="fa fa-edit" style="color: white"></i></a>
                         </td>
-                        @can('permission','admin')
+{{--                        @can('permission','admin')--}}
                         <td>
                             <div style="" class="d-inline-block" title="Delete"
                                  onclick="return confirm('Are you sure want to delete item ?')">
@@ -121,7 +121,7 @@
                                 {{Form::close()}}
                             </div>
                         </td>
-                        @endcan
+{{--                        @endcan--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -129,7 +129,4 @@
         </div>
         {{$students->appends($data)->links()}}
     </div>
-@endsection
-@section('form-add')
-
 @endsection

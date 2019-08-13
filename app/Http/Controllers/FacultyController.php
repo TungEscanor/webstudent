@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\FacultyRequest;
 use App\Repositories\Faculty\FacultyRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 
 class FacultyController extends Controller
 {
@@ -51,9 +52,12 @@ class FacultyController extends Controller
 
     public function destroy($id)
     {
+        if (Gate::allows('permission', 'admin')) {
+            $this->facultyRepository->destroy($id);
+            return back()->with('success', 'Delete faculty successfully !');
+        }
 
-        $this->facultyRepository->destroy($id);
-        return back()->with('success','Delete faculty successfully !');
+        return back()->with('error', 'You can not delete this item');
     }
 
     public function show($id) {

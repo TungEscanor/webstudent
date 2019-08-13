@@ -9,6 +9,7 @@ use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -33,9 +34,8 @@ class StudentController extends Controller
     {
         $data = $request->all();
         $subjects = $this->subjectRepository->getAllList();
-
         $students = $this->studentRepository->searchStudent($data,count($subjects));
-        return view('students.index',compact('students','data','subjects'));
+        return view('students.index',compact('students','data','subjects','classes'));
     }
 
     public function create()
@@ -86,6 +86,7 @@ class StudentController extends Controller
         return redirect('students')->with('success', 'Update student successfully');
     }
 
+
     public function delete($id)
     {
         $student = $this->studentRepository->getListById($id);
@@ -94,13 +95,17 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $student = $this->studentRepository->getListById($id);
-        $this->studentRepository->destroy($id);
-        if(!empty($student->avatar)) {
-            if(empty($this->studentRepository->checkAvatar($student->avatar))) {
-            unlink(public_path(pare_url_file($student->avatar)));}}
+        if (Gate::allows('permission', 'admin')) {
+            $student = $this->studentRepository->getListById($id);
+            $this->studentRepository->destroy($id);
+            if(!empty($student->avatar)) {
+                if(empty($this->studentRepository->checkAvatar($student->avatar))) {
+                    unlink(public_path(pare_url_file($student->avatar)));}}
 
-        return back()->with('success', 'Delete student successfully');
+            return back()->with('success', 'Delete student successfully');
+        }
+
+        return back()->with('error', 'You can not delete this item');
     }
 
     public function search(Request $request) {

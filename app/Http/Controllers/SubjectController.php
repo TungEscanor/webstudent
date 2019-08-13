@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SubjectRequest;
 use App\Repositories\Subject\SubjectRepositoryInterface;
+use Illuminate\Support\Facades\Gate;
 
 
 class SubjectController extends Controller
@@ -55,14 +56,19 @@ class SubjectController extends Controller
 
     public function delete($id)
     {
-        $subject = $this->subjectRepository->getListById($id);
-        return view('subjects.delete', compact('subject'));
+
+            $subject = $this->subjectRepository->getListById($id);
+            return view('subjects.delete', compact('subject'));
     }
 
     public function destroy($id)
     {
-        $this->subjectRepository->destroy($id);
-        return back()->with('success', 'Delete subject successfully');
+        if (Gate::allows('permission', 'admin')) {
+            $this->subjectRepository->destroy($id);
+            return back()->with('success', 'Delete subject successfully');
+        }
+
+        return back()->with('error', 'You can not delete this item');
     }
 
     public function show($id)
