@@ -86,6 +86,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//scrolling js-->
 <script src="{{asset('web/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('web/js/savy.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+    $.validate({
+        lang: 'en'
+    });
+</script>
 @yield('script')
 </body>
 </html>

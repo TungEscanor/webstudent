@@ -33,6 +33,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $data = $request->all();
+        $classes = $this->classRepository->getAllList()->pluck('name','id');
         $subjects = $this->subjectRepository->getAllList();
         $students = $this->studentRepository->searchStudent($data,count($subjects));
         return view('students.index',compact('students','data','subjects','classes'));

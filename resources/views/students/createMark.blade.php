@@ -16,7 +16,7 @@
         @endif
         <div class="content-top-1">
             <h3 style="color:#5a6268;">{{$student->name}}</h3>
-            {{Form::open(['route' => ['marks.storeMore','student_id' => $student->id],'id'=>'my-form'])}}
+            {{Form::open(['route' => ['marks.storeMore','student_id' => $student->id],'id'=>'my_form'])}}
             <div id="page-load">
                 <p id="number-subject" style="display: none">{{count($subjects)}}</p>
                 <table class="table">
@@ -35,7 +35,7 @@
                         @foreach($marks as $mark)
                             <tr  class="studentmark">
                                 <td>
-                                    <select name="subject_id[]" class="form-control">
+                                    <select name="subject_id[]" class="form-control" data-validation="required">
                                         <option value="">choose subject...</option>
                                     @foreach($subjects as $subject)
                                         <option
@@ -46,7 +46,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}">
+                                    <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}" data-validation-allowing="range[0;10]" data-validation="number">
                                 </td>
                                 <td>
                                     <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
@@ -59,7 +59,7 @@
                         @foreach(old('subject_id') as $key =>  $subject_id)
                             <tr  class="studentmark">
                                 <td>
-                                    <select name="subject_id[]" class="form-control">
+                                    <select name="subject_id[]" class="form-control" >
                                         <option value="">choose subject...</option>
                                         @foreach($subjects as $subject)
                                             <option
@@ -70,7 +70,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control mark" name="mark[]" type="text" value="{{old('mark')[$key]}}">
+                                    <input class="form-control mark" name="mark[]" type="text" value="{{old('mark')[$key]}}" data-validation-allowing="range[0;10]" data-validation="number">
                                 </td>
                                 <td>
                                     <i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
@@ -80,7 +80,7 @@
                     @endif
                     <tr class="addform" style="display: none">
                         <td>
-                            <select name="subject_id[]" class="form-control addselect">
+                            <select name="subject_id[]" class="form-control addselect" data-validation="required">
                                 <option value="">choose subject...</option>
                                 @foreach($subjects as $key => $subject)
                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
@@ -88,7 +88,7 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="mark[]" >
+                            <input type="text" class="form-control" name="mark[]" data-validation-allowing="range[0;10]" data-validation="number">
                         </td>
                         <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
                         </td>
@@ -174,7 +174,7 @@
                     $('tr.addform').remove();
             });
 
-
         });
+
     </script>
 @endsection

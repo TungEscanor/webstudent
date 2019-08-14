@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('update_password','UserController@updatePassword')->name('user.update.password');
     Route::post('update_password','UserController@saveUpdatePassword')->name('user.save.password');
 
-
+    Route::resource('ajax-crud', 'AjaxStudentController');
 });
 
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');

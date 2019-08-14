@@ -26,7 +26,6 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-
         $validate = [
             'name' => 'required',
             'birthday' => 'required|date|date_format:Y-m-d|after:1-1-1990|before:31-12-2001',
