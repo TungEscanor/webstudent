@@ -32,7 +32,8 @@ class StudentRequest extends FormRequest
             'birthday' => 'required|date|date_format:Y-m-d|after:1-1-1990|before:31-12-2001',
             'gender' => 'required',
             'phone_number' => ['digits_between:9,11', 'numeric', 'required', 'min:0',
-                Rule::unique('students')->ignore($this->student)],
+                Rule::unique('students')->ignore($this->student),
+                ],
             'class_id' => 'required',
         ];
 
@@ -54,7 +55,9 @@ class StudentRequest extends FormRequest
         }
 
         if($this->request->has('student_id')) {
-            $validate['phone_number'] = 'digits_between:9,11|numeric|required|min:0';
+            $student = $this->request->all();
+            $student_id = $student['student_id'];
+            $validate['phone_number'] = 'digits_between:9,11|numeric|required|min:0|unique:students,phone_number,'.$student_id;
         }
         return $validate;
     }

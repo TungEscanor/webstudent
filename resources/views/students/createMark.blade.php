@@ -119,6 +119,7 @@
                 } else {alert('student has '+ subject + ' subject !')}
                 var $select = $("select");
                 var selected = [];
+                var unselected = [];
                 $.each($select, function (index, select) {
                     if (select.value !== "") {
                         selected.push(select.value);
@@ -128,6 +129,16 @@
                 for (var index in selected) {
                     $('option[value="' + selected[index] + '"]').css("display","none");
                 }
+
+                $.each($select, function (index, select) {
+                    if (select.value === "") {
+                        unselected.push(select.value);
+                    }
+                });
+
+                for (var item in unselected) {
+                    $('option[value="' + unselected[item] +'"]').css("display","block");
+                }
             });
 
             //remove
@@ -135,6 +146,7 @@
                     $(this).parent().parent().remove();
                 var $select = $("select");
                 var selected = [];
+                var unselected = [];
                 $.each($select, function (index, select) {
                     if (select.value !== "") {
                         selected.push(select.value);
@@ -145,6 +157,16 @@
                 $("option").prop("disabled", false);
                 for (var index in selected) {
                     $('option[value="' + selected[index] +'"]').css("display","none");
+                }
+
+                $.each($select, function (index, select) {
+                    if (select.value === "") {
+                        unselected.push(select.value);
+                    }
+                });
+
+                for (var value in unselected) {
+                    $('option[value="' + selected[value] +'"]').css("display","block");
                 }
             });
             //select
@@ -161,13 +183,13 @@
                 for (var index in selected) {
                     $('option[value="' + selected[index] +'"]').css("display","none");
                 }
-                $(this).parent().parent().find('td > i.remove-item').on('click',function () {
-                    var del =  $(this).val();
-                    selected.splice(selected.indexOf(del.toString()),1);
-                    for (var index in selected) {
-                        $('option[value="' + selected[index] +'"]').css("display","block");
-                    }
-                });
+                // $(this).parent().parent().find('td > i.remove-item').on('click',function () {
+                //     var del =  $(this).val();
+                //     selected.splice(selected.indexOf(del.toString()),1);
+                //     for (var index in selected) {
+                //         $('option[value="' + selected[index] +'"]').css("display","block");
+                //     }
+                // });
             });
 
             $('#saveform').on('click',function () {

@@ -217,7 +217,7 @@
             /* When click edit user */
             $(document).on('click', '.edit-student', function () {
                 var student_id = $(this).data('id');
-                $.get('ajax-crud/' + student_id + '/edit', function (data) {
+                $.get('ajax-students/' + student_id + '/show', function (data) {
                     $('#ajax-crud-modal').modal('show');
                     $('#name').val(data.name);
                     $('#student_id').val(data.id);
@@ -241,7 +241,7 @@
             event.preventDefault();
             $('#btn-save').val('Sending..');
             $.ajax({
-                url: "{{route('ajax.update')}}",
+                url: "{{route('students.store')}}",
                 type: "POST",
                 data: new FormData(this),
                 contentType: false,

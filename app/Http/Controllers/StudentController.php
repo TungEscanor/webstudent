@@ -57,6 +57,17 @@ class StudentController extends Controller
                 $data['avatar'] = $file['name'];
             }
         }
+
+        if ($request->ajax()) {
+            $student = $this->studentRepository->getListById($request->student_id);
+
+            $student->update($data);
+            $student->class = $student->classRelation->name;
+            $student->avatar = asset(pare_url_file($student->avatar));
+            $student->birthday = date('d/m/Y', strtotime($student->birthday));
+            return Response::json($student);
+        }
+
         $this->studentRepository->store($data);
         return redirect($request->redirects_to)->with('success', 'Create student successfully');
     }
@@ -68,7 +79,7 @@ class StudentController extends Controller
         return view('students.edit', compact('student'), compact('classes'));
     }
 
-    public function update($id,StudentRequest $request)
+    public function update($id, StudentRequest $request)
     {
         $data = $request->all();
         if ($request->ajax()) {
@@ -191,5 +202,13 @@ class StudentController extends Controller
         }
 
         return redirect()->back()->with('success', 'Done');
+    }
+
+    public function showAjax($id)
+    {
+        $student = $this->studentRepository->getListById($id);
+        $student->avatar_form = asset(pare_url_file($student->avatar));
+        $student->birthday_form = date('Y-m-d', strtotime($student->birthday));
+        return Response::json($student);
     }
 }
