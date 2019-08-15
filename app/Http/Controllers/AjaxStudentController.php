@@ -10,15 +10,16 @@ use Illuminate\Support\Facades\Response;
 
 class AjaxStudentController extends Controller
 {
-    public function edit($id) {
+    public function edit($id)
+    {
         $student = Student::find($id);
-        $student->avatar_form = asset(pare_url_file($student ->avatar));
-        $student->birthday_form = date('Y-m-d',strtotime($student->birthday));
+        $student->avatar_form = asset(pare_url_file($student->avatar));
+        $student->birthday_form = date('Y-m-d', strtotime($student->birthday));
         return Response::json($student);
     }
 
-    public function update(Request $request) {
-
+    public function update(StudentRequest $request)
+    {
         $data = $request->all();
         if ($request->hasFile('avatar')) {
             $file = upload_image('avatar');
@@ -30,8 +31,10 @@ class AjaxStudentController extends Controller
         }
         $student = Student::find($request->student_id);
 
-       $student->update($request->all());
-
-       return Response::json($student);
+        $student->update($data);
+        $student->class = $student->classRelation->name;
+        $student->avatar = asset(pare_url_file($student->avatar));
+        $student->birthday = date( 'd/m/Y',strtotime($student->birthday));
+        return Response::json($student);
     }
 }

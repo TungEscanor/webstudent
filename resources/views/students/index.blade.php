@@ -94,15 +94,16 @@
                 </thead>
                 <tbody>
                 @foreach($students as $key =>  $student)
-                    <tr>
+                    <tr id="{{'student_id'.$student->id}}">
                         <td>{{($students->currentPage() - 1 ) * $students->perPage() + $key +1}}</td>
-                        <td>{{$student->name}}</td>
-                        <td>{{isset($student->classRelation->name) ? $student->classRelation->name : ''}}</td>
-                        <td>{{$student->gender}}</td>
-                        <td>{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
+                        <td id="{{'student_name_'.$student->id}}">{{$student->name}}</td>
+                        <td id="{{'student_class_'.$student->id}}">{{isset($student->classRelation->name) ? $student->classRelation->name : ''}}</td>
+                        <td id="{{'student_gender_'.$student->id}}">{{$student->gender}}</td>
+                        <td id="{{'student_birthday_'.$student->id}}">{{date( 'd/m/Y',strtotime($student->birthday))}}</td>
                     <!-- <td>{{\Illuminate\Support\Carbon::parse($student->birthday)->age}}</td> -->
-                        <td>{{(!empty ($student->phone_number)) ? rtrim($student->phone_number) : '' }}</td>
-                        <td><img src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive"
+                        <td id="{{'student_phone_'.$student->id}}">{{(!empty ($student->phone_number)) ? rtrim($student->phone_number) : '' }}</td>
+                        <td><img id="{{'student_image_'.$student->id}}"
+                                 src="{{asset(pare_url_file( $student ->avatar))}}" alt="" class="img img-responsive"
                                  width="50px" height="50px"></td>
                         <td><a class="btn btn-success btn-sm" href="{{route('students.show',
                         ['student_id' => $student->id,
@@ -111,7 +112,7 @@
                         'max_mark' => !empty(\Request::get('max_mark')) ? \Request::get('max_mark') : 'all',])}}"
                                target="_blank"><i style="color: white" class="fa fa-share"></i></a></td>
                         <td style="">
-                            <a class="btn btn-primary btn-sm" title="Edit" id="edit-student" data-id="{{$student->id}}"
+                            <a class="btn btn-primary btn-sm edit-student" title="Edit" data-id="{{$student->id}}"
                                href="javascript:void(0)"><i class="fa fa-edit"
                                                             style="color: white"></i></a>
                         </td>
@@ -141,79 +142,63 @@
                     <h1 class="modal-title" id="userCrudModal">Student information</h1>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(['enctype' => 'multipart/form-data','id' => 'user_form'])}}
-                    <div class="form-group">
-                        {{Form::label('name','Student name:')}}
-                        {{Form::text('name',null,['class' => 'form-control1','id' =>"name"])}}
-                        @if($errors->has('name'))
-                            <div class="error-text text-danger">
-                                {{$errors->first('name')}}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('birthday','Birthday:')}}
-                        <br>
-                        {{Form::date('birthday',null,['class' => 'form-control1','id' => 'birthday'])}}
-                        @if($errors->has('birthday'))
-                            <div class="error-text text-danger">
-                                {{$errors->first('birthday')}}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('gender','Gender:')}}
-                        <br>
-                        {{Form::radio('gender','male',null,['id' => 'male_check'])}}
-                        {{Form::label('male','Male')}}
-                        {{Form::radio('gender','female',['id' =>'female_check'])}}
-                        {{Form::label('female','Female',['class' => 'form-check-input'])}}
-                        <div>
-                            @if($errors->has('gender'))
-                                <div class="error-text text-danger">
-                                    {{$errors->first('gender')}}
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('phone_number', 'Phone number: ',['style' => 'font-weight:bold'])}}
-                        {{Form::text('phone_number',null,['class' => 'form-control1','id' =>"phone_number"])}}
-                        <div>
-                            @if($errors->has('phone_number'))
-                                <div class="error-text text-danger">
-                                    {{$errors->first('phone_number')}}
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('avatar','Avatar: ')}}
-                        {{Form::file('avatar',['id' => 'avatar'])}}
-                        <img id="img_avatar" src="" alt=""
-                             class="img img-responsive"
-                             width="50px" height="50px">
-                    </div>
+                    <form  id="user-form" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            {{Form::label('name','Student name:')}}
+                            {{Form::text('name',null,['class' => 'form-control1','id' =>"name"])}}
+                            <div class="error-text text-danger" id="name-error">
 
-                    @if($errors->has('avatar'))
-                        <div class="error-text text-danger">
-                            {{$errors->first('avatar')}}
+                            </div>
                         </div>
-                    @endif
-                    <div class="form-group">
-                        {{Form::label('class_id','Class :')}}
-                        {{Form::select('class_id',$classes,null,['class' => 'form-control1','placeholder' => 'choose class...','id' => 'class_id'])}}
-                        <div>
-                            @if($errors->has('class_id'))
-                                <div class="error-text text-danger">
-                                    {{$errors->first('class_id')}}
+                        <div class="form-group">
+                            {{Form::label('birthday','Birthday:')}}
+                            <br>
+                            {{Form::date('birthday',null,['class' => 'form-control1','id' => 'birthday',"data-validation"=> "required"])}}
+                            <div class="error-text text-danger" id="birthday-error">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('gender','Gender:')}}
+                            <br>
+                            {{Form::radio('gender','male',null,['id' => 'male_check'])}}
+                            {{Form::label('male','Male')}}
+                            {{Form::radio('gender','female',['id' =>'female_check'])}}
+                            {{Form::label('female','Female',['class' => 'form-check-input'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('phone_number', 'Phone number: ',['style' => 'font-weight:bold'])}}
+                            {{Form::text('phone_number',null,['class' => 'form-control1','id' =>"phone_number","data-validation"=> "required"])}}
+                            <div>
+                                <div class="error-text text-danger" id="phone-error">
+
                                 </div>
-                            @endif
+                            </div>
                         </div>
-                    </div>
-                    {{Form::hidden('student_id',null,['id' => 'student_id'])}}
-                    {{Form::submit('Save', ['class'=> 'btn btn-success','id' => 'btn-save'])}}
-                    {{Form::close()}}
+                        <div class="form-group">
+                            {{Form::label('avatar','Avatar: ')}}
+                            {{Form::file('avatar',['id' => 'avatar'])}}
+                            <img id="img_avatar" src="" alt=""
+                                 class="img img-responsive"
+                                 width="50px" height="50px">
+                        </div>
+
+                        <div class="error-text text-danger" id="avatar-error">
+
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('class_id','Class :')}}
+                            {{Form::select('class_id',$classes,null,['class' => 'form-control1','placeholder' => 'choose class...','id' => 'class_id',"data-validation"=> "required"])}}
+                            <div>
+                                <div class="error-text text-danger" id="class-error">
+
+                                </div>
+                            </div>
+                        </div>
+                        {{Form::hidden('student_id',null,['id' => 'student_id'])}}
+                        {{Form::submit('Save', ['class'=> 'btn btn-success','id' => 'btn-save'])}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -230,7 +215,7 @@
             /*  When user click add user button */
 
             /* When click edit user */
-            $(document).on('click', '#edit-student', function () {
+            $(document).on('click', '.edit-student', function () {
                 var student_id = $(this).data('id');
                 $.get('ajax-crud/' + student_id + '/edit', function (data) {
                     $('#ajax-crud-modal').modal('show');
@@ -252,23 +237,41 @@
 
         });
 
-        $('#btn-save').on('click',function () {
-
-            $(this).html('Sending..');
-            var student_id = $('#student_id').val();
+        $(document).on('submit', '#user-form', function (event) {
+            event.preventDefault();
+            $('#btn-save').val('Sending..');
             $.ajax({
-                data: $('#userForm').serialize(),
-                url: "ajax-crud/" +student_id,
-                type: "PUT",
-                dataType: 'json',
+                url: "{{route('ajax.update')}}",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 success: function (data) {
 
+                    $('#student_name_' + data.id).html(data.name);
+                    $('#student_class_' + data.id).html(data.class);
+                    $('#student_gender_' + data.id).html(data.gender);
+                    $('#student_birthday_' + data.id).html(data.birthday);
+                    $('#student_phone_' + data.id).html(data.phone_number);
+                    $('#student_image_' + data.id).attr('src', data.avatar);
+
+                    $('#user-form').trigger("reset");
+                    $('#ajax-crud-modal').modal('hide');
+                    $('#btn-save').val('Save Changes');
                 },
                 error: function (data) {
-                    console.log('Error:', data);
-                    $('#btn-save').html('Save Changes');
+
+                    $('#name-error').html(data.responseJSON.errors.name ? data.responseJSON.errors.name : '');
+                    $('#birthday-error').html(data.responseJSON.errors.birthday ? data.responseJSON.errors.birthday : '');
+                    $('#class-error').html(data.responseJSON.errors.class_id ? data.responseJSON.errors.class_id : '');
+                    $('#phone-error').html(data.responseJSON.errors.phone_number ? data.responseJSON.errors.phone_number : '');
+                    $('#avatar-error').html(data.responseJSON.errors.avatar ? data.responseJSON.errors.avatar : '');
+
+                    $('#btn-save').val('Save Changes');
                 }
             });
+
         })
 
     </script>
