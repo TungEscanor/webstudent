@@ -19,10 +19,10 @@
             </div>
             <div class="form-group">
                 <label for="Subject">Subject</label>
-                <select class="form-control" id="Subject" name="subject_id">
+                <select class="form-control" id="subject_search" name="subject_id">
                     <option value="">Select subject</option>
                     @foreach($subjects as $subject)
-                        <option value="{{$subject->id}}" {{isset($data['subject_id']) && ($subject->id == $data['subject_id']) ? 'selected' : ''}} >{{$subject->name}}</option>
+                        <option class="" value="{{$subject->id}}" {{isset($data['subject_id']) && ($subject->id == $data['subject_id']) ? 'selected' : ''}} >{{$subject->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -230,7 +230,7 @@
                         $('#female_check').prop('checked', true);
                     }
 
-                    $('option[value="' + data.class_id + '"]').prop("selected", true);
+                    $('select#class_id>option[value="' + data.class_id + '"').prop("selected", true);
 
                 })
             });
