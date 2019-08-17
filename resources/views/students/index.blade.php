@@ -147,7 +147,7 @@
                         <div class="form-group">
                             {{Form::label('name','Student name:')}}
                             {{Form::text('name',null,['class' => 'form-control1','id' =>"name"])}}
-                            <div class="error-text text-danger" id="name-error">
+                            <div class="error-text text-danger show-errors" id="name-error">
 
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             {{Form::label('birthday','Birthday:')}}
                             <br>
                             {{Form::date('birthday',null,['class' => 'form-control1','id' => 'birthday',"data-validation"=> "required"])}}
-                            <div class="error-text text-danger" id="birthday-error">
+                            <div class="error-text text-danger show-errors" id="birthday-error">
 
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                             {{Form::label('phone_number', 'Phone number: ',['style' => 'font-weight:bold'])}}
                             {{Form::text('phone_number',null,['class' => 'form-control1','id' =>"phone_number","data-validation"=> "required"])}}
                             <div>
-                                <div class="error-text text-danger" id="phone-error">
+                                <div class="error-text text-danger show-errors" id="phone-error">
 
                                 </div>
                             </div>
@@ -184,14 +184,14 @@
                                  width="50px" height="50px">
                         </div>
 
-                        <div class="error-text text-danger" id="avatar-error">
+                        <div class="error-text text-danger show-errors" id="avatar-error">
 
                         </div>
                         <div class="form-group">
                             {{Form::label('class_id','Class :')}}
                             {{Form::select('class_id',$classes,null,['class' => 'form-control1','placeholder' => 'choose class...','id' => 'class_id',"data-validation"=> "required"])}}
                             <div>
-                                <div class="error-text text-danger" id="class-error">
+                                <div class="error-text text-danger show errors" id="class-error">
 
                                 </div>
                             </div>
@@ -230,6 +230,8 @@
                         $('#female_check').prop('checked', true);
                     }
 
+                    $('.show-errors').html('');
+
                     $('select#class_id>option[value="' + data.class_id + '"').prop("selected", true);
 
                 })
@@ -240,8 +242,13 @@
         $(document).on('submit', '#user-form', function (event) {
             event.preventDefault();
             $('#btn-save').val('Sending..');
+            var student_id = $('#student_id').val();
+            var data = new FormData(this);
+
+            data.append('_method','put');
+
             $.ajax({
-                url: "{{route('students.store')}}",
+                url: "students/".student_id,
                 type: "POST",
                 data: new FormData(this),
                 contentType: false,

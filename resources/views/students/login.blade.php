@@ -63,8 +63,7 @@
                         <input type="submit" value="Login" class="btn float-right login_btn">
                     </div>
                 </form>
-            </div>
-            <div class="card-footer">
+                <div class="clearfix"></div>
                 <div class="d-flex justify-content-center links">
                     Don't have an account?<a href="{{route('register')}}">Sign Up</a>
                 </div>

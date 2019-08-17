@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ClassModel;
 use App\Models\Student;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,6 +37,10 @@ class StudentRequest extends FormRequest
                 ],
             'class_id' => 'required',
         ];
+
+        if(count(ClassModel::all()) == 0) {
+            $validate['class_id'] = '';
+        }
 
         if($this->request->has('username')) {
             $validate = array_merge($validate,[

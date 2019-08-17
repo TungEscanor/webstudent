@@ -58,16 +58,6 @@ class StudentController extends Controller
             }
         }
 
-        if ($request->ajax()) {
-            $student = $this->studentRepository->getListById($request->student_id);
-
-            $student->update($data);
-            $student->class = $student->classRelation->name;
-            $student->avatar = asset(pare_url_file($student->avatar));
-            $student->birthday = date('d/m/Y', strtotime($student->birthday));
-            return Response::json($student);
-        }
-
         $this->studentRepository->store($data);
         return redirect($request->redirects_to)->with('success', 'Create student successfully');
     }
@@ -82,15 +72,16 @@ class StudentController extends Controller
     public function update($id, StudentRequest $request)
     {
         $data = $request->all();
-        if ($request->ajax()) {
-            if ($request->hasFile('avatar')) {
-                $file = upload_image('avatar');
+        if ($request->hasFile('avatar')) {
+            $file = upload_image('avatar');
 
-                if (isset($file['name'])) {
+            if (isset($file['name'])) {
 
-                    $data['avatar'] = $file['name'];
-                }
+                $data['avatar'] = $file['name'];
             }
+        }
+        if ($request->ajax()) {
+
             $student = $this->studentRepository->getListById($request->student_id);
 
             $student->update($request->all());
@@ -100,15 +91,6 @@ class StudentController extends Controller
             return Response::json($student);
         }
 
-
-        if ($request->hasFile('avatar')) {
-            $file = upload_image('avatar');
-
-            if (isset($file['name'])) {
-
-                $data['avatar'] = $file['name'];
-            }
-        }
         $student = $this->studentRepository->getListById($id);
         $user = $student->user;
         $this->studentRepository->update($id, $data);
