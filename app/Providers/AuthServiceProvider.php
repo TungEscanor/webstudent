@@ -30,6 +30,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasDefinePrivilege($permission);
         });
 
-        Gate::define('createMark',ModelPolicy::class.'@storeMore');
+        Gate::define('storeOrEditMark',ModelPolicy::class.'@storeMore');
     }
 }

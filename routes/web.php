@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::get('email/{email}/sendEmail', 'StudentController@mailStudent')->name('students.sendEmail');
     Route::get('email/sendAll', 'StudentController@sendAll')->name('students.sendAll');
     Route::get('students/badStudents', 'StudentController@badStudents')->name('students.bad');
-    Route::get('students/{id}/create_mark', 'StudentController@createMarks')->name('students.createMarks');
+    Route::get('students/{id}/create_mark', 'StudentController@createMarks')->name('students.createMarks')->middleware('can:storeOrEditMark');;
     Route::resource('students', 'StudentController');
 
     /**
@@ -51,9 +51,8 @@ Route::group(['middleware' => 'auth'],function () {
     /**
      * mark route
      */
-    Route::post('marks/store', 'MarkController@storeMore')
-        ->name('marks.storeMore')->middleware('can:createMark');
-    Route::resource('marks', 'MarkController');
+    Route::post('marks/store', 'MarkController@storeMore')->name('marks.storeMore')->middleware('can:storeOrEditMark');
+    Route::resource('marks', 'MarkController')->middleware('can:storeOrEditMark');
     Route::get('marks/destroy/{id}', 'MarkController@destroy')->name('mark.post.destroy');
 
 
