@@ -60,8 +60,7 @@ class StudentRequest extends FormRequest
         }
 
         if($this->request->has('student_id')) {
-            $student = $this->request->all();
-            $student_id = $student['student_id'];
+            $student_id = $this->request->all()['student_id'];
             $validate['phone_number'] = 'digits_between:9,11|numeric|required|min:0|unique:students,phone_number,'.$student_id;
         }
         return $validate;

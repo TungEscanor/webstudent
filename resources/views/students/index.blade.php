@@ -81,7 +81,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Student name</th>
+                    <th>Name</th>
                     <th>Class</th>
                     <th>Gender</th>
                     <th>Birthday</th>
@@ -248,9 +248,9 @@
             data.append('_method','put');
 
             $.ajax({
-                url: "students/".student_id,
+                url: "students/" + student_id,
                 type: "POST",
-                data: new FormData(this),
+                data: data,
                 contentType: false,
                 cache: false,
                 processData:false,

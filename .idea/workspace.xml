@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Policies/ModelPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/students/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/students/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -224,7 +226,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -233,11 +235,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\webstudent\app" />
+      <recent name="C:\wamp64\www\webstudent\resources\views" />
       <recent name="C:\xampp\htdocs\webstudent\app\Repositories\User" />
       <recent name="C:\xampp\htdocs\webstudent\resources\views\subject" />
       <recent name="C:\xampp\htdocs\webstudent\resources\views\marks" />
-      <recent name="C:\xampp\htdocs\webstudent\resources\views\class" />
-      <recent name="C:\xampp\htdocs\webstudent\resources\views\faculty" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\webstudent\app" />
@@ -457,7 +459,12 @@
       <workItem from="1565885153683" duration="348000" />
       <workItem from="1565888571274" duration="29000" />
       <workItem from="1565916268991" duration="254000" />
-      <workItem from="1566057142922" duration="390000" />
+      <workItem from="1566057142922" duration="3052000" />
+      <workItem from="1566179110704" duration="1482000" />
+      <workItem from="1566181923122" duration="77000" />
+      <workItem from="1566184279693" duration="29000" />
+      <workItem from="1566184650623" duration="32000" />
+      <workItem from="1566187803767" duration="242000" />
     </task>
     <servers />
   </component>

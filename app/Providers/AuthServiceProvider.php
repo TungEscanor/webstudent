@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Policies\ModelPolicy;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -29,5 +30,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasDefinePrivilege($permission);
         });
 
+        Gate::define('createMark',ModelPolicy::class.'@storeMore');
     }
 }
