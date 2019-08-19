@@ -51,7 +51,8 @@ Route::group(['middleware' => 'auth'],function () {
     /**
      * mark route
      */
-    Route::post('marks/store', 'MarkController@storeMore')->name('marks.storeMore');
+    Route::post('marks/store', 'MarkController@storeMore')
+        ->name('marks.storeMore')->middleware('can:createMark');
     Route::resource('marks', 'MarkController');
     Route::get('marks/destroy/{id}', 'MarkController@destroy')->name('mark.post.destroy');
 
