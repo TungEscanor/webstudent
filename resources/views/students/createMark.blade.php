@@ -34,7 +34,7 @@
                     @if(isset($marks))
                         @foreach($marks as $mark)
                             <tr  class="studentmark">
-                                <td>
+                                <td class="with-add">
                                     <select name="subject_id[]" class="form-control" data-validation="required">
                                         <option value="">choose subject...</option>
                                     @foreach($subjects as $subject)
@@ -45,7 +45,7 @@
                                     @endforeach
                                     </select>
                                 </td>
-                                <td>
+                                <td class="with-add">
                                     <input class="form-control mark" name="mark[]" type="text" value="{{$mark->mark}}" data-validation-allowing="range[0;10]" data-validation="number">
                                 </td>
                                 <td>
@@ -58,7 +58,7 @@
                     @if(!empty(old('subject_id')))
                         @foreach(old('subject_id') as $key =>  $subject_id)
                             <tr  class="studentmark">
-                                <td>
+                                <td class="with-add">
                                     <select name="subject_id[]" class="form-control" >
                                         <option value="">choose subject...</option>
                                         @foreach($subjects as $subject)
@@ -69,7 +69,7 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td>
+                                <td class="with-add">
                                     <input class="form-control mark" name="mark[]" type="text" value="{{old('mark')[$key]}}" data-validation-allowing="range[0;10]" data-validation="number">
                                 </td>
                                 <td>
@@ -79,7 +79,7 @@
                         @endforeach
                     @endif
                     <tr class="addform" style="display: none">
-                        <td>
+                        <td class="with-add">
                             <select name="subject_id[]" class="form-control addselect" data-validation="required">
                                 <option value="">choose subject...</option>
                                 @foreach($subjects as $key => $subject)
@@ -87,7 +87,7 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td>
+                        <td class="with-add">
                             <input type="text" class="form-control" name="mark[]" data-validation-allowing="range[0;10]" data-validation="number">
                         </td>
                         <td><i class="fa fa-remove btn btn-danger remove-item" style="color: white"></i>
