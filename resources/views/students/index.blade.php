@@ -268,14 +268,22 @@
                     $('#btn-save').val('Save Changes');
                 },
                 error: function (data) {
+                    if(data.responseJSON.errors) {
+                       var errors =  data.responseJSON.errors;
+                        $('#name-error').html(errors.name ? errors.name + '<br>' : '');
+                        $('#birthday-error').html(errors.birthday ? errors.birthday : '');
+                        $('#class-error').html(errors.class_id ? errors.class_id : '');
+                        // $('#phone-error').html(errors.phone_number ? errors.phone_number : '');
+                        if(errors.phone_number) {
+                            for(err of errors.phone_number) {
+                                $('#phone-error').append(err + '<br>')
+                            }
+                        }
+                        $('#avatar-error').html(errors.avatar ? errors.avatar : '');
 
-                    $('#name-error').html(data.responseJSON.errors.name ? data.responseJSON.errors.name : '');
-                    $('#birthday-error').html(data.responseJSON.errors.birthday ? data.responseJSON.errors.birthday : '');
-                    $('#class-error').html(data.responseJSON.errors.class_id ? data.responseJSON.errors.class_id : '');
-                    $('#phone-error').html(data.responseJSON.errors.phone_number ? data.responseJSON.errors.phone_number : '');
-                    $('#avatar-error').html(data.responseJSON.errors.avatar ? data.responseJSON.errors.avatar : '');
+                        $('#btn-save').val('Save Changes');
+                    }
 
-                    $('#btn-save').val('Save Changes');
                 }
             });
 

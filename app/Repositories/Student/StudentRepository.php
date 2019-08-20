@@ -70,7 +70,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryInter
         }
 
         // Done all subject ?
-        if (empty($data['done']) && !empty($data['not_done'])) {
+        if (!empty($data['done']) && empty($data['not_done'])) {
             $students->has('subjects', '=', $count_subjects);
         }
 
