@@ -27,7 +27,6 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-
         $validate = [
             'name' => 'required',
             'birthday' => 'required|date|date_format:Y-m-d|after:1-1-1990|before:31-12-2001',
@@ -63,6 +62,7 @@ class StudentRequest extends FormRequest
             $student_id = $this->request->all()['student_id'];
             $validate['phone_number'] = 'digits_between:9,11|numeric|required|min:0|unique:students,phone_number,'.$student_id;
         }
+
         return $validate;
     }
 

@@ -82,13 +82,13 @@ class StudentController extends Controller
         }
         if ($request->ajax()) {
 
-            $student = $this->studentRepository->getListById($request->student_id);
+                $student = $this->studentRepository->getListById($request->student_id);
 
-            $student->update($request->all());
-            $student->class = $student->classRelation->name;
-            $student->avatar = asset(pare_url_file($student->avatar));
-            $student->birthday = date('d/m/Y', strtotime($student->birthday));
-            return Response::json($student);
+                $student->update($data);
+                $student->class = $student->classRelation->name;
+                $student->avatar = asset(pare_url_file($student->avatar));
+                $student->birthday = date('d/m/Y', strtotime($student->birthday));
+                return Response::json($student);
         }
 
         $student = $this->studentRepository->getListById($id);

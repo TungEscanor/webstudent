@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Student/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Student/StudentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/students/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -230,7 +232,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -470,7 +472,12 @@
       <workItem from="1566201519477" duration="1885000" />
       <workItem from="1566218179327" duration="2067000" />
       <workItem from="1566265290717" duration="556000" />
-      <workItem from="1566268148275" duration="2572000" />
+      <workItem from="1566268148275" duration="2792000" />
+      <workItem from="1566271028234" duration="9996000" />
+      <workItem from="1566287528534" duration="944000" />
+      <workItem from="1566291213734" duration="22000" />
+      <workItem from="1566294309391" duration="454000" />
+      <workItem from="1566436908599" duration="334000" />
     </task>
     <servers />
   </component>

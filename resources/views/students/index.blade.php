@@ -5,7 +5,7 @@
 @section('content')
     <div class="banner">
         <h2><a href="">Home</a><i class="fa fa-angle-right"></i><span>Student</span><i
-                    class="fa fa-angle-right"></i><span>List students</span></h2>
+                class="fa fa-angle-right"></i><span>List students</span></h2>
     </div>
     <div class="grid-form">
         @include('flash-message')
@@ -22,7 +22,10 @@
                 <select class="form-control" id="subject_search" name="subject_id">
                     <option value="">Select subject</option>
                     @foreach($subjects as $subject)
-                        <option class="" value="{{$subject->id}}" {{isset($data['subject_id']) && ($subject->id == $data['subject_id']) ? 'selected' : ''}} >{{$subject->name}}</option>
+                        <option class=""
+                                value="{{$subject->id}}" {{isset($data['subject_id']) && ($subject->id == $data['subject_id']) ? 'selected' : ''}} >
+                            {{$subject->name}}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -142,7 +145,7 @@
                     <h1 class="modal-title" id="userCrudModal">Student information</h1>
                 </div>
                 <div class="modal-body">
-                    <form  id="user-form" enctype="multipart/form-data">
+                    <form id="user-form" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             {{Form::label('name','Student name:')}}
@@ -245,7 +248,7 @@
             var student_id = $('#student_id').val();
             var data = new FormData(this);
 
-            data.append('_method','put');
+            data.append('_method', 'put');
 
             $.ajax({
                 url: "students/" + student_id,
@@ -253,7 +256,7 @@
                 data: data,
                 contentType: false,
                 cache: false,
-                processData:false,
+                processData: false,
                 success: function (data) {
 
                     $('#student_name_' + data.id).html(data.name);
@@ -268,14 +271,14 @@
                     $('#btn-save').val('Save Changes');
                 },
                 error: function (data) {
-                    if(data.responseJSON.errors) {
-                       var errors =  data.responseJSON.errors;
+                    if (data.responseJSON.errors) {
+                        var errors = data.responseJSON.errors;
                         $('#name-error').html(errors.name ? errors.name + '<br>' : '');
                         $('#birthday-error').html(errors.birthday ? errors.birthday : '');
                         $('#class-error').html(errors.class_id ? errors.class_id : '');
                         // $('#phone-error').html(errors.phone_number ? errors.phone_number : '');
-                        if(errors.phone_number) {
-                            for(err of errors.phone_number) {
+                        if (errors.phone_number) {
+                            for (err of errors.phone_number) {
                                 $('#phone-error').append(err + '<br>')
                             }
                         }
