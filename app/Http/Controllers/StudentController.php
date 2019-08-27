@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
 use App\Jobs\SendEmailJob;
+use App\Models\Mark;
+use App\Models\Subject;
 use App\Repositories\ClassRepository\ClassRepository;
 use App\Repositories\Mark\MarkRepository;
 use App\Repositories\Student\StudentRepository;
@@ -132,6 +134,7 @@ class StudentController extends Controller
     public function show($id, Request $request)
     {
         $student = $this->studentRepository->getListById($id);
+
         $marks = $student->marks()->with('subject')->with('student');
         if (!empty($request['subject_id']) && $request['subject_id'] !== 'all') {
             $marks->where('subject_id', $request['subject_id']);
@@ -145,6 +148,7 @@ class StudentController extends Controller
             $marks->where('mark', '<=', $request['max_mark']);
         }
         $marks = $marks->paginate(8);
+
 //        $marks = $student->marks()->with('subject')->with('student')->paginate($this->paginate);
         return view('students.showMarks', compact('marks'), ['id' => $id]);
     }
