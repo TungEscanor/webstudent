@@ -29,10 +29,10 @@
                             class="nav-label">Subjects</span></a>
 
             </li>
-            <li>
-                <a href="{{route('marks.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span
-                            class="nav-label">Mark</span> </a>
-            </li>
+{{--            <li>--}}
+{{--                <a href="{{route('marks.index')}}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span--}}
+{{--                            class="nav-label">Mark</span> </a>--}}
+{{--            </li>--}}
             @endif
         </ul>
     </div>

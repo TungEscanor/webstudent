@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae6177b-63fc-4abf-a49c-60a77acb6b80" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/permission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/studentapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/studentapp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/students/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/students/showMarks.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/students/showMarks.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,19 +113,13 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" notify_if_session_was_finished_without_being_paused="false" />
+  <component name="PhpDebugGeneral" notify_if_session_was_finished_without_being_paused="false" />
   <component name="PhpServers">
     <servers>
-      <server host="localhost" id="22a200e6-b25e-4642-bab8-39257ed43ac0" name="webtudent" use_path_mappings="true">
-        <path_mappings>
-          <mapping local-root="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" remote-root="C:/xampp/htdocs/webstudent/app/Http/Controllers/StudentController.php" />
-          <mapping local-root="$PROJECT_DIR$/public/index.php" remote-root="C:/xampp/htdocs/webstudent/public/index.php" />
-          <mapping local-root="$PROJECT_DIR$/resources/views/students/index.blade.php" remote-root="C:/xampp/htdocs/webstudent/public/index.php" />
-        </path_mappings>
-      </server>
+      <server host="localhost" id="a6c6254e-89aa-493c-b9ed-4a3c8aa66efc" name="Unnamed" />
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
@@ -214,6 +214,7 @@
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
       <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PU6KXL8iFZFGD5aSzTsTg43WKG" />
@@ -230,7 +231,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -258,20 +259,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHP Remote Debug.weblaravel">
+  <component name="RunManager" selected="PHP Remote Debug.Unnamed">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
-    <configuration name="weblaravel" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="webtudent" session_id="PHPSTORM">
-      <method v="2" />
-    </configuration>
-    <configuration name="Unnamed" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" nameIsGenerated="true" server_name="localhost">
+    <configuration name="Unnamed" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" nameIsGenerated="true" filter_connections="FILTER" server_name="Unnamed" session_id="PHPSTORM">
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHP Remote Debug.weblaravel" />
-      <item itemvalue="PHP Web Page.Unnamed" />
+      <item itemvalue="PHP Remote Debug.Unnamed" />
       <item itemvalue="PHPUnit.phpunit.xml" />
     </list>
   </component>
@@ -477,7 +474,12 @@
       <workItem from="1566294309391" duration="454000" />
       <workItem from="1566436908599" duration="334000" />
       <workItem from="1566873498923" duration="1062000" />
-      <workItem from="1566877128306" duration="2539000" />
+      <workItem from="1566877128306" duration="6716000" />
+      <workItem from="1566886995754" duration="28000" />
+      <workItem from="1566895669921" duration="132000" />
+      <workItem from="1567133955966" duration="167000" />
+      <workItem from="1567134167785" duration="332000" />
+      <workItem from="1567153412308" duration="3438000" />
     </task>
     <servers />
   </component>

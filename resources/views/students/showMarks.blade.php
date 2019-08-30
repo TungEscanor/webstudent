@@ -33,7 +33,11 @@
                             <td>{{(($marks->currentPage() - 1 ) * $marks->perPage() ) + $key +1}}</td>
                             <td>{{$mark->student->name}}</td>
                             <td>{{$mark->subject->name}}</td>
+                            @if($mark->mark > 0)
                             <td>{{number_format($mark->mark,2)}}</td>
+                            @else
+                            <td>Subject not yet studied</td>
+                            @endif
                             <td style="display: flex">
                                 <a class="btn btn-primary btn-sm" style="margin-right: 10px"
                                    href="{{route('marks.edit',$mark->id)}}">Edit</a>
